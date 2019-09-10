@@ -56,7 +56,8 @@ console.log(err)
   getSession: (req, res) => {
     if (req.session) {
       res.status(200).send(req.session);
-    }
+    } 
+   
   },
 
   logout: (req, res) => {
