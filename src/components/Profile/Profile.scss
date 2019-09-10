@@ -1,0 +1,10 @@
+@import '../../config';
+
+h1 {
+    color: $primary-color;
+}
+
+.info {
+    background-color: $secondary-color;
+    display: block;
+}

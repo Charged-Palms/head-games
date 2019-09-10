@@ -5,6 +5,7 @@ require("dotenv").config();
 const session = require("express-session");
 const { CONNECTION_STRING, PORT, SESSION_SECRET } = process.env;
 const authCtrl = require('./controller/authController')
+const userCtrl = require('./controller/userController')
 app.use(express.json());
 app.use(express.static(`${__dirname}/../build`));
 
@@ -23,6 +24,7 @@ app.get("/auth/session", authCtrl.getSession);
 app.post('/auth/register', authCtrl.register )
 app.post('/auth/login', authCtrl.login )
 app.delete('/auth/logout', authCtrl.logout )
+app.get('/api/matches', userCtrl.userMatches)
 
 
 massive(CONNECTION_STRING).then(db => {
