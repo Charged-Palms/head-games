@@ -9,45 +9,82 @@ import "./Landing.css";
 export class Landing extends Component {
   state = {
     displayRegister: false,
-    hightlightRegister: false
+    hightlightRegister: false,
+    displayLogin: true,
+    highlightLogin: true
   };
 
-  toggle = () => {
+  toggleRegister = () => {
     this.setState(prevstate => ({
       displayRegister: !prevstate.displayRegister
     }));
   };
 
-  toggleHighlight = () => {
+  toggleLogin = () => {
+    this.setState(prevstate => ({
+      displayLogin: !prevstate.displayLogin
+    }));
+  };
+
+  toggleRegisterHighlight = () => {
     this.setState(state => ({
       hightlightRegister: !state.hightlightRegister
     }));
   };
+
+  toggleLoginHighlight = () => {
+    this.setState(state => ({
+      hightlightLogin: !state.hightlightLogin
+    }));
+  };
+
   render() {
     return (
       <div className="landingContainer">
-        <button
+        <div
           className={cx("toggler", {
             "toggler--active": this.state.displayRegister
           })}
-          onClick={this.toggle}
+          onClick={this.toggleRegister}
         >
-          Register
-        </button>
+          <h1
+            className={cx("register-title", {
+              "register-title--active": this.state.displayRegister
+            })}
+          >
+            REGISTER
+          </h1>
+        </div>
         <CSSTransition
           in={this.state.displayRegister}
           timeout={350}
           classNames="display"
           unmountOnExit
         >
-            <Register/>
-          {/* <div className="menu">
-            <ul className="list">
-              <li className="list-item">Rajat</li>
-              <li className="list-item">Writes about React</li>
-              <li className="list-item">Loves Pizza</li>
-            </ul>
-          </div> */}
+          <Register />
+        </CSSTransition>
+
+        <div
+          className={cx("toggler2", {
+            "toggler2--active": this.state.displayLogin
+          })}
+          onClick={this.toggleLogin}
+        >
+          <h1
+            className={cx("login-title", {
+              "login-title--active": this.state.displayLogin
+            })}
+          >
+            LOGIN
+          </h1>
+        </div>
+        <CSSTransition
+          in={this.state.displayLogin}
+          timeout={350}
+          classNames="display2"
+          unmountOnExit
+        >
+          <Login />
         </CSSTransition>
       </div>
     );
