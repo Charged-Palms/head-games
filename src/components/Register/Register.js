@@ -1,17 +1,15 @@
 import React, { Component } from "react";
+import AboutYou from "./AboutYou";
+import { setUser } from "../../ducks/reducer";
+import { connect } from "react-redux";
 
-export class Register extends Component {
+class Register extends Component {
   state = {
+    profilePic: "",
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    gender: null,
-    age: null,
-    profilePic: "",
-    zipcode: null,
-    bio: "",
-    status: "",
     topicId: null,
     displayAboutYou: false
   };
@@ -22,9 +20,11 @@ export class Register extends Component {
     });
   }
 
-  handleContinue() {
+  handleContinue = () => {
+    const { profilePic, firstName, lastName, email, password } = this.state;
     this.setState({ displayAboutYou: !this.state.displayAboutYou });
-  }
+    this.props.setUser({ profilePic, firstName, lastName, email, password });
+  };
 
   render() {
     return (
@@ -35,36 +35,47 @@ export class Register extends Component {
             placeholder="Profile Picture"
             onChange={e => this.handleChange(e)}
             className="list-item"
+            name="profilePic"
           />
           <input
             type="text"
             placeholder="First Name"
             onChange={e => this.handleChange(e)}
             className="list-item"
+            name="firstName"
           />
           <input
             type="text"
             placeholder="Last Name"
             onChange={e => this.handleChange(e)}
             className="list-item"
+            name="lastName"
           />
           <input
-            type="text"
+            type="email"
             placeholder="Email Address"
             onChange={e => this.handleChange(e)}
             className="list-item"
+            name="email"
           />
           <input
             type="text"
             placeholder="Password"
             onChange={e => this.handleChange(e)}
             className="list-item"
+            name="password"
           />
-          <button className="list-item">Continue</button>
+          <button className="list-item" onClick={this.handleContinue}>
+            Continue
+          </button>
         </form>
+        {this.state.displayAboutYou ? <AboutYou /> : null}
       </div>
     );
   }
 }
 
-export default Register;
+export default connect(
+  null,
+  { setUser }
+)(Register);
