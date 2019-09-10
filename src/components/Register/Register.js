@@ -28,35 +28,40 @@ export class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className="menu">
         <h1>Register</h1>
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={e => e.preventDefault()} className="list">
           <input
             type="text"
             placeholder="Profile Picture"
             onChange={e => this.handleChange(e)}
+            className="list-item"
           />
           <input
             type="text"
             placeholder="First Name"
             onChange={e => this.handleChange(e)}
+            className="list-item"
           />
           <input
             type="text"
             placeholder="Last Name"
             onChange={e => this.handleChange(e)}
+            className="list-item"
           />
           <input
             type="text"
             placeholder="Email Address"
             onChange={e => this.handleChange(e)}
+            className="list-item"
           />
           <input
             type="text"
             placeholder="Password"
             onChange={e => this.handleChange(e)}
+            className="list-item"
           />
-          <button>Continue</button>
+          <button className="list-item">Continue</button>
         </form>
       </div>
     );
