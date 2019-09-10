@@ -1,24 +1,61 @@
 :root {
-    --toggler-width: 120px;
-    --toggler-height: 40px;
+    --toggler-width: 15%;
+    --toggler-height: 100vh;
     --toggler-bg-color: #da110a;
     --toggler-active-bg-color: #08853c;
     --menu-starting-top: 0px;
-    --menu-ending-top: 45px;
-    --menu-width: 200px;
-    --menu-max-height: 200px;
+    --menu-ending-top: 0px;
+    --menu-width: 100%;
+    --menu-height: 90vh;
     --menu-bg-color: #188ddb;
     --fade-from-color: transparent;
     --fade-to-color: black;
     --timeout: 350ms;
+    --toggler2-width: 15%;
+    --toggler2-height: 100vh;
+    --toggler2-bg-color: #da110a;
+    --toggler2-active-bg-color: #08853c;
+    --menu2-starting-top: 0px;
+    --menu2-ending-top: 0px;
+    --menu2-width: 100%;
+    --menu2-height: 90vh;
+    --menu2-bg-color: #188ddb;
+    /* --fade-from-color: transparent;
+    --fade-to-color: black;
+    --timeout: 350ms; */
   }
   
   .landingContainer {
     position: relative;
   }
   
+  .register-title {
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    transition: 1s;
+  }
+
+  .register-title--active {
+    text-orientation: none;
+    writing-mode: horizontal-tb;
+    transition: 1s;
+  }
+
+  .login-title {
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    transition: 1s;
+  }
+
+  .login-title--active {
+    text-orientation: none;
+    writing-mode: horizontal-tb;
+    transition: 1s;
+  }
+
   .toggler {
-    position: relative;
+    position: absolute;
+    left: 0;
     z-index: 2;
     width: var(--toggler-width);
     height: var(--toggler-height);
@@ -28,16 +65,70 @@
     outline: none;
     cursor: pointer;
     transition: background-color 350ms;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
   }
   
   .toggler--active {
     background-color: var(--toggler-active-bg-color);
+    position: absolute;
+    top: 0;
+    height: 10vh;
+    width: 50%;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .toggler2 {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    width: var(--toggler-width);
+    height: var(--toggler-height);
+    background-color: var(--toggler-bg-color);
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 350ms;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .toggler2--active {
+    background-color: var(--toggler-active-bg-color);
+    position: absolute;
+    top: 0;
+    height: 10vh;
+    width: 50%;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .menu {
     position: absolute;
     top: var(--menu-ending-top);
     z-index: 1;
+    height: 100vh;
+    box-sizing: border-box;
+    width: var(--menu-width);
+    padding: 0 20px;
+    overflow: hidden;
+    background-color: var(--menu-bg-color);
+    border-radius: 5px;
+  }
+
+  .menu2 {
+    position: absolute;
+    top: var(--menu-ending-top);
+    z-index: 1;
+    height: 100vh;
     box-sizing: border-box;
     width: var(--menu-width);
     padding: 0 20px;
@@ -48,7 +139,24 @@
   
   .list {
     padding: 0;
+    border: 2px solid black;
     list-style-type: none;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .list2 {
+    padding: 0;
+    border: 2px solid black;
+    list-style-type: none;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
   
   .list-item {
@@ -86,5 +194,41 @@
     max-height: var(--toggler-height);
     color: var(--fade-from-color);
     background-color: var(--toggler-bg-color);
+    transition: all var(--timeout);
+  }
+
+/* ----------------------LOGIN ANIMATION CLASSES------------------------*/
+
+  .display2-enter {
+    top: var(--menu2-starting-top);
+    width: var(--toggler2-width);
+    max-height: var(--toggler2-height);
+    color: var(--fade-from-color);
+    background-color: var(--toggler2-bg-color);
+  }
+  
+  .display2-enter-active {
+    top: var(--menu2-ending-top);
+    width: var(--menu2-width);
+    max-height: var(--menu2-max-height);
+    color: var(--fade-to-color);
+    background-color: var(--menu2-bg-color);
+    transition: all var(--timeout);
+  }
+  
+  .display2-exit {
+    top: var(--menu2-ending-top);
+    width: var(--menu2-width);
+    max-height: var(--menu2-max-height);
+    color: var(--fade-to-color);
+    background-color: var(--menu2-bg-color);
+  }
+  
+  .display2-exit-active {
+    top: var(--menu2-starting-top);
+    width: var(--toggler2-width);
+    max-height: var(--toggler2-height);
+    color: var(--fade-from-color);
+    background-color: var(--toggler2-bg-color);
     transition: all var(--timeout);
   }
