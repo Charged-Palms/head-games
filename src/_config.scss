@@ -1,4 +1,17 @@
 
 
 $primary-color: #D72638;
-$secondary-color: #F1E3F3;
+$secondary-color: #FAFAFA;
+$blue-color: #39A0ED;
+$green-color: #36F1CD;
+$yellow-color: #EAC435;
+
+//change text color with function $color is our param it will test against lightness
+@function set-text-color($color){
+    @if(lightness($color) > 40){
+        @return #151515;
+    }
+    @else {
+        @return #FAFAFA;
+    }
+}
