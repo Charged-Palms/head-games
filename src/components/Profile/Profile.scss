@@ -1,10 +1,43 @@
 @import '../../config';
 
-h1 {
+// .all {
+//     background: black;
+// }
+
+.last {
     color: $primary-color;
 }
 
 .info {
     background-color: $secondary-color;
     display: block;
+}
+
+.matches {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.match-img {
+    background-size: cover;
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+    
+}
+
+.update-bio {
+    background-color: $secondary-color;
+    border: none;
+
+}
+
+.profile-img {
+    border-radius: 50%;
+    border: 2px solid $primary-color;
+    height: 100px;
+    width: 100px;
+}
+
+.first-name {
+    color: set-text-color($secondary-color);
 }

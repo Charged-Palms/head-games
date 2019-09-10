@@ -25,30 +25,31 @@ class Profile extends Component {
         })
     }
     render() {
-        console.log('props', this.props)
+        // console.log('props', this.props.reduxState)
         const { matches } = this.state
+        const { bio, profilePic, firstName, lastName } = this.props.reduxState
         const allMatches = matches.map(elm => {
             return(
-                <div>
-                    {elm.first_name}
+                <div className="matches" key={elm.user_id}>
+                    <h6 className='first-name'>{elm.first_name} <span className='last' >{elm.last_name}</span></h6>
+                    <p>{elm.user_age}</p>
+                    <img className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>
                 </div>
             )
         })
         return (
-            <div>
-                <h1>User Profile</h1>
+            <div className='all'>
+                <h1 className='first-name'>{firstName} <span className='last'>{lastName}</span></h1>
                 <button className="nav-btn">Settings</button>
+                    <div >
+                        <img className="profile-img" src={profilePic} alt="your snapshot"/>
+                    </div>
                 <div className="info">
-                    <textarea cols="30" rows="10"></textarea>
+                    <textarea className="update-bio" cols="30" rows="10"></textarea>
                     <br/>
                     <button className="btn-edit">Edit</button>
                 </div>
-                <div className="info">
-                    <textarea cols="30" rows="10"></textarea>
-                    <br/>
-                    <button className="btn-edit">Edit</button>
-                </div>
-                <div className="matches">
+                <div >
                     {allMatches}
                 </div>
             </div>
