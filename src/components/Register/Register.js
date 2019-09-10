@@ -29,7 +29,6 @@ export class Register extends Component {
   render() {
     return (
       <div className="menu">
-        <h1>Register</h1>
         <form onSubmit={e => e.preventDefault()} className="list">
           <input
             type="text"
