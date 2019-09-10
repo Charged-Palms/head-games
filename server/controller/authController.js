@@ -38,7 +38,7 @@ try {
     .catch(alert("not found"));
   }
   const result = bcrypt.compareSync(password, user[0].password);
-  console.log(password, user[0].password)
+  // console.log(password, user[0].password)
   if (result) {
     delete user[0].password;
     req.session.user = user[0];
