@@ -3,7 +3,6 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/reducer";
 import {withRouter} from "react-router-dom"
-import "./Login.css";
 
 export class Login extends Component {
   state = {
