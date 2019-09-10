@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/reducer";
+import {withRouter} from "react-router-dom"
 import "./Login.css";
 
 export class Login extends Component {
@@ -39,6 +40,7 @@ export class Login extends Component {
           topic_id: topicId
         } = res.data.user; //check after backend part made
         this.props.setUser({
+          email,
           profilePic,
           userId,
           firstName,
@@ -50,6 +52,7 @@ export class Login extends Component {
           status,
           topicId
         });
+        this.props.history.push("/home");
       })
       .catch(() => {
         alert("Incorrect Login Info");
@@ -60,6 +63,7 @@ export class Login extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log(this.state);
   }
 
   render() {
@@ -68,6 +72,7 @@ export class Login extends Component {
         <form onSubmit={e => e.preventDefault()} className="list2">
           <input
             type="text"
+            name="email"
             placeholder="email address"
             onChange={e => this.handleChange(e)}
             className="list-item"
@@ -75,6 +80,7 @@ export class Login extends Component {
           <input
             type="text"
             placeholder="password"
+            name="password"
             onChange={e => this.handleChange(e)}
             className="list-item"
           />
@@ -90,4 +96,4 @@ export class Login extends Component {
 export default connect(
   null,
   { setUser }
-)(Login);
+)(withRouter(Login));
