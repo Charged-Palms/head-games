@@ -16,13 +16,15 @@ export class Landing extends Component {
 
   toggleRegister = () => {
     this.setState(prevstate => ({
-      displayRegister: !prevstate.displayRegister
+      displayRegister: !prevstate.displayRegister,
+      displayLogin: !prevstate.displayLogin
     }));
   };
 
   toggleLogin = () => {
     this.setState(prevstate => ({
-      displayLogin: !prevstate.displayLogin
+      displayLogin: !prevstate.displayLogin,
+      displayRegister: !prevstate.displayRegister
     }));
   };
 
@@ -57,7 +59,7 @@ export class Landing extends Component {
         </div>
         <CSSTransition
           in={this.state.displayRegister}
-          timeout={350}
+          timeout={500}
           classNames="display"
           unmountOnExit
         >
@@ -80,9 +82,10 @@ export class Landing extends Component {
         </div>
         <CSSTransition
           in={this.state.displayLogin}
-          timeout={350}
+          timeout={500}
           classNames="display2"
           unmountOnExit
+          appear={true}
         >
           <Login />
         </CSSTransition>
