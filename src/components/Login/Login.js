@@ -64,18 +64,24 @@ export class Login extends Component {
 
   render() {
     return (
-      <div>
-        <input
-          type="text"
-          placeholder="email address"
-          onChange={e => this.handleChange(e)}
-        />
-        <input
-          type="text"
-          placeholder="password"
-          onChange={e => this.handleChange(e)}
-        />
-        <button>Login</button>
+      <div className="menu2">
+        <form onSubmit={e => e.preventDefault()} className="list2">
+          <input
+            type="text"
+            placeholder="email address"
+            onChange={e => this.handleChange(e)}
+            className="list-item"
+          />
+          <input
+            type="text"
+            placeholder="password"
+            onChange={e => this.handleChange(e)}
+            className="list-item"
+          />
+          <button className="list-item" onClick={this.login}>
+            Login
+          </button>
+        </form>
       </div>
     );
   }
