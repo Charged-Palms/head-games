@@ -10,7 +10,6 @@ class Register extends Component {
     lastName: "",
     email: "",
     password: "",
-    topicId: null,
     displayAboutYou: false
   };
 
