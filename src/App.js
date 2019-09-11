@@ -9,7 +9,7 @@ class App extends React.Component {
 componentDidMount(){
 this.getSession()
 }
-
+//setting session so that on refresh we keep state.
 getSession = async () => {
   await axios.get('/auth/session').then(res => {
     const {

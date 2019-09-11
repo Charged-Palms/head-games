@@ -18,6 +18,7 @@ const initialState = {
 
 const SET_USER = "SET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
+const UPDATE_BIO = "UPDATE_BIO";
 
 //-----------------------------ACTION BUILDERS-------------------------------
 
@@ -34,6 +35,13 @@ export function logoutUser() {
   };
 }
 
+export function updateBio(bio) {
+  return {
+    type: UPDATE_BIO,
+    payload: bio
+  };
+}
+
 //-----------------------------REDUCER---------------------------------------
 
 export default (state = initialState, action) => {
@@ -42,6 +50,8 @@ export default (state = initialState, action) => {
     case LOGOUT_USER:
       return initialState;
     case SET_USER:
+      return { ...state, ...payload };
+    case UPDATE_BIO:
       return { ...state, ...payload };
     default:
       return state;

@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import './Profile.scss'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import { updateBio } from '../../ducks/reducer'
 
 class Profile extends Component {
     state ={
-        bioEdit: false,
+        bioEdit: true,
         statusEdit: false,
-        matches: []
+        matches: [],
+        userBio: ''
     }
     componentDidMount() {
         this.userMatch()
@@ -24,8 +27,30 @@ class Profile extends Component {
             [key]: e.target.value
         })
     }
+    handleEdit = () => {
+        const { bio } = this.props.reduxState
+        Swal.fire({
+            input: 'textarea',
+            titleText: 'What New in your Life?',
+            inputOptions: 'This is in the alert',
+            //value that is assigned to the input by defalut, coming from reduxState
+            inputValue: bio,
+            // text: 'Update your BIO Here',
+            inputAttributes: {'aria-label': 'Type your message here'},
+            inputDefaultValue: 'hi',
+            showCancelButton: true,
+
+        }).then(res => {
+            //taking res.value off of sweetalert and assigning it to userBio on State.
+            console.log(res.value)
+            const { value } = res
+            this.props.updateBio({
+                bio: value
+            })
+        })
+    }
     render() {
-        // console.log('props', this.props.reduxState)
+        console.log('props', this.props)
         const { matches } = this.state
         const { bio, profilePic, firstName, lastName } = this.props.reduxState
         const allMatches = matches.map(elm => {
@@ -45,9 +70,9 @@ class Profile extends Component {
                         <img className="profile-img" src={profilePic} alt="your snapshot"/>
                     </div>
                 <div className="info">
-                    <textarea className="update-bio" cols="30" rows="10"></textarea>
+                    <p>{bio}</p>
                     <br/>
-                    <button className="btn-edit">Edit</button>
+                    <button onClick={this.handleEdit} className="btn-edit">Edit</button>
                 </div>
                 <div >
                     {allMatches}
@@ -62,4 +87,4 @@ function mapStateToProps(reduxState){
         reduxState
     }
 }
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps,{updateBio})(Profile)
