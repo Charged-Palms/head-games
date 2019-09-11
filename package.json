@@ -21,7 +21,8 @@
     "react-swipeable-cards": "^1.0.6",
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",
-    "sass": "^1.23.0-module.beta.1"
+    "sass": "^1.23.0-module.beta.1",
+    "sweetalert2": "^8.17.1"
   },
   "scripts": {
     "start": "react-scripts start",
