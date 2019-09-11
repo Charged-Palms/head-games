@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS questions; 
+DROP TABLE IF EXISTS matches;
+DROP TABLE IF EXISTS user_profiles;
+DROP TABLE IF EXISTS topics;
+
+
 CREATE TABLE topics (
 topic_id SERIAL PRIMARY KEY,
 topic_name VARCHAR(50)
@@ -78,9 +84,18 @@ VALUES (1, 2),
 (7, 4),
 (7, 9);
 
---match grid user matches
--- SELECT b.first_name, b.last_name, b.profile_pic, b.user_age, b.user_id FROM user_profiles a
--- JOIN (matches LEFT JOIN user_profiles b ON matches.matchee_id = b.user_id
--- )
--- on a.user_id = matches.user_id
--- WHERE a.user_id = 7;
+UPDATE user_profiles
+SET profile_pic = 'https://i.pinimg.com/originals/28/66/9c/28669c6617ed831cc83c095e4515d986.jpg' 
+WHERE gender = FALSE;
+
+UPDATE user_profiles
+SET profile_pic = 'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260g' 
+WHERE gender = TRUE;  
+
+UPDATE user_profiles
+SET profile_pic = 'https://previews.123rf.com/images/cthoman/cthoman1507/cthoman150705167/42829751-a-cartoon-illustration-of-an-evil-looking-catfish-.jpg'
+WHERE user_id = 1;
+UPDATE user_profiles
+SET profile_pic =' https://upload.wikimedia.org/wikipedia/commons/d/d3/IBM_Blue_Gene_P_supercomputer.jpg'
+WHERE user_id = 3;
+
