@@ -1,47 +1,46 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import CardFrontInfo from "./CardFrontInfo";
+
 export class CardFront extends Component {
   state = {
-    potentialMatches: []
+    potentialMatches: null,
+    currentIndex: 0
   };
 
   componentDidMount() {
     this.getMatches();
   }
 
-  getMatches = async () => {
- 
+  getMatches = () => {
     try {
-      await axios.get("/api/users/cards").then(res => {
-        console.log(res.data[0].user_id);
-        this.setState({
-          potentialMatches: res.data
+      setTimeout(() => {
+        
+        axios.get("/api/users/cards").then(res => {
+          // console.log(res)
+          this.setState({
+            potentialMatches: res.data
+          });
         });
-      });
+      }, 150);
     } catch (err) {
       console.log(err);
     }
   };
 
   render() {
-    const { potentialMatches } = this.state;
-    console.log(potentialMatches);
-    console.log(this.props);
-    let matches = potentialMatches.map(el => {
-      return (
-        <div key={el.user_id}>
-          <Link to={`/cardBack${el.user_id}`}>
-            <img src={el.profile_pic} alt="potential match profile" />
-            <h1>{el.user_id}</h1>
-          </Link>
-        </div>
-      );
-    });
+    const { potentialMatches, currentIndex } = this.state;
     return (
       <div>
-        <h1>CardFront</h1>
-        {matches}
+        {this.state.potentialMatches ? (
+          <CardFrontInfo
+            potentialMatches={potentialMatches}
+            currentIndex={currentIndex}
+          />
+        ) : (
+          <h1>Card Front Currently Loading...</h1>
+        )}
       </div>
     );
   }
