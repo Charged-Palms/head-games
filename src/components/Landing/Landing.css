@@ -124,6 +124,7 @@
   overflow: hidden;
   background-color: var(--menu-bg-color);
   border-radius: 5px;
+  overflow-y: scroll;
 }
 
 .menu2 {
@@ -142,7 +143,6 @@
 .list {
   padding-right: 15%;
   padding-top: 25%;
-  border: 2px solid black;
   list-style-type: none;
   height: 80vh;
   display: flex;
@@ -247,4 +247,57 @@
   transition: all var(--timeout);
   transform: translateX(100vw);
   transition: 1s;
+}
+
+/*--------------------------ABOUT YOU---------------------------------*/
+
+.about-you-container {
+  padding-right: 15%;
+  height: 100vh;
+  margin-top: 15vh;
+}
+
+.about-you-title {
+  padding-top: 15vh;
+}
+
+.about-you-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gender-form {
+  display: flex;
+  margin-bottom: 4%;
+}
+
+.about-you-form-textarea {
+  width: 75%;
+  height: 15vh;
+  margin-bottom: 4%;
+}
+
+.about-you-form-input {
+  margin-bottom: 4%;
+}
+
+/*-------------------------SELECT INTERESTS----------------------------*/
+
+.select-interests-container {
+  padding-right: 15%;
+  height: 100vh;
+  margin-top: 15vh;
+}
+
+.select-interests-title {
+  padding-top: 15vh;
+}
+
+.select-interests-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
