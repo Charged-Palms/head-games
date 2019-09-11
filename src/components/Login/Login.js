@@ -62,10 +62,10 @@ export class Login extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="menu2">
         <form onSubmit={e => e.preventDefault()} className="list2">
