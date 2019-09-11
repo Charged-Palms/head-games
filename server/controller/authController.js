@@ -52,13 +52,13 @@ module.exports = {
   login: async (req, res) => {
     const db = req.app.get("db");
     const { email, password } = req.body;
+    console.log(req.body)
     try {
       const user = await db.find_email([email]);
       if (user.length === 0) {
         return res
           .status(400)
           .send({ message: "Email not found" })
-          .catch(alert("not found"));
       }
       const result = bcrypt.compareSync(password, user[0].password);
       // console.log(password, user[0].password)
