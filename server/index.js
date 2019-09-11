@@ -6,6 +6,8 @@ const session = require("express-session");
 const { CONNECTION_STRING, PORT, SESSION_SECRET } = process.env;
 const authCtrl = require('./controller/authController')
 const userCtrl = require('./controller/userController')
+const quizCtrl = require("./controller/quizzesController")
+
 app.use(express.json());
 app.use(express.static(`${__dirname}/../build`));
 
@@ -27,6 +29,10 @@ app.delete('/auth/logout', authCtrl.logout )
 app.get('/api/matches', userCtrl.userMatches)
 app.get('/api/users/cards', userCtrl.getCardInfo)
 
+app.get('/api/users/matches', userCtrl.userMatches)
+
+app.get("/api/quizzes/topics", quizCtrl.getTopics)
+app.get("/api/quizzes/questions", quizCtrl.getQuestions)
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);

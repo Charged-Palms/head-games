@@ -20,7 +20,8 @@ class AboutYou extends Component {
   }
 
   handleContinue = () => {
-    const { gender, age, zipcode, bio, status } = this.state;
+    let { gender, age, zipcode, bio, status } = this.state;
+    gender === "male" ? (gender = true) : (gender = false);
     this.setState({
       displaySelectInterests: !this.state.displaySelectInterests
     });
@@ -30,7 +31,7 @@ class AboutYou extends Component {
   render() {
     return (
       <div className="about-you-container">
-        <h1 className="about-you-title">AboutYou</h1>
+        <h1 className="about-you-title">About You</h1>
         <form onSubmit={e => e.preventDefault()} className="about-you-form">
           <textarea
             className="about-you-form-textarea"
@@ -67,7 +68,9 @@ class AboutYou extends Component {
             onChange={e => this.handleChange(e)}
             className="about-you-form-input"
           />
-          <button onClick={this.handleContinue}>Continue</button>
+          <button type="submit" onClick={this.handleContinue}>
+            Continue
+          </button>
         </form>
         {this.state.displaySelectInterests ? <SelectInterests /> : null}
       </div>
