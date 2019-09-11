@@ -26,6 +26,8 @@ app.get("/auth/session", authCtrl.getSession);
 app.post('/auth/register', authCtrl.register )
 app.post('/auth/login', authCtrl.login )
 app.delete('/auth/logout', authCtrl.logout )
+app.get('/api/matches', userCtrl.userMatches)
+app.get('/api/users/cards', userCtrl.getCardInfo)
 
 app.get('/api/users/matches', userCtrl.userMatches)
 
