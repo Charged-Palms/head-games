@@ -282,3 +282,22 @@
 .about-you-form-input {
   margin-bottom: 4%;
 }
+
+/*-------------------------SELECT INTERESTS----------------------------*/
+
+.select-interests-container {
+  padding-right: 15%;
+  height: 100vh;
+  margin-top: 15vh;
+}
+
+.select-interests-title {
+  padding-top: 15vh;
+}
+
+.select-interests-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
