@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CardFront from "../Card/CardFront";
 import CardBack from "../Card/CardBack";
+import { Card, CardWrapper } from 'react-swipeable-cards';
 export class Home extends Component {
   state = {
     flip: true
@@ -17,7 +18,12 @@ export class Home extends Component {
     return (
       <div>
         <h1>Home</h1>
-        {flip ? (
+        <CardWrapper>
+          <Card>
+            Hi
+          </Card>
+        </CardWrapper>
+        {/* {flip ? (
           <div onMouseEnter={this.flipCard} onClick={this.flipCard}>
             {" "}
             <CardFront />{" "}
@@ -27,7 +33,7 @@ export class Home extends Component {
             {" "}
             <CardBack />{" "}
           </div>
-        )}
+        )} */}
       </div>
     );
   }
