@@ -35,7 +35,7 @@ class SelectInterests extends Component {
       lastName: last_name,
       age: user_age,
       email,
-      password,
+      password: hash,
       gender,
       zipcode,
       bio,
@@ -49,7 +49,7 @@ class SelectInterests extends Component {
         last_name,
         user_age,
         email,
-        password,
+        hash,
         gender,
         zipcode,
         bio,
@@ -70,9 +70,6 @@ class SelectInterests extends Component {
   }
 
   render() {
-    console.log("reduxState", this.props.reduxState);
-    // console.log("topicArr", this.state.topicArr);
-    // console.log("questionArr", this.state.questionArr);
     return (
       <div className="select-interests-container">
         <h1 className="select-interests-title">Select Interests</h1>

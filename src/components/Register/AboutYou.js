@@ -20,7 +20,8 @@ class AboutYou extends Component {
   }
 
   handleContinue = () => {
-    const { gender, age, zipcode, bio, status } = this.state;
+    let { gender, age, zipcode, bio, status } = this.state;
+    gender === "male" ? (gender = true) : (gender = false);
     this.setState({
       displaySelectInterests: !this.state.displaySelectInterests
     });
