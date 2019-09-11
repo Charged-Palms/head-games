@@ -30,6 +30,7 @@ app.get('/api/matches', userCtrl.userMatches)
 app.get('/api/users/cards', userCtrl.getCardInfo)
 
 app.get('/api/users/matches', userCtrl.userMatches)
+app.put('/api/users/bio', userCtrl.updateBio)
 
 app.get("/api/quizzes/topics", quizCtrl.getTopics)
 app.get("/api/quizzes/questions", quizCtrl.getQuestions)

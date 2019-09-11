@@ -3,7 +3,7 @@ import './Profile.scss'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { updateBio } from '../../ducks/reducer'
+import { updateBio, logoutUser } from '../../ducks/reducer'
 
 class Profile extends Component {
     state ={
@@ -47,7 +47,15 @@ class Profile extends Component {
             this.props.updateBio({
                 bio: value
             })
+            //updating our table with new bio info.
+            axios.put('/api/users/bio', {bio: value})
         })
+    }
+    logout = async () => {
+        let res = await axios.delete('/auth/logout');
+        console.log(res);
+        this.props.logoutUser();
+        this.props.history.push('/');
     }
     render() {
         console.log('props', this.props)
@@ -66,6 +74,7 @@ class Profile extends Component {
             <div className='all'>
                 <h1 className='first-name'>{firstName} <span className='last'>{lastName}</span></h1>
                 <button className="nav-btn">Settings</button>
+                <button onClick={this.logout} className="logout-btn">Logout</button>
                     <div >
                         <img className="profile-img" src={profilePic} alt="your snapshot"/>
                     </div>
@@ -87,4 +96,4 @@ function mapStateToProps(reduxState){
         reduxState
     }
 }
-export default connect(mapStateToProps,{updateBio})(Profile)
+export default connect(mapStateToProps,{updateBio, logoutUser})(Profile)
