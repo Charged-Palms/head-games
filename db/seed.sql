@@ -1,9 +1,3 @@
-DROP TABLE IF EXISTS questions; 
-DROP TABLE IF EXISTS matches;
-DROP TABLE IF EXISTS user_profiles;
-DROP TABLE IF EXISTS topics;
-
-
 CREATE TABLE topics (
 topic_id SERIAL PRIMARY KEY,
 topic_name VARCHAR(50)
