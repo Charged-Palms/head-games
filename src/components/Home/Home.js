@@ -18,7 +18,7 @@ export class Home extends Component {
       <div>
         <h1>Home</h1>
         {flip ? (
-          <div onMouseEnter={this.flipCard} onClick={this.flipCard}>
+          <div onClick={this.flipCard}>
             {" "}
             <CardFront />{" "}
           </div>
