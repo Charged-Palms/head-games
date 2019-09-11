@@ -23,5 +23,16 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },
+  updateBio: async (req,res) => {
+    const db = req.app.get("db");
+    const { bio } = req.body
+    const { user_id } = req.session.user;
+    try {
+      const newBio = await db.update_bio({user_id, bio});
+      res.status(200).send(newBio)
+    } catch (err) {
+        console.log(err, "not updating bio")
+    }
   }
 };
