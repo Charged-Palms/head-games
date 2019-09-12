@@ -12,9 +12,14 @@ export class Quiz extends Component {
         })
     }
 
+    handleResponse(id) {
+        console.log(id)
+    }
+
     render() {
+        console.log(this.state)
         let answers = this.state.quiz.map((ele) => {
-            return <button key={ele.question_id}>
+            return <button key={ele.question_id} onClick={() => this.handleResponse(ele.question_id)}>
                 {ele.answer}
             </button>
         })
