@@ -34,6 +34,7 @@ app.put('/api/users/bio', userCtrl.updateBio)
 
 app.get("/api/quizzes/topics", quizCtrl.getTopics)
 app.get("/api/quizzes/questions", quizCtrl.getQuestions)
+app.get('/api/quizzes/questions/topics', quizCtrl.getQuestionsByTopic)
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);

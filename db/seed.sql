@@ -26,8 +26,16 @@ topic_id INTEGER REFERENCES topics(topic_id)
 );
 
 CREATE TABLE matches (
+match_id SERIAL PRIMARY KEY,
 user_id INTEGER REFERENCES user_profiles(user_id),
 matchee_id INTEGER REFERENCES user_profiles(user_id)
+);
+
+CREATE TABLE messages (
+message_id SERIAL PRIMARY KEY,
+match_id INTEGER REFERENCES matches(match_id),
+sender_id INTEGER REFERENCES user_profiles(user_id),
+message TEXT
 );
 
 INSERT INTO topics (topic_name)
