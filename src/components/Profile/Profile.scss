@@ -4,6 +4,13 @@
 //     background: black;
 // }
 
+* {
+    user-select: none;
+    &:focus {
+        outline: none !important;
+    }
+}
+
 .last {
     color: $primary-color;
 }
@@ -14,7 +21,16 @@
 }
 
 .matches {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center; 
+    user-select: none;
+    :focus {
+        outline: none !important;
+    }
 }
 
 .match-img {
@@ -22,7 +38,25 @@
     overflow: hidden;
     height: 100px;
     width: 100px;
-    
+    cursor: pointer;
+    margin: none;
+    border-radius: 100%;
+    // styling border
+    padding: 1rem;
+    color: white;
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0))1 100%;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    :focus {
+        outline: none !important;
+    }
+}
+
+.match-age {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .update-bio {
@@ -47,5 +81,44 @@
     color: pink;
 }
 
+//ReactModal
+.match-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.match-profile-img {
+    height: 200px;
+    width: 200px;
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0))1 100%;
+}
+
+.ReactModal__Overlay {
+    opacity: 0.5;
+    transition: opacity 400ms ease-in-out;
+}
+
+.ReactModal__Body--open {
+    //added so you can scroll the body when the modal is opened.
+    overflow: hidden;
+    
+}
+
+.ReactModal__Overlay--after-open {
+    opacity: 0.5;
+}
+
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+    
+}
+
+
 //buton styles
+
+.X-btn {
+    margin-left: 50vw;
+}
 
