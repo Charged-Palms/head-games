@@ -5,6 +5,7 @@ import Home from './components/Home/Home'
 import Profile from './components/Profile/Profile'
 import UserSettings from './components/UserSettings/UserSettings'
 import Message from './components/Message/Message'
+import Quiz from './components/Quiz/Quiz'
 
 
 
@@ -15,5 +16,6 @@ export default (
         <Route path='/profile' component={Profile} />
         <Route path='/usersettings' component={UserSettings} />
         <Route path='/message/:matchId' component={Message} />
+        <Route path='/quiz' component={Quiz} />
     </Switch>
 )
