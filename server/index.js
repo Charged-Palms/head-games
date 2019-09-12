@@ -3,7 +3,7 @@ const massive = require("massive");
 const app = express();
 require("dotenv").config();
 const session = require("express-session");
-const { CONNECTION_STRING, PORT, SESSION_SECRET } = process.env;
+const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
 const authCtrl = require('./controller/authController')
 const userCtrl = require('./controller/userController')
 const quizCtrl = require("./controller/quizzesController")
@@ -34,8 +34,9 @@ app.put('/api/users/bio', userCtrl.updateBio)
 
 app.get("/api/quizzes/topics", quizCtrl.getTopics)
 app.get("/api/quizzes/questions", quizCtrl.getQuestions)
+app.get('/api/quizzes/questions/topics', quizCtrl.getQuestionsByTopic)
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
-  app.listen(PORT, () => console.log(`'DingleBerry Chargin ${PORT} Palms`));
+  app.listen(SERVER_PORT, () => console.log(`'DingleBerry Chargin ${SERVER_PORT} Palms`));
 });
