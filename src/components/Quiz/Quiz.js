@@ -1,17 +1,29 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
+import './Quiz.css'
+
+//I need matchee's topic_id, matchee_id, question_time, and num_correct in props
+// Later maybe access a quiz api?
 
 class Quiz extends Component {
     state = {
         quiz: [],
         questionIndex: 0,
-        numCorrect: -1
+        numCorrect: -1,
+        requiredAmount: 3
+        // ,
+        // topic_id: null
     }
 
     componentDidMount() {
+        // axios.get(`/api/users/${matchee_id}`).then(res => {
+            // this.setState({topic_id: res.data.topic_id})
+        // })
+        //axios.get(`/api/quizzes/questions/${this.state.topic_id}`).then(res => {
         axios.get('/api/quizzes/questions/topics').then(res => {
             this.setState({quiz: res.data, numCorrect: 0})
+            // this.setState({quiz: res.data, numCorrect: 0, requiredAmount: this.props.num_correct})
         })
     }
 
@@ -25,8 +37,11 @@ class Quiz extends Component {
     }
 
     handleContinue() {
-        if (this.state.numCorrect === this.state.quiz.length) {
-            this.props.history.push('/profile')
+        if (this.state.numCorrect >= this.state.requiredAmount) {
+            //axios.put(`/api/users/matches/${this.props.user_id}`).then(res => {
+            //this.props.history.push(go to messaging? go back to home)
+            //})
+            this.props.history.push('/home')
         } else {
             this.props.history.push('/home')
         }
@@ -40,13 +55,13 @@ class Quiz extends Component {
             </button>
         })
         return (
-            <div>
+            <div className='quiz-main-content'>
                 <h1>Quiz</h1>
                 {quiz.length !== 0 && questionIndex < quiz.length ? 
                     <div>
-                        <div>
+                        <h2>
                             {quiz[questionIndex].question}
-                        </div>
+                        </h2>
                         <div>
                             {answer}
                         </div>
@@ -55,15 +70,25 @@ class Quiz extends Component {
                     <div>
                         <div>
                             Thank you for completing this quiz!
-                            {this.state.numCorrect === quiz.length ? <div>
-                                You have answered all the questions correctly!
-                            </div> :null}
+                            {this.state.numCorrect >= this.state.requiredAmount ? <div>
+                                You have answered enough questions correctly!
+                            </div> : <div>
+                                <div>
+                                    You did not answer the required amount of questions correctly.
+                                </div>
+                                <h2>
+                                    Sorry.
+                                </h2>
+                                <h1>
+                                    {':('}
+                                </h1>
+                            </div>}
                         </div>
                         <div>
                             <button onClick={() => this.handleContinue()}>Continue</button>
                         </div>
                     </div>
-            :null}
+            : <div>Loading certain doom...</div>}
             </div>
         )
     }
