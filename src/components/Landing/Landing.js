@@ -11,7 +11,7 @@ export class Landing extends Component {
     displayRegister: false,
     hightlightRegister: false,
     displayLogin: true,
-    highlightLogin: true
+    highlightLogin: true,
   };
 
   toggleRegister = () => {
@@ -49,6 +49,13 @@ export class Landing extends Component {
           })}
           onClick={this.toggleRegister}
         >
+          <img
+            src="/static/icons8-back-arrow-64.png"
+            alt="backArrow"
+            className={cx("register-arrow", {
+              "register-arrow--active": this.state.displayRegister
+            })}
+          />
           <h1
             className={cx("register-title", {
               "register-title--active": this.state.displayRegister
@@ -59,7 +66,7 @@ export class Landing extends Component {
         </div>
         <CSSTransition
           in={this.state.displayRegister}
-          timeout={500}
+          timeout={1000}
           classNames="display"
           unmountOnExit
         >
@@ -79,10 +86,17 @@ export class Landing extends Component {
           >
             LOGIN
           </h1>
+          <img
+            src="/static/icons8-back-arrow-64.png"
+            alt="backArrow"
+            className={cx("login-arrow", {
+              "login-arrow--active": this.state.displayLogin
+            })}
+          />
         </div>
         <CSSTransition
           in={this.state.displayLogin}
-          timeout={500}
+          timeout={1000}
           classNames="display2"
           unmountOnExit
           appear={true}

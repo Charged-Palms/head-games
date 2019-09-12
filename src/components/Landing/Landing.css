@@ -2,25 +2,25 @@
 :root {
   --toggler-width: 15%;
   --toggler-height: 100vh;
-  --toggler-bg-color: #da110a;
-  --toggler-active-bg-color: #08853c;
+  --toggler-bg-color: rgb(252, 205, 36);
+  --toggler-active-bg-color: #151515;
   --menu-starting-top: 0px;
   --menu-ending-top: 0px;
   --menu-width: 100%;
-  --menu-height: 90vh;
-  --menu-bg-color: #188ddb;
+  --menu-height: 100vh;
+  --menu-bg-color: aquamarine;
   --fade-from-color: transparent;
   --fade-to-color: black;
   --timeout: 350ms;
   --toggler2-width: 15%;
   --toggler2-height: 100vh;
-  --toggler2-bg-color: #da110a;
+  --toggler2-bg-color: rgb(252, 205, 36);
   --toggler2-active-bg-color: #08853c;
   --menu2-starting-top: 0px;
   --menu2-ending-top: 0px;
   --menu2-width: 100%;
-  --menu2-height: 90vh;
-  --menu2-bg-color: #188ddb;
+  --menu2-height: 100vh;
+  --menu2-bg-color: aquamarine;
   /* --fade-from-color: transparent;
     --fade-to-color: black;
     --timeout: 350ms; */
@@ -29,6 +29,9 @@
 .landingContainer {
   position: relative;
   font-family: "Montserrat", sans-serif;
+  background: #151515;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .register-title {
@@ -41,6 +44,20 @@
   text-orientation: none;
   writing-mode: horizontal-tb;
   transition: 0.7s;
+  color: #fafafa;
+
+}
+
+.register-arrow {
+  display: none;
+}
+
+.register-arrow--active {
+  display: inline-block;
+  position: relative;
+  padding-right: 10px;
+  height: 70%;
+  width: auto;
 }
 
 .login-title {
@@ -53,6 +70,20 @@
   text-orientation: none;
   writing-mode: horizontal-tb;
   transition: 0.7s;
+  color: #fafafa;
+}
+
+.login-arrow {
+  display: none;
+}
+
+.login-arrow--active {
+  display: inline-block;
+  position: relative;
+  padding-right: 10px;
+  height: 70%;
+  width: auto;
+  transform: rotate(180deg)
 }
 
 .toggler {
@@ -70,6 +101,7 @@
   transition: 1s;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .toggler--active {
@@ -82,6 +114,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .toggler2 {
@@ -99,6 +132,7 @@
   transition: 1s;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .toggler2--active {
@@ -111,6 +145,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .menu {
@@ -154,7 +189,6 @@
 .list2 {
   padding-left: 15%;
   padding-top: 25%;
-  border: 2px solid black;
   list-style-type: none;
   height: 80vh;
   display: flex;
@@ -166,6 +200,8 @@
 .list-item {
   padding: 5px 0;
 }
+
+/* ----------------------REGISTER ANIMATION CLASSES------------------------*/
 
 .display-enter {
   top: var(--menu-starting-top);
@@ -183,8 +219,9 @@
   max-height: var(--menu-max-height);
   color: var(--fade-to-color);
   background-color: var(--menu-bg-color);
-  transition: all var(--timeout);
+  /* transition: all var(--timeout); */
   transform: translateX(0);
+  transition: 1s;
 }
 
 .display-exit {
@@ -194,6 +231,7 @@
   color: var(--fade-to-color);
   background-color: var(--menu-bg-color);
   transform: translateX(0);
+  transition: 1s;
 }
 
 .display-exit-active {
@@ -201,7 +239,7 @@
   width: var(--toggler-width);
   max-height: var(--toggler-height);
   color: var(--fade-from-color);
-  background-color: var(--toggler-bg-color);
+  background-color: var(--menu-bg-color);
   transition: all var(--timeout);
   transform: translateX(-100vw);
   transition: 1s;
@@ -225,8 +263,9 @@
   max-height: var(--menu2-max-height);
   color: var(--fade-to-color);
   background-color: var(--menu2-bg-color);
-  transition: all var(--timeout);
+  /* transition: all var(--timeout); */
   transform: translateX(0);
+  transition: 1s;
 }
 
 .display2-exit {
@@ -236,6 +275,7 @@
   color: var(--fade-to-color);
   background-color: var(--menu2-bg-color);
   transform: translateX(0);
+  transition: 1s;
 }
 
 .display2-exit-active {
@@ -243,7 +283,7 @@
   width: var(--toggler2-width);
   max-height: var(--toggler2-height);
   color: var(--fade-from-color);
-  background-color: var(--toggler2-bg-color);
+  background-color: var(--menu2-bg-color);
   transition: all var(--timeout);
   transform: translateX(100vw);
   transition: 1s;

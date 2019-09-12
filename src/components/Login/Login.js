@@ -65,7 +65,6 @@ export class Login extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="menu2">
         <form onSubmit={e => e.preventDefault()} className="list2">
