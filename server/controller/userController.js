@@ -34,5 +34,17 @@ module.exports = {
     } catch (err) {
         console.log(err, "not updating bio")
     }
+  },
+  matchDetails: async (req,res) => {
+    //match user details displayed in matchProfile component
+    const db = req.app.get("db");
+    const { id: user_id } = req.params
+    try {
+    const match = await db.matched_profile_info([user_id])
+    // console.log(match)
+    res.status(200).send(match)
+    } catch (err) {
+      console.log(err, "no user profile")
+    }
   }
 };

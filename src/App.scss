@@ -1,5 +1,7 @@
 @import 'config';
-
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 .App {
   text-align: center;
 }
