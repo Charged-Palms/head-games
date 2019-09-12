@@ -46,5 +46,17 @@ module.exports = {
   //     console.log(err, 'unable to add match')
   //     res.sendStatus(500)
   //   }
+  // },
+  // 
+  // findMatcheeTopic: async (req, res) => {
+  //   const db = req.app.get('db')
+  //   const {matchee_id} = req.params
+  //   try {
+  //     let {topic_id} = db.get_topic_by_user
+  //     res.status(200).send(topic_id)
+  //   } catch (err) {
+  //     console.log(err, 'unable to find topic')
+  //     res.sendStatus(500) 
+  //   }
   // }
 };

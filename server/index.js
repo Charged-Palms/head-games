@@ -29,6 +29,7 @@ app.delete('/auth/logout', authCtrl.logout )
 app.get('/api/matches', userCtrl.userMatches)
 app.get('/api/users/cards', userCtrl.getCardInfo)
 
+// app.get('/api/users/:matchee_id')
 app.get('/api/users/matches', userCtrl.userMatches)
 app.put('/api/users/bio', userCtrl.updateBio)
 //app.put('/api/users/matches/:user_id', userCtrl.addMatch)
