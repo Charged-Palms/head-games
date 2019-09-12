@@ -9,9 +9,8 @@ class Quiz extends Component {
     state = {
         quiz: [],
         questionIndex: 0,
-        numCorrect: -1
-        // ,
-        // requiredAmount: 0
+        numCorrect: -1,
+        requiredAmount: 3
     }
 
     componentDidMount() {
@@ -32,12 +31,11 @@ class Quiz extends Component {
     }
 
     handleContinue() {
-        // if (this.state.numCorrect === this.state.requiredAmount) {
-        if (this.state.numCorrect === this.state.quiz.length) {
+        if (this.state.numCorrect >= this.state.requiredAmount) {
             //axios.put(`/api/users/matches/${this.props.user_id}`).then(res => {
             //this.props.history.push(go to messaging? go back to home)
             //})
-            this.props.history.push('/profile')
+            this.props.history.push('/home')
         } else {
             this.props.history.push('/home')
         }
@@ -66,8 +64,7 @@ class Quiz extends Component {
                     <div>
                         <div>
                             Thank you for completing this quiz!
-                            {/* {this.state.numCorrect === this.state.requiredAmount ? <div> */}
-                            {this.state.numCorrect === quiz.length ? <div>
+                            {this.state.numCorrect >= this.state.requiredAmount ? <div>
                                 You have answered enough questions correctly!
                             </div> : <div>
                                 <div>
