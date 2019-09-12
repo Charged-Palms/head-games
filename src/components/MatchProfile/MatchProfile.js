@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import { connect } from 'react-redux'
 
 export class MatchProfile extends Component {
     render() {
@@ -10,4 +12,4 @@ export class MatchProfile extends Component {
     }
 }
 
-export default MatchProfile
+export default connect(null,{})(MatchProfile)

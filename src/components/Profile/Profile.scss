@@ -14,7 +14,13 @@
 }
 
 .matches {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    
+    justify-content: center; 
 }
 
 .match-img {
@@ -22,7 +28,20 @@
     overflow: hidden;
     height: 100px;
     width: 100px;
-    
+    cursor: pointer;
+    margin: none;
+    border-radius: 100%;
+    // styling border
+    padding: 1rem;
+    color: white;
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0))1 100%;
+}
+
+.match-age {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .update-bio {

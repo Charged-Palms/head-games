@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { updateBio, logoutUser } from '../../ducks/reducer'
+import { Link } from 'react-router-dom'
 
 class Profile extends Component {
     state ={
@@ -64,8 +65,8 @@ class Profile extends Component {
         const allMatches = matches.map(elm => {
             return(
                 <div className="matches" key={elm.user_id}>
-                    <h6 className='first-name'>{elm.first_name} <span className='last' >{elm.last_name}</span></h6>
-                    <p>{elm.user_age}</p>
+                    <span className='first-name'>{elm.first_name} <span className='last' >{elm.last_name}</span></span>
+                    <p classname='match-age'>Age, {elm.user_age}</p>
                     <img className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>
                 </div>
             )
@@ -73,7 +74,7 @@ class Profile extends Component {
         return (
             <div className='all'>
                 <h1 className='first-name'>{firstName} <span className='last'>{lastName}</span></h1>
-                <button className="nav-btn">Settings</button>
+                <Link to='/usersettings' ><button className="nav-btn">Settings</button></Link>
                 <button onClick={this.logout} className="logout-btn">Logout</button>
                     <div >
                         <img className="profile-img" src={profilePic} alt="your snapshot"/>
