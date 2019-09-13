@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 // import * as d3 from 'd3'
-import QuizTimer from './QuizTimer'
+import GearTest from '../SettingsButton/GearTest'
 import './Quiz.css'
 
 //I need matchee_id in props
@@ -63,6 +63,9 @@ class Quiz extends Component {
         return (
             <div className='quiz-main-content'>
                 <h1>Quiz</h1>
+                <div>
+                    <GearTest/>
+                </div>
                 {quiz.length !== 0 && questionIndex < quiz.length ? 
                     <div>
                         <h2>
@@ -94,10 +97,10 @@ class Quiz extends Component {
                             <button onClick={() => this.handleContinue()}>Continue</button>
                         </div>
                     </div>
-            : <div>Loading certain doom...</div>}
-            <div>
-                <QuizTimer/>
-            </div>
+                : <div>Loading certain doom...</div>}
+                <div>
+                    <div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                </div>
             </div>
         )
     }
