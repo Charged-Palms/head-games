@@ -43,10 +43,22 @@ module.exports = {
     const match = await db.matched_profile_info([user_id])
     // console.log(match)
     res.status(200).send(match)
-    } catch (err) {
-      console.log(err, "no user profile")
+    } catch {
+      res.status(500).send(console.log('error getting match details'))
     }
-  }
+  },
+    quizProfiles: async (req, res) => {
+      const db = req.app.get('db');
+      const { user_id } = req.session.user;
+      try{
+        const profiles = await db.quiz_correct_profile([user_id])
+        res.status(200).send(profiles)
+      }
+      catch(err){
+        res.status(500).send(console.log('no profiles where quiz taken = true being received'))
+      }
+
+    }
   // ,
   // addMatch: async (req, res) => {
   //   const db = req.app.get('db')
