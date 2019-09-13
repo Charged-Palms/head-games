@@ -33,7 +33,8 @@ app.get("/api/users/cards", userCtrl.getCardInfo);
 app.get("/api/users/matches", userCtrl.userMatches);
 app.put("/api/users/bio", userCtrl.updateBio);
 //app.put('/api/users/matches/:user_id', userCtrl.addMatch)
-app.get("/api/users/match/:id", userCtrl.matchDetails);
+app.get('/api/users/match/:id', userCtrl.matchDetails)
+app.get('/api/users/quizprofile', userCtrl.quizProfiles)
 
 app.get("/api/quizzes/topics", quizCtrl.getTopics);
 app.get("/api/quizzes/questions", quizCtrl.getQuestions);
