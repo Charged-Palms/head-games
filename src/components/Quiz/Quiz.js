@@ -7,6 +7,7 @@ import './Quiz.css'
 
 //I need matchee_id in props
 // Later maybe access a quiz api?
+// Styling using d3?
 
 class Quiz extends Component {
     state = {
