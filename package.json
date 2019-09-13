@@ -26,6 +26,8 @@
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",
     "sass": "^1.23.0-module.beta.1",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "sweetalert2": "^8.17.1",
     "touchflip-react": "^1.1.0"
   },

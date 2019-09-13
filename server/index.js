@@ -4,9 +4,9 @@ const app = express();
 require("dotenv").config();
 const session = require("express-session");
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
-const authCtrl = require('./controller/authController')
-const userCtrl = require('./controller/userController')
-const quizCtrl = require("./controller/quizzesController")
+const authCtrl = require("./controller/authController");
+const userCtrl = require("./controller/userController");
+const quizCtrl = require("./controller/quizzesController");
 
 app.use(express.json());
 app.use(express.static(`${__dirname}/../build`));
@@ -23,23 +23,25 @@ app.use(
 );
 
 app.get("/auth/session", authCtrl.getSession);
-app.post('/auth/register', authCtrl.register )
-app.post('/auth/login', authCtrl.login )
-app.delete('/auth/logout', authCtrl.logout )
-app.get('/api/matches', userCtrl.userMatches)
-app.get('/api/users/cards', userCtrl.getCardInfo)
+app.post("/auth/register", authCtrl.register);
+app.post("/auth/login", authCtrl.login);
+app.delete("/auth/logout", authCtrl.logout);
+app.get("/api/matches", userCtrl.userMatches);
+app.get("/api/users/cards", userCtrl.getCardInfo);
 
 // app.get('/api/users/:matchee_id')
-app.get('/api/users/matches', userCtrl.userMatches)
-app.put('/api/users/bio', userCtrl.updateBio)
+app.get("/api/users/matches", userCtrl.userMatches);
+app.put("/api/users/bio", userCtrl.updateBio);
 //app.put('/api/users/matches/:user_id', userCtrl.addMatch)
-app.get('/api/users/match/:id', userCtrl.matchDetails)
+app.get("/api/users/match/:id", userCtrl.matchDetails);
 
-app.get("/api/quizzes/topics", quizCtrl.getTopics)
-app.get("/api/quizzes/questions", quizCtrl.getQuestions)
-app.get('/api/quizzes/questions/topics', quizCtrl.getQuestionsByTopic)
+app.get("/api/quizzes/topics", quizCtrl.getTopics);
+app.get("/api/quizzes/questions", quizCtrl.getQuestions);
+app.get("/api/quizzes/questions/topics", quizCtrl.getQuestionsByTopic);
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
-  app.listen(SERVER_PORT, () => console.log(`'DingleBerry Chargin ${SERVER_PORT} Palms`));
+  app.listen(SERVER_PORT, () =>
+    console.log(`'DingleBerry Chargin ${SERVER_PORT} Palms`)
+  );
 });
