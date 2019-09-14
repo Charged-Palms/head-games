@@ -58,7 +58,33 @@ module.exports = {
         res.status(500).send(console.log('no profiles where quiz taken = true being received'))
       }
 
-    }
+    },
+    messages: async (req, res) => {
+      const db = req.app.get("db");
+      const { match_id } = req.params;
+      // const { user_id } = req.session.user;
+      // console.log(match_id);
+      // console.log(axios.get(`http://localhost:5555/api/messages/${match_id}`).then(res => console.log(res)))
+      try {
+        const messages = await db.get_messages([match_id]);
+        res.status(200).send(messages);
+      } catch (err) {
+        console.log("not message");
+      }
+    },
+    sendMessage: async (req, res) => {
+      const db = req.app.get("db");
+      const { match_id } = req.params;
+      const { user_id } = req.session.user;
+      const { message } = req.body;
+      console.log('match_id', match_id, 'user_id', user_id, 'message', message)
+      try {
+        const messages = await db.post_message([match_id, user_id, message]);
+        res.status(200).send(messages);
+      } catch (err) {
+        console.log( err,"you ain't do dat rite");
+      }
+    },
   // ,
   // addMatch: async (req, res) => {
   //   const db = req.app.get('db')
