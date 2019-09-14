@@ -20,7 +20,8 @@ class Profile extends Component {
         quizProfiles: [],
         takenQuizProfiles: [],
         showModalTwo: false,
-        quizProfile: null
+        quizProfile: null,
+        quizMatchId: null
     }
     componentDidMount() {
         this.userMatch()
@@ -107,6 +108,12 @@ class Profile extends Component {
             showModalTwo: false
         })
     }
+    async quizMessageClick(id){
+        await this.setState({
+            quizMatchId: id
+        })
+        this.props.history.push(`/message/${this.state.quizMatchId}`)
+    }
     render() {
         // console.log(this.state)
         const { matches, quizProfiles } = this.state
@@ -165,6 +172,7 @@ class Profile extends Component {
                             <button className='X-btn' onClick={this.handleCloseModalTwo.bind(this)} >X</button>
                             <img className="quiz-profile-img" src={currQuizProfile && currQuizProfile.profile_pic} alt="quiz profile snapshot" />
                             <p>{currQuizProfile && currQuizProfile.match_id}</p>
+                            <button onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className='quiz-msg' >Message</button>
                         </div>
                     </ReactModal>
                 </div>
