@@ -1,8 +1,31 @@
 @import '../../config';
 
-// .all {
-//     background: black;
-// }
+.parallax-wrapper {
+    // background-image: url('https://cdn.hipwallpaper.com/i/16/41/xz68l5.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+.grid {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    padding: 10px;
+    // z-index: 1;
+}
+.grid-item {
+    //    border: 1px red solid;
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+       max-width: 200px; 
+       margin: auto;
+       text-align: center;
+       background: #FAFAFA;                        
+    :focus {
+        outline: none !important;
+    }
+}
 
 * {
     user-select: none;
@@ -20,18 +43,7 @@
     display: block;
 }
 
-.matches {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: center; 
-    user-select: none;
-    :focus {
-        outline: none !important;
-    }
-}
+
 
 .match-img {
     background-size: cover;
@@ -40,13 +52,16 @@
     width: 100px;
     cursor: pointer;
     margin: none;
-    border-radius: 100%;
+    // border-radius: 100%;
     // styling border
-    padding: 1rem;
+    // padding: 1rem;
     color: white;
     border-width: 3px;
     border-style: solid;
-    border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0))1 100%;
+    // border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0))1 100%;
+    // border-image-slice: 90 40 80 40;
+    border-image-width: 5;
+    border-image-outset: 1;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     :focus {
@@ -95,8 +110,13 @@
     border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0))1 100%;
 }
 
+.quiz-profile-img {
+    height: 150px;
+    width: 150px;
+}
+
 .ReactModal__Overlay {
-    opacity: 0.5;
+    opacity: 1;
     transition: opacity 400ms ease-in-out;
 }
 
@@ -121,4 +141,5 @@
 .X-btn {
     margin-left: 50vw;
 }
+
 
