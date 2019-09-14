@@ -9,7 +9,10 @@ const userCtrl = require("./controller/userController");
 const quizCtrl = require("./controller/quizzesController");
 const socketIO = require('socket.io')
 const http = require('http').Server(app)
-const io = socketIO(http)
+const server = app.listen(SERVER_PORT, () =>
+  console.log(`GO SOCKETS ON ${SERVER_PORT}`)
+);
+const io = socketIO(server)
 const axios = require('axios')
 
 app.use(express.json());
@@ -77,7 +80,27 @@ app.post("/api/messages/:match_id", userCtrl.sendMessage);
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
-  const server = http.listen(SERVER_PORT, () => {
-    console.log("server is running on port", server.address().port);
+});
+
+io.on("connection", socket => {
+  console.log("socket connected");
+  
+  socket.on("join chat", data => {
+    console.log("in the room");
+    console.log('dafdafds', data)
+    socket.join(data.room);
   });
+
+  socket.on('emit to room socket', data => {
+    console.log(`emit to room ${data.room}`)
+    socket.emit('room response', data)
+  })
+
+  socket.on('blast to room socket', data => {
+    console.log(`blast to room ${data.room}`)
+    io.to(data.room).emit('room response', data)
+  })
+
+  
+
 });
