@@ -31,24 +31,74 @@ class Timer extends Component {
     }
 
     animateArcTimer() {
-        let arcTimer = d3.select('#timer_arc').append('svg:svg')
-        
-        // var arc = d3.svg.arc()
-        // .innerRadius(50)
-        // .outerRadius(70)
-        // .startAngle(45 * (Math.PI/180)) //converting from degs to radians
-        // .endAngle(3) //just radians
+        var arc = d3.arc()
+        .innerRadius(40)
+        .outerRadius(50)
+        .startAngle(0)
+
+        var svg = d3.select('#timer_arc'),
+        width = 200,
+        height = 150,
+        g = svg.append('g')
+        .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
+
+        var background = g.append('path')
+        .datum({endAngle: 2 * Math.PI})
+        .style('fill', 'gray')
+        .attr('d', arc)
+
+        var foreground = g.append('path')
+        .datum({endAngle: 2 * Math.PI})
+        .style('fill', 'green')
+        .attr('d', arc)
+
+        function changeCircle() {
+            foreground.transition()
+            .duration(5000)
+            .attrTween('d', arcTween(0), 1500)
+            .style('fill', 'red')
+        }
+
+        function arcTween(newAngle) {
+            return function(d) {
+                var interpolate = d3.interpolate(d.endAngle, newAngle)
+                return function(t) {
+                    d.endAngle = interpolate(t)
+                    return arc(d)
+                }
+            }
+        }
+
+        changeCircle()
     }
+
+    
+    // countDownCounter() {
+    //     let counter = d3.select('#timer_count')
+        
+    //     function decrementCount() {
+    //         if (this.state.countDown !== 0) {
+    //             this.setState({countDown: this.state.countDown - 1})
+    //             countDown()
+    //         }
+    //     }
+
+    //     function countDown() {
+    //         counter.transition()
+    //         .duration(1000)
+    //         .on('end', decrementCount)
+    //     }
+
+    //     countDown()
+    // }
 
     componentDidMount() {
         this.animateCircleTimer()
-        // this.animateArcTimer()
+        this.animateArcTimer()
+        // this.countDownCounter()
     }
-
+    
     render() {
-        let arc = d3.svg.arc()
-        .innerRadius(0)
-        .outerRadius(100)
         return (
             <div>
                 <div>
@@ -58,8 +108,11 @@ class Timer extends Component {
                     <div id='timer_circle'>
                         {/* <div id='timer_num'>{this.state.countDown}</div> */}
                     </div>
-                    <div id='timer_arc'>
-                        <path d={arc()}/>
+                    <div id='arc_box'>
+                        <svg id='timer_arc'></svg>
+                    </div>
+                    <div id='timer_count'>
+                        {this.state.countDown}
                     </div>
                 </div>
             </div>
