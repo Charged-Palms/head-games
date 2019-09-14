@@ -1,0 +1,34 @@
+.button-box {
+    border: 3px solid black;
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: 1%;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    display: flex;
+}
+
+.gear-box {
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: radial-gradient(gray 20%,lightgray 30%,gray 55%);
+    padding: 5px;
+    height: 47%;
+    width: 47%;
+    z-index: 1;
+    position: absolute;
+    top: 10%;
+    left: 33%;
+}
+
+.head-box {
+    z-index: -1;
+    background: transparent;
+    height: 100%;
+    width: 100%;
+}
+
+.head-box > svg {
+    fill: gray;
+}

@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
+// import * as d3 from 'd3'
+import GearTest from '../SettingsButton/GearTest'
 import './Quiz.css'
 
-//I need matchee's topic_id, matchee_id, question_time, and num_correct in props
+//I need matchee_id in props
 // Later maybe access a quiz api?
+// Styling using d3?
 
 class Quiz extends Component {
     state = {
@@ -17,9 +20,11 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
+        //Gets topic id
         // axios.get(`/api/users/${matchee_id}`).then(res => {
             // this.setState({topic_id: res.data.topic_id})
         // })
+        //Gets quiz questions
         //axios.get(`/api/quizzes/questions/${this.state.topic_id}`).then(res => {
         axios.get('/api/quizzes/questions/topics').then(res => {
             this.setState({quiz: res.data, numCorrect: 0})
@@ -38,9 +43,11 @@ class Quiz extends Component {
 
     handleContinue() {
         if (this.state.numCorrect >= this.state.requiredAmount) {
+            //Goes to messaging
             //axios.put(`/api/users/matches/${this.props.user_id}`).then(res => {
             //this.props.history.push(go to messaging? go back to home)
             //})
+            // Goes to home for now: once I can get matchee_id as props, then I can go to messaging
             this.props.history.push('/home')
         } else {
             this.props.history.push('/home')
@@ -57,6 +64,9 @@ class Quiz extends Component {
         return (
             <div className='quiz-main-content'>
                 <h1>Quiz</h1>
+                <div>
+                    <GearTest/>
+                </div>
                 {quiz.length !== 0 && questionIndex < quiz.length ? 
                     <div>
                         <h2>
@@ -88,7 +98,10 @@ class Quiz extends Component {
                             <button onClick={() => this.handleContinue()}>Continue</button>
                         </div>
                     </div>
-            : <div>Loading certain doom...</div>}
+                : <div>Loading certain doom...</div>}
+                <div>
+                    <div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                </div>
             </div>
         )
     }
