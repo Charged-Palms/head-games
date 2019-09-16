@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/reducer";
-import {withRouter} from "react-router-dom"
+import { withRouter } from "react-router-dom";
+import GearTest from "../SettingsButton/GearTest";
 
 export class Login extends Component {
   state = {
@@ -65,9 +66,14 @@ export class Login extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="menu2">
+        <div className="gear-container">
+          <GearTest />
+          <h1>Head</h1>
+          <h1>Games</h1>
+        </div>
+        <div className="login-title"></div>
         <form onSubmit={e => e.preventDefault()} className="list2">
           <input
             type="text"
