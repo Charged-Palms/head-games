@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 import * as d3 from 'd3'
+import Timer from 'react-compound-timer'
 import './Quiz.css'
 
 //I need matchee_id in props
@@ -47,8 +48,7 @@ class Quiz extends Component {
         if (this.state.questionIndex < this.state.quiz.length) {
             this.setState({questionIndex: this.state.questionIndex + 1})
         }
-        if (this.state.questionIndex === this.state.quiz.length) {
-
+        if (this.state.questionIndex !== this.state.quiz.length) {
             this.animateArcTimer()
         }
     }
@@ -83,6 +83,7 @@ class Quiz extends Component {
         g = svg.append('g')
         .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
 
+        //eslint-disable-next-line
         var background = g.append('path')
         .datum({endAngle: 2 * Math.PI})
         .style('fill', 'gray')
@@ -95,7 +96,10 @@ class Quiz extends Component {
 
         function changeCircle() {
             foreground
-            .attr('d', arcTween(2 * Math.PI))
+            // .attr('d', arcTween(2 * Math.PI))
+            .transition()
+            .duration(0)
+            .attrTween('d', arcTween(2 * Math.PI), 1500)
             .transition()
             .duration(5000)
             .attrTween('d', arcTween(0), 1500)
@@ -132,6 +136,27 @@ class Quiz extends Component {
         })
         return (
             <div className='quiz-main-content'>
+                <Timer
+                    initialTime={20000}
+                    direction='backward'
+                    checkpoints={[
+                        {time: 15000,
+                        callback: () => this.handleResponse()
+                        },
+
+                        {time: 10000,
+                        callback: () => this.handleResponse()
+                        },
+
+                        {time: 5000,
+                        callback: () => this.handleResponse()
+                        },
+
+                        {time: 0,
+                        callback: () => this.handleResponse()
+                        }
+                    ]}
+                />
                 <div id='arc_box'>
                             <svg id='timer_arc'></svg>
                         </div>
