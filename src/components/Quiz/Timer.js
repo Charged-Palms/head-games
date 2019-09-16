@@ -36,6 +36,11 @@ class Timer extends Component {
         .outerRadius(50)
         .startAngle(0)
 
+        var arc2 = d3.arc()
+        .innerRadius(0)
+        .outerRadius(55)
+        .startAngle(0)
+
         var svg = d3.select('#timer_arc'),
         width = 200,
         height = 150,
@@ -45,18 +50,18 @@ class Timer extends Component {
         var background = g.append('path')
         .datum({endAngle: 2 * Math.PI})
         .style('fill', 'gray')
-        .attr('d', arc)
+        .attr('d', arc2)
 
         var foreground = g.append('path')
         .datum({endAngle: 2 * Math.PI})
-        .style('fill', 'green')
+        .style('fill', 'white')
         .attr('d', arc)
 
         function changeCircle() {
             foreground.transition()
             .duration(5000)
             .attrTween('d', arcTween(0), 1500)
-            .style('fill', 'red')
+            // .style('fill', 'red')
         }
 
         function arcTween(newAngle) {
