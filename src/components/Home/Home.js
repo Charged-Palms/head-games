@@ -4,6 +4,7 @@ import { Card, CardWrapper } from "react-swipeable-cards";
 import { connect } from "react-redux";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import ReactModal from "react-modal";
 
 //Saving for if we decide to have something display after all potential matches are swiped through
 // class MyEndCard extends Component {
@@ -11,10 +12,12 @@ import { Link } from "react-router-dom";
 //     return <div>You Finished Swiping!</div>;
 //   }
 // }
+
+ReactModal.setAppElement("#root");
+
 class Home extends Component {
   state = {
-    //isFlipped is left over from failed card flipping experiments, but may be useful when popup on doubletap is implemented
-    isFlipped: false,
+    showModal: false,
     potentialMatches: [],
     swipedRightArr: [],
     swipedLeftArr: []
@@ -51,7 +54,7 @@ class Home extends Component {
   onSwipeLeft(data) {
     this.setState({
       swipedLeftArr: [...this.state.swipedLeftArr, data],
-      isFlipped: false
+      showModal: false
     });
   }
 
@@ -59,13 +62,14 @@ class Home extends Component {
   onSwipeRight(data) {
     this.setState({
       swipedRightArr: [...this.state.swipedRightArr, data],
-      isFlipped: false
+      showModal: false
     });
   }
 
   //Implement pop up profile here, onDoubleTap is unique to each card, data variable contains all info from user's db row
   onDoubleTap(data) {
-    this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
+    // this.setState(prevState => ({ showModal: !prevState.showModal }));
+    this.setState({ showModal: !this.state.showModal });
   }
 
   //Mapped over this.state.potentialMatches, each element is turned into a card. Function is called in the render method.
@@ -92,9 +96,35 @@ class Home extends Component {
           style={cardStyleFront}
           className={`card-front ${c.user_id}`}
         >
-          {" "}
+          <ReactModal
+            isOpen={this.state.showModal}
+            closeTimeoutMS={500}
+            onRequestClose={this.handleCloseModal.bind(this)}
+          >
+            <div className="match-profile" style={{zIndex:100}}>
+              <button
+                className="X-btn"
+                onClick={this.handleCloseModal.bind(this)}
+              >
+                X
+              </button>
+              <div className="match-details">
+                <span className="first-name">{c.first_name}</span>{" "}
+                <span className="last">{c.last_name}</span>
+                <hr />
+                <span>{c.status}</span>
+                <p className="match-profile-bio">{c.bio}</p>
+              </div>
+            </div>
+          </ReactModal>
         </Card>
       );
+    });
+  }
+
+  handleCloseModal() {
+    this.setState({
+      showModal: false
     });
   }
 
@@ -102,7 +132,7 @@ class Home extends Component {
     // console.log("state", this.state);
     const wrapperStyle = { backgroundColor: "#333" };
     return (
-      <div>
+      <div id="home-main-container">
         <div className="profile-button">
           <img
             src={this.props.profilePic}

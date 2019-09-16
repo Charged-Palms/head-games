@@ -165,7 +165,7 @@
   overflow-y: scroll;
   -webkit-animation: color-change-4x 7s linear infinite alternate both;
   animation: color-change-4x 7s linear infinite alternate both;
-  box-shadow: inset 0px 0px 30px 10px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
 }
 
 .menu2 {
@@ -181,18 +181,26 @@
   border-radius: 5px;
   -webkit-animation: color-change-4x 7s linear infinite alternate both;
   animation: color-change-4x 7s linear infinite alternate both;
-  box-shadow: inset 0px 0px 30px 10px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
 }
 
 .list {
-  padding-right: 15%;
-  padding-top: 25%;
+  /* padding-right: 15%; */
+  /* padding-top: 25%; */
   list-style-type: none;
-  height: 80vh;
+  /* height: 80vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  /* border: 2px solid red; */
+  height: 75%;
+  width: 75%;
+  margin-left: 4%;
+  margin-top: 30%;
+  padding-top: 15px;
+  border-radius: 10px;
+  background: rgba(250, 250, 250, 0.3);
 }
 
 .list2 {
@@ -209,34 +217,43 @@
   /* border: 2px solid red; */
 }
 
-.list2 > input[type=text] {
+.list2 > input[type="text"],
+.list > input[type="text"],
+.list > input[type="email"] {
   padding: 10px 15px;
   box-sizing: border-box;
   background-color: #fafafa;
   border-radius: 6px;
   border: none;
 }
-.list2 > input[type=text]:focus {
+.list2 > input[type="text"]:focus,
+.list > input[type="text"]:focus,
+.list > input[type="email"]:focus 
+{
   border: 2px solid #151515;
   box-shadow: inset 0 0 5px 1px;
 }
 
-.list2 > button {
+.list2 > button,
+.list > button,
+.list > input[type=file] {
   padding: 10px 15px;
   box-sizing: border-box;
   border-radius: 6px;
   border: none;
-  background-color: rgba(25,25,25);
+  background-color: rgba(25, 25, 25);
   color: #fafafa;
   transition: 0.5s;
 }
-.list2 > button:focus {
-  background-color: rgba(250,250,250);
+.list2 > button:focus,
+.list > button:focus {
+  background-color: rgba(250, 250, 250);
   color: #151515;
 }
 
 .list-item {
   padding: 5px 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 .login-content-container {
@@ -246,7 +263,7 @@
   margin-left: 20%;
   margin-top: 30%;
   border-radius: 10px;
-  background: rgba(250,250,250,0.3)
+  background: rgba(250, 250, 250, 0.3);
 }
 
 /* ----------------------REGISTER ANIMATION CLASSES------------------------*/
