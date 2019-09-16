@@ -17,7 +17,11 @@ class Quiz extends Component {
             quiz: [],
             questionIndex: 0,
             numCorrect: -1,
-            requiredAmount: 3
+            requiredAmount: 3,
+            text: {
+                recipient: '4356100129',
+                textmessage: 'match'
+            }
             // ,
             // topic_id: null
         }
@@ -39,6 +43,11 @@ class Quiz extends Component {
 
         this.animateArcTimer()
         // this.innerTimer()
+    }
+    sendText = () => {
+        const { text } = this.state 
+        //pass textmessage GET variables via query string
+        axios.get(`/send-text?recipient=${text.recipient}&textmessage=${text.textmessage}`)
     }
 
     handleResponse = (id1, id2) => {
@@ -189,7 +198,7 @@ class Quiz extends Component {
                             </div>}
                         </div>
                         <div>
-                            <button onClick={() => this.handleContinue()}>Continue</button>
+                            <button onClick={() => {this.handleContinue(); this.sendText()}}>Continue</button>
                         </div>
                     </div>
                 : <div>Loading certain doom...</div>}
