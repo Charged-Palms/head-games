@@ -45,7 +45,7 @@ VALUES ('General'),
 ('Star Wars'),
 ('JavaScript');
 
-INSERT INTO user_profiles (email, password, first_name, last_name, gender, user_age, zipcode, bio, status, topic_id, profile_pic)
+INSERT INTO user_profiles (email, password, first_name, last_name, gender, user_age, zipcode, bio, status, topic_id, profile_pic, phone_number)
 VALUES ('notyourordinaryemail@gmail.com', ':P', 'Evil', 'Catfish', true, 21, 456987, 'IZ HOOMAN TOO. LIKEZ DOIN HOOMAN THINGS. PREFERZ REEL HOOMANS.', 'NOT CATFIS, IZ HOOMAN', 2, 'https://previews.123rf.com/images/cthoman/cthoman1507/cthoman150705167/42829751-a-cartoon-illustration-of-an-evil-looking-catfish-.jpg'),
 ('buster.brown@bb.net', 'brb', 'Brownette', 'MacBuster', false, 25, 123655, 'I grew up in the wilds of Zambizia. I killed my first dodo at age 12. I like to ride wild wildebeasts.', 'Feelin Wild', 3, null),
 ('test.test@test.com', 'test', 'Test', 'MacGuyver', true, 19, 123655, 'TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST', 'TEST-TEST', 5, 'https://upload.wikimedia.org/wikipedia/commons/d/d3/IBM_Blue_Gene_P_supercomputer.jpg'),
