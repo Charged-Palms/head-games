@@ -201,8 +201,8 @@ class Quiz extends Component {
                     }}
                 </Timer>
                 <div id='arc_box'>
-                            <svg id='timer_arc'></svg>
-                        </div>
+                    <svg id='timer_arc'></svg>
+                </div>
                 <h1>Quiz</h1>
                 {quiz.length !== 0 && questionIndex < quiz.length ? 
                     <div>
