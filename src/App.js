@@ -48,7 +48,7 @@ class App extends React.Component {
   };
 
   render() {
-    return <div className="App">{routes}</div>;
+    return <div className="App" style={{backgroundColor:"black"}}>{routes}</div>;
   }
 }
 

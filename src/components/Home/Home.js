@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card, CardWrapper } from "react-swipeable-cards";
+import { connect } from "react-redux";
+import "./Home.css";
+import { Link } from "react-router-dom";
 
 //Saving for if we decide to have something display after all potential matches are swiped through
 // class MyEndCard extends Component {
@@ -8,7 +11,7 @@ import { Card, CardWrapper } from "react-swipeable-cards";
 //     return <div>You Finished Swiping!</div>;
 //   }
 // }
-export class Home extends Component {
+class Home extends Component {
   state = {
     //isFlipped is left over from failed card flipping experiments, but may be useful when popup on doubletap is implemented
     isFlipped: false,
@@ -96,10 +99,17 @@ export class Home extends Component {
   }
 
   render() {
-    console.log("state", this.state);
+    // console.log("state", this.state);
     const wrapperStyle = { backgroundColor: "#333" };
     return (
       <div>
+        <div className="profile-button">
+          <img
+            src={this.props.profilePic}
+            alt="ProfileButton"
+            onClick={() => this.props.history.push("/profile")}
+          />
+        </div>
         <CardWrapper
           // Save below for later, if we implement an EndCard
           // addEndCard={this.getEndCard}
@@ -112,4 +122,9 @@ export class Home extends Component {
   }
 }
 
-export default Home;
+function mapStateToProps(reduxState) {
+  const { profilePic } = reduxState;
+  return { profilePic };
+}
+
+export default connect(mapStateToProps)(Home);

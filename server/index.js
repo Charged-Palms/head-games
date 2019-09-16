@@ -17,7 +17,7 @@ const axios = require('axios')
 
 app.use(express.json());
 app.use(express.static(`${__dirname}/../build`));
-
+app.use("/static", express.static("./media"));
 app.use(
   session({
     secret: SESSION_SECRET,
