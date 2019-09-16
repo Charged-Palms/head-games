@@ -6,8 +6,6 @@ import Profile from './components/Profile/Profile'
 import UserSettings from './components/UserSettings/UserSettings'
 import Message from './components/Message/Message'
 import Quiz from './components/Quiz/Quiz'
-import GearTest from './components/SettingsButton/GearTest'
-import Timer from './components/Quiz/Timer'
 
 
 
@@ -19,7 +17,5 @@ export default (
         <Route path='/usersettings' component={UserSettings} />
         <Route path='/message/:matchId' component={Message} />
         <Route path='/quiz' component={Quiz} />
-        <Route path='/geartest' component={GearTest}/>
-        <Route path='/timer' component={Timer}/>
     </Switch>
 )

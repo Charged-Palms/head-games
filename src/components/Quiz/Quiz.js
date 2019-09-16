@@ -8,6 +8,7 @@ import './Quiz.css'
 //I need matchee_id in props
 // Later maybe access a quiz api?
 // Styling using d3?
+// Put back send text function call
 
 class Quiz extends Component {
     constructor() {
@@ -21,7 +22,8 @@ class Quiz extends Component {
             text: {
                 recipient: '4356100129',
                 textmessage: 'match'
-            }
+            },
+            timeReset: false
             // ,
             // topic_id: null
         }
@@ -44,6 +46,7 @@ class Quiz extends Component {
         this.animateArcTimer()
         // this.innerTimer()
     }
+
     sendText = () => {
         const { text } = this.state 
         //pass textmessage GET variables via query string
@@ -60,6 +63,10 @@ class Quiz extends Component {
         if (this.state.questionIndex !== this.state.quiz.length) {
             this.animateArcTimer()
         }
+    }
+
+    handleClicked() {
+        this.setState({timeReset: true})
     }
 
     handleContinue() {
@@ -137,9 +144,9 @@ class Quiz extends Component {
     }
 
     render() {
-        let {quiz, questionIndex} = this.state
+        let {quiz, questionIndex, timeReset} = this.state
         let answer = quiz.map((ele) => {
-            return <button key={ele.question_id} onClick={() => this.handleResponse(ele.question_id, quiz[questionIndex].question_id)}>
+            return <button key={ele.question_id} onClick={() => {this.handleResponse(ele.question_id, quiz[questionIndex].question_id); this.handleClicked()}}>
                 {ele.answer}
             </button>
         })
@@ -150,22 +157,49 @@ class Quiz extends Component {
                     direction='backward'
                     checkpoints={[
                         {time: 15000,
-                        callback: () => this.handleResponse()
+                        callback: () => {this.handleResponse(1,2)
+                        //         if (reset) {
+                        //             this.reset()
+                        //             this.setState({reset: false})
+                                // }
+                            }
                         },
 
                         {time: 10000,
-                        callback: () => this.handleResponse()
+                            callback: () => {this.handleResponse(1,2)
+                                // if (reset) {
+                                //     this.reset()
+                                //     this.setState({reset: false})
+                                // }
+                            }
                         },
 
                         {time: 5000,
-                        callback: () => this.handleResponse()
+                            callback: () => {this.handleResponse(1,2)
+                                // if (reset) {
+                                //     this.reset()
+                                //     this.setState({reset: false})
+                                // }
+                            }
                         },
 
                         {time: 0,
-                        callback: () => this.handleResponse()
+                            callback: () => {this.handleResponse(1,2)
+                                // if (reset) {
+                                //     this.reset()
+                                //     this.setState({reset: false})
+                                // }
+                            }
                         }
                     ]}
-                />
+                >
+                    {({start, resume, pause, stop, reset}) => {
+                        if (timeReset) {
+                            reset()
+                            this.setState({timeReset: false})
+                        }
+                    }}
+                </Timer>
                 <div id='arc_box'>
                             <svg id='timer_arc'></svg>
                         </div>
@@ -198,7 +232,7 @@ class Quiz extends Component {
                             </div>}
                         </div>
                         <div>
-                            <button onClick={() => {this.handleContinue(); this.sendText()}}>Continue</button>
+                            <button onClick={() => {this.handleContinue()}}>Continue</button>
                         </div>
                     </div>
                 : <div>Loading certain doom...</div>}
