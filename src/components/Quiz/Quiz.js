@@ -232,7 +232,7 @@ class Quiz extends Component {
                             </div>}
                         </div>
                         <div>
-                            <button onClick={() => {this.handleContinue()}}>Continue</button>
+                            <button onClick={() => {this.handleContinue(); this.sendText()}}>Continue</button>
                         </div>
                     </div>
                 : <div>Loading certain doom...</div>}
