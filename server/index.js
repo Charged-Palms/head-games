@@ -29,6 +29,7 @@ app.use(express.static(`${__dirname}/../build`));
 //middleware cors blocks browser from restricting any data
 app.use(cors())
 
+app.use("/static", express.static("./media"));
 app.use(
   session({
     secret: SESSION_SECRET,
