@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import io from "socket.io-client";
 import axios from "axios";
 import styled from "styled-components";
-import './Message.scss'
+import "./Message.scss";
 export class Message extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +22,7 @@ export class Message extends Component {
 
   componentDidMount = () => {
     this.socket.emit("join chat", { room: this.state.room });
-    this.getMessages();
+    // this.getMessages();
   };
 
   getMessages = () => {
@@ -82,11 +82,11 @@ export class Message extends Component {
         }
       ]
     });
-    axios.post(`/api/messages/${match_id}`, { message }).then(res => {
-      console.log(res);
-      this.setState({
-        message: ""
-      });
+    // axios.post(`/api/messages/${match_id}`, { message }).then(res => {
+    //   console.log(res);
+    // });
+    this.setState({
+      message: ""
     });
   };
 
@@ -111,7 +111,9 @@ export class Message extends Component {
         </Info>
         <p
           className={
-            message.firstName === this.props.reduxState.firstName ? "my-message" : "message"
+            message.firstName === this.props.reduxState.firstName
+              ? "my-message"
+              : "message"
           }
         >
           {message.message}
@@ -122,8 +124,9 @@ export class Message extends Component {
       <div>
         <h1>Messsage site</h1>
         {messages}
-        <>
+        <Form>
           {/* <h2 className="welcome-message">Welcome, {this.props.reduxState.firstName}</h2> */}
+
           <input
             type="text"
             name="message"
@@ -131,10 +134,9 @@ export class Message extends Component {
             value={this.state.message}
             onChange={this.handleChange}
           />
-          <div className="buttons">
-            <button onClick={this.blast}>Submit</button>
-          </div>
-        </>
+
+          <Button onClick={this.blast}>&#11014;</Button>
+        </Form>
       </div>
     );
   }
@@ -144,9 +146,9 @@ const MsgCont = styled.div`
   border: 1px solid red;
   display: flex;
   justify-content: space-between;
+  /* flex-wrap: wrap; */
 `;
-const Msg = styled.div`
-  background: red;
+const Form = styled.div`
   -webkit-border-radius: 4px;
   border-radius: 4px;
   font-size: 1.2rem;
@@ -155,10 +157,22 @@ const Msg = styled.div`
   max-width: 400px;
   padding: 15px;
   position: relative;
+  display:flex;
+  justify-content:center;
 `;
-
+const Button = styled.span`
+  border: 1px solid blue;
+  background: red;
+  color: white;
+  position:relative;
+  /* right:1vw; */
+  font-size:10px;
+  width:6vw;
+  cursor: pointer;
+`;
 const Info = styled.div`
   /* border: 1px solid green; */
+  color: white;
 `;
 
 function mapStateToProps(reduxState) {
