@@ -2,25 +2,30 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import io from "socket.io-client";
 import axios from "axios";
-
+import styled from "styled-components";
+import './Message.scss'
 export class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
       messages: [],
       message: "",
-      username: 'socket FTW',
+      username: "socket FT",
       usernameSet: false,
       userTyping: false,
       room: "hiya"
     };
-    this.socket = io.connect(":5555");
+    this.socket = io.connect(process.env.REACT_APP_PORT);
     this.socket.on("global response", data => this.updateMessages(data));
     this.socket.on("room response", data => this.updateMessages(data));
   }
 
   componentDidMount = () => {
     this.socket.emit("join chat", { room: this.state.room });
+    this.getMessages();
+  };
+
+  getMessages = () => {
     const { matchId: match_id } = this.props.match.params;
     // console.log('thf')
     axios.get(`/api/messages/${match_id}`).then(res => {
@@ -36,7 +41,8 @@ export class Message extends Component {
       `blast to ${this.props.room !== "global" ? "room" : "global"} socket`,
       {
         message: this.state.message,
-        username: this.state.username,
+        firstName: this.props.reduxState.firstName,
+        profilePic: this.props.reduxState.profilePic,
         room: this.state.room
       }
     );
@@ -46,18 +52,18 @@ export class Message extends Component {
       [e.target.name]: e.target.value
     });
   };
-  getMessage = () => {
-    this.socket.emit("FromAPI", data => {
-      console.log(data);
-      this.setState({
-        messages: data
-      });
-    });
-  };
+  // getMessage = () => {
+  //   this.socket.emit("FromAPI", data => {
+  //     console.log(data);
+  //     this.setState({
+  //       messages: data
+  //     });
+  //   });
+  // };
 
   updateMessages = data => {
     console.log(data);
-    console.log(this.props.match.params.matchId);
+    // console.log(this.props.match.params.matchId);
     const { message } = this.state;
     const { matchId: match_id } = this.props.match.params;
     // const {matchId: match_id} = this.props
@@ -69,11 +75,18 @@ export class Message extends Component {
     this.setState({
       messages: [
         ...this.state.messages,
-        { message: data.message, username: data.username }
+        {
+          message: data.message,
+          firstName: data.firstName,
+          profilePic: data.profilePic
+        }
       ]
     });
     axios.post(`/api/messages/${match_id}`, { message }).then(res => {
       console.log(res);
+      this.setState({
+        message: ""
+      });
     });
   };
 
@@ -88,22 +101,26 @@ export class Message extends Component {
   // };
 
   render() {
-    console.log("this.props", this.props);
-    console.log(this.state.messages);
-    const messages = this.state.messages.map(message => (
-      <div
-        key={message.message_id}
-        className={
-          message.username === this.state.username ? "my-message" : "message"
-        }
-      >
-        {/* <h5>{message.username}</h5> */}
-        <p>{message.message}</p>
-      </div>
+    console.log("this.props", this.props.reduxState);
+    // console.log(this.state.messages);
+    const messages = this.state.messages.map((message, i) => (
+      <MsgCont key={i}>
+        <Info>
+          <h5>{message.firstName}</h5>
+          <img className="match-img" src={message.profilePic} alt="user" />
+        </Info>
+        <p
+          className={
+            message.firstName === this.props.reduxState.firstName ? "my-message" : "message"
+          }
+        >
+          {message.message}
+        </p>
+      </MsgCont>
     ));
     return (
       <div>
-        <h1>Message</h1>
+        <h1>Messsage site</h1>
         {messages}
         <>
           {/* <h2 className="welcome-message">Welcome, {this.props.reduxState.firstName}</h2> */}
@@ -115,7 +132,7 @@ export class Message extends Component {
             onChange={this.handleChange}
           />
           <div className="buttons">
-            <button onClick={this.blast}>Blast</button>
+            <button onClick={this.blast}>Submit</button>
           </div>
         </>
       </div>
@@ -123,7 +140,34 @@ export class Message extends Component {
   }
 }
 
+const MsgCont = styled.div`
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+`;
+const Msg = styled.div`
+  background: red;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin: 0 auto 40px;
+  max-width: 400px;
+  padding: 15px;
+  position: relative;
+`;
+
+const Info = styled.div`
+  /* border: 1px solid green; */
+`;
+
+function mapStateToProps(reduxState) {
+  return {
+    reduxState
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   {}
 )(Message);
