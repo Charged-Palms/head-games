@@ -45,7 +45,6 @@
   writing-mode: horizontal-tb;
   transition: 0.7s;
   color: #fafafa;
-
 }
 
 .register-arrow {
@@ -83,7 +82,7 @@
   padding-right: 10px;
   height: 70%;
   width: auto;
-  transform: rotate(180deg)
+  transform: rotate(180deg);
 }
 
 .toggler {
@@ -102,8 +101,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 6px 6px 10px 0px rgba(0,0,0,0.71);
-
+  box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.71);
 }
 
 .toggler--active {
@@ -117,8 +115,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  box-shadow: -6px 6px 10px 0px rgba(0,0,0,0.71);
-
+  box-shadow: -6px 6px 10px 0px rgba(0, 0, 0, 0.71);
 }
 
 .toggler2 {
@@ -137,8 +134,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
-  box-shadow: -6px 6px 10px 0px rgba(0,0,0,0.71);
-
+  box-shadow: -6px 6px 10px 0px rgba(0, 0, 0, 0.71);
 }
 
 .toggler2--active {
@@ -152,7 +148,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  box-shadow: 6px 6px 10px 0px rgba(0,0,0,0.71);
+  box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.71);
 }
 
 .menu {
@@ -164,9 +160,12 @@
   width: var(--menu-width);
   padding: 0 20px;
   overflow: hidden;
-  background-color: var(--menu-bg-color);
+  /* background-color: var(--menu-bg-color); */
   border-radius: 5px;
   overflow-y: scroll;
+  -webkit-animation: color-change-4x 7s linear infinite alternate both;
+  animation: color-change-4x 7s linear infinite alternate both;
+  box-shadow: inset 0px 0px 30px 10px rgba(0,0,0,0.75);
 }
 
 .menu2 {
@@ -178,8 +177,11 @@
   width: var(--menu-width);
   padding: 0 20px;
   overflow: hidden;
-  background-color: var(--menu-bg-color);
+  /* background-color: var(--menu-bg-color); */
   border-radius: 5px;
+  -webkit-animation: color-change-4x 7s linear infinite alternate both;
+  animation: color-change-4x 7s linear infinite alternate both;
+  box-shadow: inset 0px 0px 30px 10px rgba(0,0,0,0.75);
 }
 
 .list {
@@ -194,7 +196,7 @@
 }
 
 .list2 {
-  padding-left: 15%;
+  /* padding-left: 15%; */
   padding-top: 15%;
   list-style-type: none;
   height: 30vh;
@@ -203,11 +205,48 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
-  top: 45%;
+  top: 20%;
+  /* border: 2px solid red; */
+}
+
+.list2 > input[type=text] {
+  padding: 10px 15px;
+  box-sizing: border-box;
+  background-color: #fafafa;
+  border-radius: 6px;
+  border: none;
+}
+.list2 > input[type=text]:focus {
+  border: 2px solid #151515;
+  box-shadow: inset 0 0 5px 1px;
+}
+
+.list2 > button {
+  padding: 10px 15px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: none;
+  background-color: rgba(25,25,25);
+  color: #fafafa;
+  transition: 0.5s;
+}
+.list2 > button:focus {
+  background-color: rgba(250,250,250);
+  color: #151515;
 }
 
 .list-item {
   padding: 5px 0;
+}
+
+.login-content-container {
+  /* border: 2px solid greenyellow; */
+  height: 75%;
+  width: 75%;
+  margin-left: 20%;
+  margin-top: 30%;
+  border-radius: 10px;
+  background: rgba(250,250,250,0.3)
 }
 
 /* ----------------------REGISTER ANIMATION CLASSES------------------------*/
@@ -355,10 +394,45 @@
 
 .gear-container {
   position: relative;
-  left: 43%;
-  top: 20%
+  left: 9%;
+  top: 15%;
 }
 
 .gear-container > h1 {
   font-weight: 700;
+}
+
+/*----------------------------BACKGROUND---------------------------------*/
+
+.color-change-4x {
+  -webkit-animation: color-change-4x 6s linear infinite alternate both;
+  animation: color-change-4x 6s linear infinite alternate both;
+}
+
+/**
+ * ----------------------------------------
+ * animation color-change-4x
+ * ----------------------------------------
+ */
+@-webkit-keyframes color-change-4x {
+  0% {
+    background: #36f1cd;
+  }
+  50% {
+    background: #39a0ed;
+  }
+  100% {
+    background: #d72638;
+  }
+}
+@keyframes color-change-4x {
+  0% {
+    background: #36f1cd;
+  }
+  50% {
+    background: #39a0ed;
+  }
+  100% {
+    background: #d72638;
+  }
 }
