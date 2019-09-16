@@ -68,31 +68,33 @@ export class Login extends Component {
   render() {
     return (
       <div className="menu2">
-        <div className="gear-container">
-          <GearTest />
-          <h1>Head</h1>
-          <h1>Games</h1>
+        <div className="login-content-container">
+          <div className="gear-container">
+            <GearTest />
+            <h1 style={{marginLeft:"10%"}}>Head</h1>
+            <h1 style={{marginLeft:"20%"}}>Games</h1>
+          </div>
+          <div className="login-title"></div>
+          <form onSubmit={e => e.preventDefault()} className="list2">
+            <input
+              type="text"
+              name="email"
+              placeholder="email address"
+              onChange={e => this.handleChange(e)}
+              className="list-item"
+            />
+            <input
+              type="text"
+              placeholder="password"
+              name="password"
+              onChange={e => this.handleChange(e)}
+              className="list-item"
+            />
+            <button className="list-item" onClick={this.login}>
+              Login
+            </button>
+          </form>
         </div>
-        <div className="login-title"></div>
-        <form onSubmit={e => e.preventDefault()} className="list2">
-          <input
-            type="text"
-            name="email"
-            placeholder="email address"
-            onChange={e => this.handleChange(e)}
-            className="list-item"
-          />
-          <input
-            type="text"
-            placeholder="password"
-            name="password"
-            onChange={e => this.handleChange(e)}
-            className="list-item"
-          />
-          <button className="list-item" onClick={this.login}>
-            Login
-          </button>
-        </form>
       </div>
     );
   }
