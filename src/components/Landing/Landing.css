@@ -195,13 +195,15 @@
 
 .list2 {
   padding-left: 15%;
-  padding-top: 25%;
+  padding-top: 15%;
   list-style-type: none;
-  height: 80vh;
+  height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  position: relative;
+  top: 45%;
 }
 
 .list-item {
@@ -347,4 +349,16 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+/*----------------------------GEAR HEAD---------------------------------*/
+
+.gear-container {
+  position: relative;
+  left: 43%;
+  top: 20%
+}
+
+.gear-container > h1 {
+  font-weight: 700;
 }
