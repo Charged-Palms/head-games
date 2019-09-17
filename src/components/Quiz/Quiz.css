@@ -29,11 +29,11 @@
 }
 
 #timer_arc {
-    border: 3px solid black;
+    border: 3px solid gray;
     box-sizing: border-box;
     border-radius: 50%;
     padding: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.2);
     /* background: white; */
     height: 60px;
     width: 60px;
