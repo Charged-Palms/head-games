@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import { CSSTransition } from "react-transition-group";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import cx from "classnames";
 import "./Landing.css";
 

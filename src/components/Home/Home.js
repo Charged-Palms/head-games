@@ -3,7 +3,6 @@ import axios from "axios";
 import { Card, CardWrapper } from "react-swipeable-cards";
 import { connect } from "react-redux";
 import "./Home.css";
-import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
 
 //Saving for if we decide to have something display after all potential matches are swiped through

@@ -219,7 +219,8 @@
 
 .list2 > input[type="text"],
 .list > input[type="text"],
-.list > input[type="email"] {
+.list > input[type="email"],
+.about-you-form > input[type="number"] {
   padding: 10px 15px;
   box-sizing: border-box;
   background-color: #fafafa;
@@ -228,15 +229,16 @@
 }
 .list2 > input[type="text"]:focus,
 .list > input[type="text"]:focus,
-.list > input[type="email"]:focus 
-{
+.list > input[type="email"]:focus,
+.about-you-form > input[type="number"]:focus {
   border: 2px solid #151515;
   box-shadow: inset 0 0 5px 1px;
 }
 
 .list2 > button,
 .list > button,
-.list > input[type=file] {
+.about-you-form > button,
+.list > input[type="file"] {
   padding: 10px 15px;
   box-sizing: border-box;
   border-radius: 6px;
@@ -246,7 +248,8 @@
   transition: 0.5s;
 }
 .list2 > button:focus,
-.list > button:focus {
+.list > button:focus,
+.about-you-form > button:focus {
   background-color: rgba(250, 250, 250);
   color: #151515;
 }
@@ -359,18 +362,29 @@
 .about-you-container {
   padding-right: 15%;
   height: 100vh;
-  margin-top: 15vh;
+  width: 100%;
+}
+
+.about-you-inner-container {
 }
 
 .about-you-title {
-  padding-top: 15vh;
+  position: relative;
+  bottom: 5%;
 }
 
 .about-you-form {
+  width: 75%;
+  height: 76%;
+  margin-left: 3.8%;
+  position: relative;
+  top: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border-radius: 10px;
+  background: rgba(250, 250, 250, 0.3);
 }
 
 .gender-form {
@@ -382,6 +396,11 @@
   width: 75%;
   height: 15vh;
   margin-bottom: 4%;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  background-color: #fafafa;
+  border-radius: 6px;
+  border: none;
 }
 
 .about-you-form-input {
