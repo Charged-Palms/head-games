@@ -12,19 +12,27 @@ $parallax-perspective: 8px;
         transform: translateZ(4px);
     }
 }
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat
+}
 
 .parallax-wrapper {
-    background-color: #FAFAFA;
-    // background-image: url('https://cdn.hipwallpaper.com/i/16/41/xz68l5.jpg');
+    // background-color: #FAFAFA;
+    -webkit-animation: color-change-4x 7s linear infinite alternate both;
+  animation: color-change-4x 7s linear infinite alternate both;
+  box-shadow: inset 0px 0px 30px 10px rgba(0,0,0,0.75);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
     z-index: -1;
+    background-position: top;
+    // height: 95vh;
 }
 .quiz-profiles {
     display: inline-grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
     padding: 10px;
@@ -32,7 +40,7 @@ $parallax-perspective: 8px;
 }
 .grid {
     display: inline-grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
     padding: 10px;
@@ -41,10 +49,14 @@ $parallax-perspective: 8px;
 .grid-item {
     //    border: 1px red solid;
        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-       max-width: 200px; 
+       max-width: 165px; 
        margin: auto;
-       text-align: center;
-       background: #FAFAFA;                       
+       text-align: justify;
+    //    background: #FAFAFA; 
+       border-radius: 20%; 
+       width: 165px;
+       height: 165px;
+                   
     :focus {
         outline: none !important;
     }
@@ -78,25 +90,38 @@ $parallax-perspective: 8px;
     align-content: center;
 
 }
-
+// .div-img {
+//     border-radius: 20%;
+//     perspective: 1000;
+//     backface-visibility: hidden;
+//     -webkit-perspective: 1000;
+//     -webkit-backface-visibility: hidden;
+//     -webkit-transform: translate3d(0,0,0);
+//     outline:none;
+//     border:none;
+//     text-decoration:none;
+// }
 .match-img {
     background-size: cover;
     overflow: hidden;
-    height: 100px;
-    width: 100px;
+    height: 165px;
+    width: 165px;
     cursor: pointer;
     margin: none;
+    border-radius: 20%;
     // border-radius: 100%;
     // styling border
     // padding: 1rem;
     color: white;
-    border-width: 3px;
-    border-style: solid;
+    background: none;
+    // border-width: 3px;
+    // border-style: solid;
     // border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0))1 100%;
     // border-image-slice: 90 40 80 40;
     border-image-width: 5;
     border-image-outset: 1;
-    padding-top: 0.5rem;
+    // padding-top: 0.5rem;
+    padding: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     :focus {

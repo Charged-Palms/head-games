@@ -123,14 +123,12 @@ class Profile extends Component {
             let currMatch = matches[this.state.matchProfile]
             // console.log(currMatch)
             return(
-                <div className="grid-item" key={elm.user_id}>
-                    <span className='first-name'>{elm.first_name} <span className='last' >{elm.last_name}</span></span>
-                    <p className='match-age'>Age, {elm.user_age}</p>
-                    <div>
-                        <figure>
+                <div className="grid-item" key={elm.user_id}>                    
+                    
+                        <div className="div-img">
                             <img onClick={() => this.handleOpenModal(index)} className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>
-                        </figure>
-                    </div>
+                        </div>
+                    
                     {/* rendering ReactModal onClick of user profile image, creates popup with user info. */}
                     <ReactModal 
                     isOpen={this.state.showModal}
@@ -159,8 +157,6 @@ class Profile extends Component {
             console.log(currQuizProfile)
             return (
                 <div className="grid-item" key={elm.user_id}>
-                    <span className='first-name'>{elm.first_name} <span className='last' >{elm.last_name}</span></span>
-                    <p className='match-age'>Age, {elm.user_age}</p>
                     <div>
                         <figure>
                             <img onClick={() => this.handleOpenModalTwo(index)} className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>
@@ -202,12 +198,12 @@ class Profile extends Component {
                     <button onClick={this.handleEdit} className="btn-edit">Edit</button>
                 </div>
                     <br/>
-                    <h3>You Took Their Quiz</h3>
+                    <h3>Who You Want To Know</h3>
                 <div className="quiz-profiles">
                     {allQuizProfiles}
                 </div>
                 <hr/>
-                    <h3>Took Your Quiz</h3>
+                    <h3>People Who Want To Know You</h3>
                 <div className='grid' >
                     {allMatches}
                 </div>
