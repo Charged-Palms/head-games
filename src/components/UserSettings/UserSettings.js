@@ -11,6 +11,9 @@ export class UserSettings extends Component {
                 <Link to='/home'>
                 <button>Home</button>
                 </Link>
+                <h3>Your Name</h3>
+                <h4>Your Status</h4>
+                <h5>Your Bio</h5>
             </div>
         )
     }
