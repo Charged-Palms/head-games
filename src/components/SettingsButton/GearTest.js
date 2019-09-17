@@ -24,6 +24,7 @@ class GearTest extends Component {
             gear
             .attr('transform', 'rotate(0, 0, 0)')
             .transition()
+            .ease(d3.easeBounce)
             .duration(2000)
             .attr('transform', 'rotate(-180, 0, 0)')
             .on('end', spinBreak)
@@ -32,8 +33,9 @@ class GearTest extends Component {
         function spinBreak() {
             gear
             .transition()
+            // .ease(d3.easeBounce)
             .duration(2000)
-            .attr('transform', 'rotate(-135, 0, 0)')
+            .attr('transform', 'rotate(-90, 0, 0)')
             .on('end', spinning)
         }
         

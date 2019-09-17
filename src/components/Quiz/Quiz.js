@@ -3,11 +3,11 @@ import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 import * as d3 from 'd3'
 import Timer from 'react-compound-timer'
+import Swal from 'sweetalert2'
 import './Quiz.css'
 
 //I need matchee_id in props
 // Later maybe access a quiz api?
-// Styling using d3?
 // Put back send text function call
 
 class Quiz extends Component {
@@ -56,7 +56,30 @@ class Quiz extends Component {
 
     handleResponse = (id1, id2) => {
         if (id1 === id2) {
+            Swal.fire({
+                type: 'success',
+                width: '10rem',
+                toast: true,
+                position: 'top-start',
+                timer: 1000,
+                showConfirmButton: false
+            })
             this.setState({numCorrect: this.state.numCorrect + 1})
+            // alert = () => {
+            //     this.myRef = React.createRef()
+            //     return (
+            //         <audio ref={this.myRef} src={'../../../media/Train Horn Low-SoundBible.com-1744689113.mp3'} autoPlay/>
+            //     )
+            // }
+        } else {
+            Swal.fire({
+                type: 'error',
+                width: '10rem',
+                toast: true,
+                position: 'top-start',
+                timer: 1000,
+                showConfirmButton: false
+            })
         }
         if (this.state.questionIndex < this.state.quiz.length) {
             this.setState({questionIndex: this.state.questionIndex + 1})
@@ -130,7 +153,7 @@ class Quiz extends Component {
             .attrTween('d', arcTween(2 * Math.PI), 1500)
             .transition()
             .ease(d3.easeLinear)
-            .duration(5000)
+            .duration(10000)
             .attrTween('d', arcTween(0), 1500)
             // .style('fill', 'red')
         }
@@ -165,10 +188,10 @@ class Quiz extends Component {
         return (
             <div className='quiz-main-content'>
                 <Timer
-                    initialTime={20000}
+                    initialTime={40000}
                     direction='backward'
                     checkpoints={[
-                        {time: 15000,
+                        {time: 30000,
                         callback: () => {this.handleResponse(1,2)
                         //         if (reset) {
                         //             this.reset()
@@ -177,7 +200,7 @@ class Quiz extends Component {
                             }
                         },
 
-                        {time: 10000,
+                        {time: 20000,
                             callback: () => {this.handleResponse(1,2)
                                 // if (reset) {
                                 //     this.reset()
@@ -186,7 +209,7 @@ class Quiz extends Component {
                             }
                         },
 
-                        {time: 5000,
+                        {time: 10000,
                             callback: () => {this.handleResponse(1,2)
                                 // if (reset) {
                                 //     this.reset()
@@ -251,7 +274,7 @@ class Quiz extends Component {
                             <button onClick={() => {this.handleContinue(); this.sendText()}}>Continue</button>
                         </div>
                     </div>
-                : <div className='quiz-content'>Preparing Firing Squad...</div>}
+                : <div className='quiz-content'>Lining Up Firing Squad...</div>}
             </div>
         )
     }
