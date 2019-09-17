@@ -8,6 +8,7 @@
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "classnames": "^2.2.6",
+    "cors": "^2.8.5",
     "d3": "^5.12.0",
     "d3-shape": "^1.3.5",
     "dotenv": "^8.1.0",
@@ -31,8 +32,10 @@
     "sass": "^1.23.0-module.beta.1",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
+    "styled-components": "^4.3.2",
     "sweetalert2": "^8.17.1",
-    "touchflip-react": "^1.1.0"
+    "touchflip-react": "^1.1.0",
+    "twilio": "^3.34.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -54,5 +57,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0"
   }
 }

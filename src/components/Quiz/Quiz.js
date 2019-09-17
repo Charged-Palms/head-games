@@ -8,6 +8,7 @@ import './Quiz.css'
 //I need matchee_id in props
 // Later maybe access a quiz api?
 // Styling using d3?
+// Put back send text function call
 
 class Quiz extends Component {
     constructor() {
@@ -17,7 +18,13 @@ class Quiz extends Component {
             quiz: [],
             questionIndex: 0,
             numCorrect: -1,
-            requiredAmount: 3
+            requiredAmount: 3,
+            text: {
+                recipient: '4356100129',
+                textmessage: 'match'
+            },
+            timeReset: false,
+            stopped: false
             // ,
             // topic_id: null
         }
@@ -41,6 +48,12 @@ class Quiz extends Component {
         // this.innerTimer()
     }
 
+    sendText = () => {
+        const { text } = this.state 
+        //pass textmessage GET variables via query string
+        axios.get(`/send-text?recipient=${text.recipient}&textmessage=${text.textmessage}`)
+    }
+
     handleResponse = (id1, id2) => {
         if (id1 === id2) {
             this.setState({numCorrect: this.state.numCorrect + 1})
@@ -51,6 +64,21 @@ class Quiz extends Component {
         if (this.state.questionIndex !== this.state.quiz.length) {
             this.animateArcTimer()
         }
+
+        if (this.state.numCorrect  >= 1 && this.state.questionIndex === this.state.quiz.length -1) {
+                this.handleStop()
+            d3.selectAll('path').transition()
+            .duration(1)
+            .style('fill', 'transparent')
+        }
+    }
+
+    handleClicked() {
+        this.setState({timeReset: true})
+    }
+
+    handleStop() {
+        this.setState({stopped: true})
     }
 
     handleContinue() {
@@ -68,25 +96,25 @@ class Quiz extends Component {
 
     animateArcTimer() {
         var arc = d3.arc()
-        .innerRadius(25)
-        .outerRadius(30)
+        .innerRadius(0)
+        .outerRadius(40)
         .startAngle(0)
 
         var arc2 = d3.arc()
         .innerRadius(0)
-        .outerRadius(35)
+        .outerRadius(30)
         .startAngle(0)
 
         var svg = d3.select('#timer_arc'),
-        width = 200,
-        height = 150,
+        width = 56,
+        height = 54,
         g = svg.append('g')
         .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
 
         //eslint-disable-next-line
         var background = g.append('path')
         .datum({endAngle: 2 * Math.PI})
-        .style('fill', 'gray')
+        .style('fill', 'transparent')
         .attr('d', arc2)
 
         var foreground = g.append('path')
@@ -96,14 +124,14 @@ class Quiz extends Component {
 
         function changeCircle() {
             foreground
-            // .attr('d', arcTween(2 * Math.PI))
             .transition()
+            // .style('fill', 'green')
             .duration(0)
             .attrTween('d', arcTween(2 * Math.PI), 1500)
             .transition()
+            .ease(d3.easeLinear)
             .duration(5000)
             .attrTween('d', arcTween(0), 1500)
-            // .on('end', handleResponse)
             // .style('fill', 'red')
         }
 
@@ -128,9 +156,9 @@ class Quiz extends Component {
     }
 
     render() {
-        let {quiz, questionIndex} = this.state
+        let {quiz, questionIndex, timeReset} = this.state
         let answer = quiz.map((ele) => {
-            return <button key={ele.question_id} onClick={() => this.handleResponse(ele.question_id, quiz[questionIndex].question_id)}>
+            return <button key={ele.question_id} onClick={() => {this.handleResponse(ele.question_id, quiz[questionIndex].question_id); this.handleClicked()}}>
                 {ele.answer}
             </button>
         })
@@ -141,45 +169,76 @@ class Quiz extends Component {
                     direction='backward'
                     checkpoints={[
                         {time: 15000,
-                        callback: () => this.handleResponse()
+                        callback: () => {this.handleResponse(1,2)
+                        //         if (reset) {
+                        //             this.reset()
+                        //             this.setState({reset: false})
+                                // }
+                            }
                         },
 
                         {time: 10000,
-                        callback: () => this.handleResponse()
+                            callback: () => {this.handleResponse(1,2)
+                                // if (reset) {
+                                //     this.reset()
+                                //     this.setState({reset: false})
+                                // }
+                            }
                         },
 
                         {time: 5000,
-                        callback: () => this.handleResponse()
+                            callback: () => {this.handleResponse(1,2)
+                                // if (reset) {
+                                //     this.reset()
+                                //     this.setState({reset: false})
+                                // }
+                            }
                         },
 
                         {time: 0,
-                        callback: () => this.handleResponse()
+                            callback: () => {this.handleResponse(1,2)
+                                // if (reset) {
+                                //     this.reset()
+                                //     this.setState({reset: false})
+                                // }
+                            }
                         }
                     ]}
-                />
+                >
+                    {({start, resume, pause, stop, reset}) => {
+                        if (timeReset) {
+                            reset()
+                            this.setState({timeReset: false})
+                        }
+                        if (this.state.stopped) {
+                            stop()
+                        }
+                    }}
+                </Timer>
                 <div id='arc_box'>
-                            <svg id='timer_arc'></svg>
-                        </div>
-                <h1>Quiz</h1>
+                    <svg id='timer_arc'></svg>
+                </div>
                 {quiz.length !== 0 && questionIndex < quiz.length ? 
-                    <div>
+                    <div className='quiz-content'>
                         <h2>
                             {quiz[questionIndex].question}
                         </h2>
-                        <div>
+                        <div className='quiz-answers'>
                             {answer}
                         </div>
                     </div>
                 : questionIndex === quiz.length && this.state.numCorrect !== -1 ? 
-                    <div>
+                    <div className='quiz-content'>
                         <div>
-                            Thank you for completing this quiz!
-                            {this.state.numCorrect >= this.state.requiredAmount ? <div>
-                                You have answered enough questions correctly!
-                            </div> : <div>
-                                <div>
+                            <h1>
+                                Thank you for completing this quiz!
+                            </h1>
+                            {this.state.numCorrect >= this.state.requiredAmount ? <h2>
+                                You answered enough questions correctly!
+                            </h2> : <div>
+                                <h2>
                                     You did not answer the required amount of questions correctly.
-                                </div>
+                                </h2>
                                 <h2>
                                     Sorry.
                                 </h2>
@@ -189,10 +248,10 @@ class Quiz extends Component {
                             </div>}
                         </div>
                         <div>
-                            <button onClick={() => this.handleContinue()}>Continue</button>
+                            <button onClick={() => {this.handleContinue(); this.sendText()}}>Continue</button>
                         </div>
                     </div>
-                : <div>Loading certain doom...</div>}
+                : <div className='quiz-content'>Preparing Firing Squad...</div>}
             </div>
         )
     }

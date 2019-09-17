@@ -26,7 +26,7 @@ module.exports = {
       const questionArr = await db.get_quiz_questions_by_topic([topic_id])
       res.status(200).send(questionArr)
     } catch {
-      res.status(500).then(() => console.log('unable to retrieve quiz questions'))
+      res.sendStatus(500)
     }
   }
 };

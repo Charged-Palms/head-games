@@ -1,0 +1,32 @@
+.my-message {
+    width: 8em;
+    margin: 50px auto;
+    background: red;
+    padding: 12px;
+    text-align: center;
+    font-weight: 900;
+    color: #fff;
+    font-family: arial;
+    position: relative;
+    left:12vw;
+    border-radius: 60em;
+    display: flex;
+    justify-content: center;
+}
+
+.message {
+    width: 8em;
+    margin: 50px auto;
+    background: #00bfb6;
+    padding: 12px;
+    text-align: center;
+    font-weight: 900;
+    color: #fff;
+    font-family: arial;
+    position: relative;
+    left:12vw;
+    border-radius: 60em;
+    display: flex;
+    justify-content: center;
+    //   flex-shrink: 1;
+}
