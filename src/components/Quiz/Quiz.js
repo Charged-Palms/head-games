@@ -24,7 +24,8 @@ class Quiz extends Component {
                 textmessage: 'match'
             },
             timeReset: false,
-            stopped: false
+            stopped: false,
+            class: null
             // ,
             // topic_id: null
         }
@@ -171,11 +172,8 @@ class Quiz extends Component {
         changeCircle()
     }
 
-    innerTimer() {
-        setInterval(function(){
-            console.log('hi')
-            this.handleResponse()
-        }, 5000)
+    addClass(style) {
+        this.setState({class: style})
     }
 
     render() {
@@ -186,7 +184,7 @@ class Quiz extends Component {
             </button>
         })
         return (
-            <div className='quiz-main-content'>
+            <div className={`quiz-main-content ${this.state.class}`}>
                 <Timer
                     initialTime={40000}
                     direction='backward'
@@ -256,9 +254,15 @@ class Quiz extends Component {
                             <h1>
                                 Thank you for completing this quiz!
                             </h1>
-                            {this.state.numCorrect >= this.state.requiredAmount ? <h2>
-                                You answered enough questions correctly!
-                            </h2> : <div>
+                            {this.state.numCorrect >= this.state.requiredAmount ?
+                                <div>
+                                    {/* {this.addClass('winner')} */}
+                                    <h2>
+                                        You answered enough questions correctly!
+                                    </h2>
+                                </div>
+                             : <div>
+                                 {/* {this.addClass('loser')} */}
                                 <h2>
                                     You did not answer the required amount of questions correctly.
                                 </h2>

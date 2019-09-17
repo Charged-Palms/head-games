@@ -70,3 +70,15 @@
 .quiz-answers button {
     font-size: 125%;
 }
+
+.winner {
+    background: red;
+    /* -webkit-animation: color-change-4x 20s linear infinite alternate both;
+    animation: color-change-4x 20s linear infinite alternate both; */
+}
+
+.loser {
+    background: black;
+    /* -webkit-animation: color-change-4x 1s linear infinite alternate both;
+    animation: color-change-4x 1s linear infinite alternate both; */
+}
