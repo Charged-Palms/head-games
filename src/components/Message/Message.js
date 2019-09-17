@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import axios from "axios";
 import styled from "styled-components";
 import "./Message.scss";
+import { Link } from "react-router-dom";
 export class Message extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +63,7 @@ export class Message extends Component {
   // };
 
   updateMessages = data => {
-    console.log(data);
+    // console.log(data);
     // console.log(this.props.match.params.matchId);
     const { message } = this.state;
     const { matchId: match_id } = this.props.match.params;
@@ -91,51 +92,62 @@ export class Message extends Component {
   };
 
   // submit = () => {
-    //   const { message } = this.state;
-    //   const { matchId:match_id } = this.props.match.params;
-    //   axios.post(`/api/messages/14`, { message }).then(res => {
-      //       console.log(res)
-      //     this.getMessage();
-      //   });
-      //   // this.setProfiles()
-      // };
-      
-      
-      
-      render() {
-        console.log("this.props", this.props.reduxState);
-        // console.log(this.state.messages);
-        const messages = this.state.messages.map((message, i) => (
-          <MsgCont key={i}>
+  //   const { message } = this.state;
+  //   const { matchId:match_id } = this.props.match.params;
+  //   axios.post(`/api/messages/14`, { message }).then(res => {
+  //       console.log(res)
+  //     this.getMessage();
+  //   });
+  //   // this.setProfiles()
+  // };
+
+  render() {
+    // console.log("this.props", this.props.reduxState);
+    // console.log(this.state.messages);
+    const messages = this.state.messages.map((message, i) => (
+      <div
+        className={
+          message.firstName === this.props.reduxState.firstName
+            ? "user"
+            : "non-user"
+        }
+        key={i}
+      >
         <Info>
           <h5>{message.firstName}</h5>
-          <img className="match-img" src={message.profilePic} alt="user" />
+          <img className="img" src={message.profilePic} alt="user" />
         </Info>
         <p
           className={
             message.firstName === this.props.reduxState.firstName
-            ? "my-message"
-            : "message"
+              ? "my-message"
+              : "message"
           }
-          >
+        >
           {message.message}
         </p>
-      </MsgCont>
+      </div>
     ));
     return (
       <div>
         <h1>Messsage site</h1>
+        <Link to="/profile">
+          <button>Profile</button>
+        </Link>
+        <Link to="/home">
+          <button>Home</button>
+        </Link>
         {messages}
         <Form>
           {/* <h2 className="welcome-message">Welcome, {this.props.reduxState.firstName}</h2> */}
 
-          <input
+          <Input
             type="text"
             name="message"
             placeholder="Type Message Here"
             value={this.state.message}
             onChange={this.handleChange}
-            />
+          />
 
           <Button onClick={this.blast}>&#11014;</Button>
         </Form>
@@ -159,22 +171,41 @@ const Form = styled.div`
   max-width: 400px;
   padding: 15px;
   position: relative;
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
 `;
-const Button = styled.span`
-  border: 1px solid blue;
-  background: red;
-  color: white;
-  position:relative;
-  /* right:1vw; */
-  font-size:10px;
-  width:6vw;
+
+const Input  = styled.input `
+padding: 10px 15px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+    border-radius: 6vw;
+    border: none;
+    :focus{
+      border: 2px solid #151515;
+  box-shadow: inset 0 0 5px 1px;
+    }
+`
+const Button = styled.button`
+  padding: 10px 15px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: none;
+  background-color: rgba(25, 25, 25);
+  color: #fafafa;
+  transition: 0.5s;
   cursor: pointer;
 `;
 const Info = styled.div`
   /* border: 1px solid green; */
   color: white;
+`;
+
+const Img = styled.img`
+  border-radius: 50%;
+  border: 2px solid $primary-color;
+  height: 100px;
+  width: 100px;
 `;
 
 function mapStateToProps(reduxState) {
@@ -186,6 +217,8 @@ function mapStateToProps(reduxState) {
 export default connect(
   mapStateToProps,
   {}
-  )(Message);
-  
-  export function getSum(arg1, arg2){return arg1+arg2}
+)(Message);
+
+export function getSum(arg1, arg2) {
+  return arg1 + arg2;
+}
