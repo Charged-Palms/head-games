@@ -91,20 +91,22 @@ export class Message extends Component {
   };
 
   // submit = () => {
-  //   const { message } = this.state;
-  //   const { matchId:match_id } = this.props.match.params;
-  //   axios.post(`/api/messages/14`, { message }).then(res => {
-  //       console.log(res)
-  //     this.getMessage();
-  //   });
-  //   // this.setProfiles()
-  // };
-
-  render() {
-    console.log("this.props", this.props.reduxState);
-    // console.log(this.state.messages);
-    const messages = this.state.messages.map((message, i) => (
-      <MsgCont key={i}>
+    //   const { message } = this.state;
+    //   const { matchId:match_id } = this.props.match.params;
+    //   axios.post(`/api/messages/14`, { message }).then(res => {
+      //       console.log(res)
+      //     this.getMessage();
+      //   });
+      //   // this.setProfiles()
+      // };
+      
+      
+      
+      render() {
+        console.log("this.props", this.props.reduxState);
+        // console.log(this.state.messages);
+        const messages = this.state.messages.map((message, i) => (
+          <MsgCont key={i}>
         <Info>
           <h5>{message.firstName}</h5>
           <img className="match-img" src={message.profilePic} alt="user" />
@@ -112,10 +114,10 @@ export class Message extends Component {
         <p
           className={
             message.firstName === this.props.reduxState.firstName
-              ? "my-message"
-              : "message"
+            ? "my-message"
+            : "message"
           }
-        >
+          >
           {message.message}
         </p>
       </MsgCont>
@@ -133,7 +135,7 @@ export class Message extends Component {
             placeholder="Type Message Here"
             value={this.state.message}
             onChange={this.handleChange}
-          />
+            />
 
           <Button onClick={this.blast}>&#11014;</Button>
         </Form>
@@ -184,4 +186,6 @@ function mapStateToProps(reduxState) {
 export default connect(
   mapStateToProps,
   {}
-)(Message);
+  )(Message);
+  
+  export function getSum(arg1, arg2){return arg1+arg2}
