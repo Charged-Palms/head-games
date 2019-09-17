@@ -1,11 +1,34 @@
 @import '../../config';
 
+$parallax-perspective: 8px;
+// body {
+//     background-color: white;
+// }
+@keyframes animateZ {
+    from {
+        transform: translateZ(0px);
+    }
+    to {
+        transform: translateZ(4px);
+    }
+}
+
+
 .parallax-wrapper {
+    background-color: #FAFAFA;
     // background-image: url('https://cdn.hipwallpaper.com/i/16/41/xz68l5.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     z-index: -1;
+}
+.quiz-profiles {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    padding: 10px;
+
 }
 .grid {
     display: inline-grid;
@@ -21,11 +44,14 @@
        max-width: 200px; 
        margin: auto;
        text-align: center;
-       background: #FAFAFA;                        
+       background: #FAFAFA;                       
     :focus {
         outline: none !important;
     }
+
+
 }
+
 
 * {
     user-select: none;
@@ -37,13 +63,21 @@
 .last {
     color: $primary-color;
 }
-
+//bio div
 .info {
-    background-color: $secondary-color;
+    background-color: none;
     display: block;
+    // border: 1px solid red;
+    background: none;
+    font-size: 1.5rem;
+    
 }
 
+//bio
+.your-bio {
+    align-content: center;
 
+}
 
 .match-img {
     background-size: cover;
@@ -62,6 +96,7 @@
     // border-image-slice: 90 40 80 40;
     border-image-width: 5;
     border-image-outset: 1;
+    padding-top: 0.5rem;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     :focus {
@@ -85,6 +120,7 @@
     border: 2px solid $primary-color;
     height: 100px;
     width: 100px;
+    margin-top: 0.5rem;
 }
 
 .first-name {
@@ -97,6 +133,12 @@
 }
 
 //ReactModal
+.modal-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .match-profile {
     display: flex;
     flex-direction: column;
@@ -118,6 +160,8 @@
 .ReactModal__Overlay {
     opacity: 1;
     transition: opacity 400ms ease-in-out;
+    transform: translate(0%, 40%);
+    
 }
 
 .ReactModal__Body--open {
@@ -127,19 +171,43 @@
 }
 
 .ReactModal__Overlay--after-open {
-    opacity: 0.5;
+    opacity: 0.9;
+    height: 68vh;
+    position: absolute;
+//   top: 0%;
+//   left: 20%;
+  transform: translate(0%, 40%);
+  
 }
 
 .ReactModal__Overlay--before-close {
     opacity: 0;
-    
+    height: 68vh;
+    position: absolute;
+//   top: 0%;
+//   left: 20%;
+  transform: translate(0%, 40%);
+  
 }
 
 
 //buton styles
 
 .X-btn {
-    margin-left: 50vw;
+    //putting button in top right corner
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-weight: 900;
+}
+
+.btn-edit {
+    background: none;
+    border: none;
+    font-weight: 900;
+    color: $primary-color;
 }
 
 
