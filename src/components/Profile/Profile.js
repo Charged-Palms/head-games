@@ -198,12 +198,12 @@ export class Profile extends Component {
                     <button onClick={this.handleEdit} className="btn-edit">Edit</button>
                 </div>
                     <br/>
-                    <h3>Who You Want To Know</h3>
+                    <h3 className="know-you">Who You Want To Know</h3>
                 <div className="quiz-profiles">
                     {allQuizProfiles}
                 </div>
                 <hr/>
-                    <h3>People Who Want To Know You</h3>
+                    <h3 className="you-want" >People Who Want To Know You</h3>
                 <div className='grid' >
                     {allMatches}
                 </div>
