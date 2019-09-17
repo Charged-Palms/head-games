@@ -72,12 +72,11 @@ class SelectInterests extends Component {
   render() {
     return (
       <div className="select-interests-container">
-        <h1 className="select-interests-title">Select Interests</h1>
         <form
           onSubmit={e => e.preventDefault()}
           className="select-interests-form"
         >
-          <h4>Select Topic for Quiz</h4>
+          <h2>Select Topic for Quiz!</h2>
           <select name="topicId" onChange={e => this.handleChange(e)}>
             {this.state.topicArr.map(t => (
               <option key={t.topic_id} value={t.topic_id}>

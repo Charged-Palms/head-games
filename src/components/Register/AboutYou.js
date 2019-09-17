@@ -31,47 +31,49 @@ class AboutYou extends Component {
   render() {
     return (
       <div className="about-you-container">
-        <h1 className="about-you-title">About You</h1>
-        <form onSubmit={e => e.preventDefault()} className="about-you-form">
-          <textarea
-            className="about-you-form-textarea"
-            type="text"
-            placeholder="bio"
-            name="bio"
-            onChange={e => this.handleChange(e)}
-          />
-          <textarea
-            className="about-you-form-textarea"
-            type="text"
-            placeholder="status"
-            name="status"
-            onChange={e => this.handleChange(e)}
-          />
-          <div className="gender-form">
-            <h4>Gender:</h4>
-            <select name="gender" onChange={e => this.handleChange(e)}>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-          <input
-            type="number"
-            placeholder="age"
-            name="age"
-            onChange={e => this.handleChange(e)}
-            className="about-you-form-input"
-          />
-          <input
-            type="number"
-            placeholder="zipcode"
-            name="zipcode"
-            onChange={e => this.handleChange(e)}
-            className="about-you-form-input"
-          />
-          <button type="submit" onClick={this.handleContinue}>
-            Continue
-          </button>
-        </form>
+        {/* <div className="about-you-inner-container"> */}
+          <form onSubmit={e => e.preventDefault()} className="about-you-form">
+          <h1 className="about-you-title">About You</h1>
+            <textarea
+              className="about-you-form-textarea"
+              type="text"
+              placeholder="Tell people who you are!"
+              name="bio"
+              onChange={e => this.handleChange(e)}
+            />
+            <textarea
+              className="about-you-form-textarea"
+              type="text"
+              placeholder="What are you doing right now?"
+              name="status"
+              onChange={e => this.handleChange(e)}
+            />
+            <div className="gender-form">
+              <h4>Gender:&nbsp;</h4>
+              <select name="gender" onChange={e => this.handleChange(e)}>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <input
+              type="number"
+              placeholder="age"
+              name="age"
+              onChange={e => this.handleChange(e)}
+              className="about-you-form-input"
+            />
+            <input
+              type="number"
+              placeholder="zipcode"
+              name="zipcode"
+              onChange={e => this.handleChange(e)}
+              className="about-you-form-input"
+            />
+            <button type="submit" onClick={this.handleContinue}>
+              Continue
+            </button>
+          </form>
+        {/* </div> */}
         {this.state.displaySelectInterests ? <SelectInterests /> : null}
       </div>
     );
