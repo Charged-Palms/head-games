@@ -30,6 +30,14 @@ class Register extends Component {
       <div className="menu">
         <form onSubmit={e => e.preventDefault()} className="list">
           <input
+            type="file"
+            name="profilePic"
+            className="list-item"
+            id="profilePicId"
+            accept="image/*"
+            style={{width:"70%"}}
+          />
+          <input
             type="text"
             placeholder="Profile Picture"
             onChange={e => this.handleChange(e)}
