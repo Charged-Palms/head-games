@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SelectInterests from "./SelectInterests";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/reducer";
+import { Link } from 'react-router-dom'
 
 class AboutYou extends Component {
   state = {
@@ -69,12 +70,14 @@ class AboutYou extends Component {
               onChange={e => this.handleChange(e)}
               className="about-you-form-input"
             />
-            <button type="submit" onClick={this.handleContinue}>
-              Continue
-            </button>
+            <Link to="/selectinterests" className="about-form-link">
+              <button type="submit" onClick={this.handleContinue}>
+                Continue
+              </button>
+            </Link>
           </form>
         {/* </div> */}
-        {this.state.displaySelectInterests ? <SelectInterests /> : null}
+        {/* {this.state.displaySelectInterests ? <SelectInterests /> : null} */}
       </div>
     );
   }

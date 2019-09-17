@@ -1,0 +1,92 @@
+html,
+body {
+  /* padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+  -webkit-backface-visibility: hidden; */
+}
+
+.d3-bubble-container {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-backface-visibility: hidden;
+}
+
+/* * {
+  box-sizing: inherit;
+} */
+
+.d3-bubble-container h1 {
+  text-align: center;
+}
+
+/* h2 {
+    text-align: center;
+} */
+
+/* tspan {
+    text-align: start;
+} */
+
+.d3-bubble-container svg {
+  margin: auto;
+  display: block;
+}
+
+.circle-overlay {
+  font-size: 16px;
+  border-radius: 50%;
+  position: absolute;
+  overflow: hidden;
+  /*it's buggy with the foreignObject background right now*/
+  /*background-color: rgba(255,255,255,0.5);*/
+}
+
+.circle-overlay__inner {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 5%;
+
+}
+
+.hidden {
+  display: none;
+}
+
+.node-icon {
+  overflow: hidden;
+
+}
+
+.node-icon--faded {
+  opacity: 0;
+}
+
+.legend-size circle {
+  fill: rgb(31, 119, 180);
+}
+
+.infoBox-button {
+  width: 50%;
+  height: 10%;
+  margin: 2%;
+  padding: 2% 2%;
+  /* padding: 10px 15px; */
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: none;
+  background-color: rgba(25, 25, 25);
+  color: #fafafa;
+  transition: 0.5s;
+}
+
+.infoBox-button:focus {
+  background-color: rgba(250, 250, 250);
+  color: #151515;
+}
+
+#color-mesh text {
+  font-weight: bold;
+}

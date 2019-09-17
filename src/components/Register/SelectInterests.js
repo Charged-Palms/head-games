@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/reducer";
 import { withRouter } from "react-router-dom";
+import D3Bubbles from "./D3Bubbles";
 
 class SelectInterests extends Component {
   state = {
@@ -71,24 +72,27 @@ class SelectInterests extends Component {
 
   render() {
     return (
-      <div className="select-interests-container">
-        <form
-          onSubmit={e => e.preventDefault()}
-          className="select-interests-form"
-        >
-          <h2>Select Topic for Quiz!</h2>
-          <select name="topicId" onChange={e => this.handleChange(e)}>
-            {this.state.topicArr.map(t => (
-              <option key={t.topic_id} value={t.topic_id}>
-                {t.topic_name}
-              </option>
-            ))}
-          </select>
-          <button type="submit" onClick={this.register}>
-            Complete Registration
-          </button>
-        </form>
-      </div>
+        <div className="d3-bubble-container">
+          <D3Bubbles height={731} width={411}/>
+        </div>
+      // <div className="select-interests-container">
+      //   <h2 style={{paddingTop:"15vh"}}>Select Topic for Quiz!</h2>
+      //   <form
+      //     onSubmit={e => e.preventDefault()}
+      //     className="select-interests-form"
+      //   >
+      //     <select name="topicId" onChange={e => this.handleChange(e)}>
+      //       {this.state.topicArr.map(t => (
+      //         <option key={t.topic_id} value={t.topic_id}>
+      //           {t.topic_name}
+      //         </option>
+      //       ))}
+      //     </select>
+      //     <button type="submit" onClick={this.register}>
+      //       Complete Registration
+      //     </button>
+      //   </form>
+      // </div>
     );
   }
 }
