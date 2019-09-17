@@ -7,7 +7,7 @@ import { updateBio, logoutUser } from '../../ducks/reducer'
 import { Link } from 'react-router-dom'
 import ReactModal from 'react-modal'
 
-class Profile extends Component {
+export class Profile extends Component {
     state ={
         bioEdit: true,
         statusEdit: false,
