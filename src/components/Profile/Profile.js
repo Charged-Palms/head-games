@@ -135,7 +135,8 @@ class Profile extends Component {
                     <ReactModal 
                     isOpen={this.state.showModal}
                     closeTimeoutMS={500}
-                    onRequestClose={this.hanldeCloseModal.bind(this)}>
+                    onRequestClose={this.hanldeCloseModal.bind(this)}
+                    >
                         <div className='match-profile'>
                             <button className='X-btn' onClick={this.hanldeCloseModal.bind(this)} >X</button>
                             <img className='match-profile-img' src={currMatch && currMatch.profile_pic} alt="match snapshot"/>
@@ -144,7 +145,8 @@ class Profile extends Component {
                                 <hr/>
                                 <span>{currMatch && currMatch.status}</span>
                                 <p className="match-profile-bio">{currMatch && currMatch.bio}</p>
-                                <button onClick={() => {this.messageClick(currMatch.match_id)}} className="match-msg">Message</button>
+                                <i onClick={() => {this.messageClick(currMatch.match_id)}} className=" far fa-comments fa-2x"></i>
+                                {/* <button >Message</button> */}
                                 <p>{currMatch && currMatch.match_id}</p>
                             </div>
                         </div>
@@ -167,18 +169,27 @@ class Profile extends Component {
                     <ReactModal
                     isOpen={this.state.showModalTwo}
                     closeTimeoutMS={500}
-                    onRequestClose={this.handleCloseModalTwo.bind(this)}>
+                    onRequestClose={this.handleCloseModalTwo.bind(this)}
+                    >
+                    
                         <div className="quiz-profile">
                             <button className='X-btn' onClick={this.handleCloseModalTwo.bind(this)} >X</button>
                             <img className="quiz-profile-img" src={currQuizProfile && currQuizProfile.profile_pic} alt="quiz profile snapshot" />
                             <p>{currQuizProfile && currQuizProfile.match_id}</p>
-                            <button onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className='quiz-msg' >Message</button>
+                            <div className="match-details">
+                                <span className="first-name"><span className='last'>{currQuizProfile && currQuizProfile.first_name}</span>{currQuizProfile && currQuizProfile.last_name}</span>
+                                <hr/>
+                                <span>{currQuizProfile && currQuizProfile.status}</span>
+                            </div>
+                            <i onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className=" far fa-comments fa-2x"></i>  
+                            {/* <button onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className='quiz-msg' >Message</button> */}
                         </div>
                     </ReactModal>
                 </div>
             )
         })
         return (
+            <div className="parallax-container">
             <div className='parallax-wrapper'>
                 <h1 className='first-name'>{firstName} <span className='last'>{lastName}</span></h1>
                 <Link to='/usersettings' ><button className="nav-btn">Settings</button></Link>
@@ -188,11 +199,11 @@ class Profile extends Component {
                     </div>
                 <div className="info">
                     <p className="your-bio">{bio}</p>
-                    <br/>
                     <button onClick={this.handleEdit} className="btn-edit">Edit</button>
                 </div>
-                <div className="quiz-profiles">
+                    <br/>
                     <h3>You Took Their Quiz</h3>
+                <div className="quiz-profiles">
                     {allQuizProfiles}
                 </div>
                 <hr/>
@@ -200,6 +211,7 @@ class Profile extends Component {
                 <div className='grid' >
                     {allMatches}
                 </div>
+            </div>
             </div>
         )
     }
