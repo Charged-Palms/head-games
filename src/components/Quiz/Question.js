@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import * as d3 from 'd3'
 import './Question.css'
-import { arrayExpression } from '@babel/types'
+import Swal from 'sweetalert2'
+import Timer from 'react-compound-timer'
 
 class Question extends Component {
     constructor(props) {
@@ -21,11 +22,7 @@ class Question extends Component {
 
     componentDidMount() {
         this.animateArcTimer()
-        console.log(this.state)
-        console.log(this.props)
-        if (this.state.questions.length) {
-            this.selectCurrentQuestion(this.state.currentQuestion)
-        }
+        this.selectCurrentQuestion(this.state.currentQuestion)
     }
 
     animateArcTimer() {
@@ -84,51 +81,95 @@ class Question extends Component {
 
     selectCurrentQuestion(current) {
         let {questions, answers} = this.state
-        console.log(questions)
-        let question = questions[current]
-        let correctAnswer = answers[current]
         let tempArr = []
         let tempQuestionArr = []
         let tempAnswerArr = []
         let questIndex = Math.floor(Math.random() * 4)
+        let insertInd = 0
         for (let i = 0; i < 4; i++) {
-            let r = Math.floor(Math.random() * questions.length) + 1
-            if (tempArr.indexOf(r) === -1) {
-                i--
-            } else {
-                tempArr.push(r)
+            let r = Math.floor(Math.random() * questions.length)
+            if (tempArr.indexOf(questIndex) === -1) {
+                insertInd = Math.floor(Math.random() * 2)
             }
-            console.log(r)
+            if (insertInd) {
+                tempArr.push(questIndex)
+                insertInd = 0
+            } else if (tempArr.indexOf(r) === -1) {
+                tempArr.push(r)
+            } else {
+                i--
+            }
         }
         for (let i = 0; i < tempArr.length; i++) {
-            if (i !== questIndex) {
                 tempQuestionArr.push(questions[tempArr[i]])
                 tempAnswerArr.push(answers[tempArr[i]])
-            } else {
-                tempQuestionArr.push(question)
-                tempAnswerArr.push(correctAnswer)
-            }
         }
         this.setState({quiz: tempQuestionArr, questionsAnswers: tempAnswerArr, correctAnswer: questIndex})
     }
 
+    handleAnswer(ind) {
+        if (ind === this.state.correctAnswer) {
+            Swal.fire({
+                type: 'success',
+                width: '10rem',
+                toast: true,
+                position: 'top-start',
+                timer: 1000,
+                showConfirmButton: false
+            })
+            this.props.numCorrect()
+            this.props.nextQuestion()
+        } else {
+            Swal.fire({
+                type: 'error',
+                width: '10rem',
+                toast: true,
+                position: 'top-start',
+                timer: 1000,
+                showConfirmButton: false
+            })
+            this.props.nextQuestion()
+        }
+    }
+
     render() {
         let answers = this.state.questionsAnswers.map((ele, index) => {
-            return <div key={index}>
+            return <button key={index} onClick={() => this.handleAnswer(index)}>
                 {ele}
-            </div>
+            </button>
         })
         return (
             <div className='question-display'>
+                <Timer
+                    initialTime={10000}
+                    direction='backward'
+                    checkpoints={[
+                        {time: 0,
+                        callback: () => this.handleAnswer(-1)
+                    }
+                    ]}
+                >
+                </Timer>
                 <div id='arc_box'>
                     <svg id='timer_arc'></svg>
                 </div>
+                <h2>
+                    {this.state.questions[this.state.currentQuestion]}
+                </h2>
                 <div>
                     {answers}
                 </div>
             </div>
         )
     }
+    
+    // componentDidUpdate(prevState) {
+    //     if (this.state.currentQuestion !== prevState.currentQuestion) {
+    //         this.animateArcTimer()
+    //         this.selectCurrentQuestion()
+    //     }
+    // }
 }
+
 
 export default Question

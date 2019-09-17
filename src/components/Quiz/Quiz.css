@@ -20,6 +20,7 @@
 
 #arc_box {
     margin-top: 2%;
+    margin-bottom: 5%;
     box-sizing: border-box;
     padding-right: 2%;
     width: 100%;
@@ -40,7 +41,7 @@
 }
 
 .quiz-content {
-    margin-top: 20%;
+    margin-top: 25%;
     border: 5px solid black;
     box-sizing: border-box;
     border-radius: 40px;

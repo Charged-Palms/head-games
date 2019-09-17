@@ -15,7 +15,8 @@ class Quiz extends Component {
             numCorrect: 0,
             requiredAmount: 3,
             quizLength: 4,
-            currentQuestion: 0
+            currentQuestion: 0,
+            showQuestions: false
         }
 
         this.incrementQuestion = this.incrementQuestion.bind(this)
@@ -31,7 +32,7 @@ class Quiz extends Component {
             let answerArray = res.data.map((ele) => {
                 return ele.answer
             })
-            this.setState({quiz: res.data, questions: questArray, answers: answerArray})
+            this.setState({quiz: res.data, questions: questArray, answers: answerArray, showQuestions: true})
         })
     }
 
@@ -47,6 +48,7 @@ class Quiz extends Component {
         let {questions, answers, currentQuestion, quizLength} = this.state
         return(
             <div className='quiz-main-content'>
+                {this.state.showQuestions ?
                 <Question
                     questions = {questions}
                     answers = {answers}
@@ -55,6 +57,10 @@ class Quiz extends Component {
                     numCorrect = {this.incrementNumCorrect}
                     nextQuestion = {this.incrementQuestion}
                 />
+                : <div>
+                    Loading...
+                </div>
+                }
             </div>
         )
     }
