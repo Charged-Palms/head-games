@@ -220,6 +220,7 @@
 .list2 > input[type="text"],
 .list > input[type="text"],
 .list > input[type="email"],
+.list > input[type="password"],
 .about-you-form > input[type="number"] {
   padding: 10px 15px;
   box-sizing: border-box;
@@ -230,6 +231,7 @@
 .list2 > input[type="text"]:focus,
 .list > input[type="text"]:focus,
 .list > input[type="email"]:focus,
+.list > input[type="password"]:focus,
 .about-you-form > input[type="number"]:focus {
   border: 2px solid #151515;
   box-shadow: inset 0 0 5px 1px;
@@ -237,7 +239,7 @@
 
 .list2 > button,
 .list > button,
-.about-you-form > button,
+.about-you-form > .about-form-link > button,
 .list > input[type="file"] {
   padding: 10px 15px;
   box-sizing: border-box;
@@ -249,7 +251,7 @@
 }
 .list2 > button:focus,
 .list > button:focus,
-.about-you-form > button:focus {
+.about-you-form > .about-form-link > button:focus {
   background-color: rgba(250, 250, 250);
   color: #151515;
 }
@@ -365,9 +367,6 @@
   width: 100%;
 }
 
-.about-you-inner-container {
-}
-
 .about-you-title {
   position: relative;
   bottom: 5%;
@@ -443,6 +442,17 @@
 .color-change-4x {
   -webkit-animation: color-change-4x 6s linear infinite alternate both;
   animation: color-change-4x 6s linear infinite alternate both;
+}
+
+/*------------------------D3 BUBBLES CONTAINER----------------------------*/
+
+.d3-bubble-container {
+  /* padding-right: 15%;
+  height: 100vh;
+  margin-top: 15vh; */
+  height: 100vh;
+  width: 100vw;
+
 }
 
 /**

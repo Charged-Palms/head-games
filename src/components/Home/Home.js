@@ -2,15 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Card, CardWrapper } from "react-swipeable-cards";
 import { connect } from "react-redux";
-import "./Home.css";
+import { setUser } from "../../ducks/reducer";
 import ReactModal from "react-modal";
-
-//Saving for if we decide to have something display after all potential matches are swiped through
-// class MyEndCard extends Component {
-//   render() {
-//     return <div>You Finished Swiping!</div>;
-//   }
-// }
+import "./Home.css";
 
 ReactModal.setAppElement("#root");
 
@@ -39,11 +33,6 @@ class Home extends Component {
     }
   };
 
-  //Saving for if we decide to have something display after all potential matches are swiped through
-  // getEndCard() {
-  //   return <MyEndCard />;
-  // }
-
   //Potenials that are swiped either way can be console logged for debugging
   onSwipe(data) {
     console.log(data);
@@ -58,11 +47,13 @@ class Home extends Component {
   }
 
   //Potenials that are swiped right on are stored in the swipedRightArr Array
-  onSwipeRight(data) {
+  async onSwipeRight(data) {
     this.setState({
       swipedRightArr: [...this.state.swipedRightArr, data],
       showModal: false
     });
+    await this.props.setUser({ swipedUserId: data.user_id });
+    this.props.history.push("/quiz/false");
   }
 
   //Implement pop up profile here, onDoubleTap is unique to each card, data variable contains all info from user's db row
@@ -100,7 +91,7 @@ class Home extends Component {
             closeTimeoutMS={500}
             onRequestClose={this.handleCloseModal.bind(this)}
           >
-            <div className="match-profile" style={{zIndex:100}}>
+            <div className="match-profile" style={{ zIndex: 100 }}>
               <button
                 className="X-btn"
                 onClick={this.handleCloseModal.bind(this)}
@@ -156,4 +147,7 @@ function mapStateToProps(reduxState) {
   return { profilePic };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(
+  mapStateToProps,
+  { setUser }
+)(Home);

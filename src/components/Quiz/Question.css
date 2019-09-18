@@ -1,0 +1,15 @@
+.question-display {
+    margin-top: 15%;
+    border: 5px solid black;
+    box-sizing: border-box;
+    border-radius: 40px;
+    padding: 2%;
+    height: 80%;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.7);
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 20px black;
+}
