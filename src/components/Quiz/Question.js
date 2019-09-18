@@ -84,6 +84,7 @@ class Question extends Component {
 
     handleAnswer(response, correctAns) {
         if (response === correctAns) {
+            this.counter(true)
             this.setState({numCorrect: this.state.numCorrect + 1})
         }
         this.counter(true)
@@ -139,6 +140,7 @@ class Question extends Component {
     componentDidUpdate() {
         if (this.state.currentQuestion !== this.props.match.params.questionID) {
             this.animateArcTimer()
+            this.counter(true)
             this.counter()
         }
     }
