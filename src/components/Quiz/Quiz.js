@@ -11,13 +11,17 @@ class Quiz extends Component {
         text: {
             recipient: '4356100129',
             textmessage: 'match'    
-        }
+        },
+        topicName: ''
     }
 
     componentDidMount() {
         this.setState({finishedQuiz: (this.props.match.params.finishedQuiz === 'true')})
         axios.get(`/api/quizzes/questions/${this.props.swipedUserId}`).then(res => {
             this.props.setQuestions(res.data)
+        })
+        axios.get(`/api/quizzes/topics/${this.props.swipedUserId}`).then(res => {
+            this.setState({topicName: res.data})
         })
     }
 
@@ -49,7 +53,7 @@ class Quiz extends Component {
                     {this.state.finishedQuiz ?
                         <div>
                             <div>
-                                {this.props.numCorr >= 3 ? <div className='winScreen'>
+                                {numCorr >= 3 ? <div className='winScreen'>
                                     <h1>
                                         Success!
                                     </h1>
@@ -76,7 +80,11 @@ class Quiz extends Component {
                             <h1>
                                 Start Quiz
                             </h1>
+                            <h2>
+                                Topic: {this.state.topicName}
+                            </h2>
                             <button id='quiz-start' onClick={() => this.handleStartQuiz()}>{'>>> Start <<<'}</button>
+                            <button id='quiz-start' onClick={() => this.props.history.push('/home')}>{'<<< Back to Home'}</button>
                         </div>
                     }
                 </div>

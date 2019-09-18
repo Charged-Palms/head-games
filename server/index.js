@@ -57,6 +57,7 @@ app.get('/api/users/quizprofile', userCtrl.quizProfiles)
 app.get("/api/quizzes/topics", quizCtrl.getTopics);
 app.get("/api/quizzes/questions", quizCtrl.getQuestions);
 app.get("/api/quizzes/questions/:matchee_id", quizCtrl.getQuestionsByTopic);
+app.get('/api/quizzes/topics/:matchee_id', quizCtrl.getTopicName)
 
 app.get("/api/messages/:match_id", userCtrl.messages);
 app.post("/api/messages/:match_id", userCtrl.sendMessage);

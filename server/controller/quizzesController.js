@@ -28,5 +28,16 @@ module.exports = {
     } catch {
       res.sendStatus(500)
     }
+  },
+
+  getTopicName : async (req, res) => {
+    const db = req.app.get('db')
+    const {matchee_id} = req.params
+    try{
+      const [{topic_name}] = await db.get_topic_name([matchee_id])
+      res.status(200).send(topic_name)
+    } catch {
+      res.sendStatus(500)
+    }
   }
 };
