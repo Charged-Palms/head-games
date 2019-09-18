@@ -12,7 +12,8 @@ const initialState = {
   zipcode: null,
   bio: "",
   status: "",
-  topicId: null
+  topicId: null,
+  swipedUserId: null
 };
 
 //-----------------------------ACTION CONSTANTS------------------------------
