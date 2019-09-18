@@ -12,22 +12,22 @@ class SelectInterests extends Component {
     questionArr: []
   };
 
-  componentDidMount() {
-    try {
-      axios.get("/api/quizzes/topics").then(res => {
-        this.setState({ topicArr: [...res.data] });
-      });
-    } catch {
-      alert("Error getting Quiz Topics");
-    }
-    try {
-      axios.get("/api/quizzes/questions").then(res => {
-        this.setState({ questionArr: [...res.data] });
-      });
-    } catch {
-      alert("Error getting Quiz Questions");
-    }
-  }
+  // componentDidMount() {
+  //   try {
+  //     axios.get("/api/quizzes/topics").then(res => {
+  //       this.setState({ topicArr: [...res.data] });
+  //     });
+  //   } catch {
+  //     alert("Error getting Quiz Topics");
+  //   }
+  //   try {
+  //     axios.get("/api/quizzes/questions").then(res => {
+  //       this.setState({ questionArr: [...res.data] });
+  //     });
+  //   } catch {
+  //     alert("Error getting Quiz Questions");
+  //   }
+  // }
 
   register = () => {
     const {
@@ -64,11 +64,11 @@ class SelectInterests extends Component {
     }
   };
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+  // handleChange(e) {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   });
+  // }
 
   render() {
     return (

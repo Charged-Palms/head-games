@@ -220,6 +220,7 @@
 .list2 > input[type="text"],
 .list > input[type="text"],
 .list > input[type="email"],
+.list > input[type="password"],
 .about-you-form > input[type="number"] {
   padding: 10px 15px;
   box-sizing: border-box;
@@ -230,6 +231,7 @@
 .list2 > input[type="text"]:focus,
 .list > input[type="text"]:focus,
 .list > input[type="email"]:focus,
+.list > input[type="password"]:focus,
 .about-you-form > input[type="number"]:focus {
   border: 2px solid #151515;
   box-shadow: inset 0 0 5px 1px;
@@ -448,6 +450,9 @@
   /* padding-right: 15%;
   height: 100vh;
   margin-top: 15vh; */
+  height: 100vh;
+  width: 100vw;
+
 }
 
 /**

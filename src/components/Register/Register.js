@@ -66,7 +66,7 @@ class Register extends Component {
             name="email"
           />
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             onChange={e => this.handleChange(e)}
             className="list-item"
