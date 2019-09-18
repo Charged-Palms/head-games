@@ -7,7 +7,7 @@ import { updateBio, logoutUser } from '../../ducks/reducer'
 import { Link } from 'react-router-dom'
 import ReactModal from 'react-modal'
 
-class Profile extends Component {
+export class Profile extends Component {
     state ={
         bioEdit: true,
         statusEdit: false,
@@ -123,28 +123,28 @@ class Profile extends Component {
             let currMatch = matches[this.state.matchProfile]
             // console.log(currMatch)
             return(
-                <div className="grid-item" key={elm.user_id}>
-                    <span className='first-name'>{elm.first_name} <span className='last' >{elm.last_name}</span></span>
-                    <p className='match-age'>Age, {elm.user_age}</p>
-                    <div>
-                        <figure>
+                <div className="grid-item" key={elm.user_id}>                    
+                    
+                        <div className="div-img">
                             <img onClick={() => this.handleOpenModal(index)} className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>
-                        </figure>
-                    </div>
+                        </div>
+                    
                     {/* rendering ReactModal onClick of user profile image, creates popup with user info. */}
                     <ReactModal 
                     isOpen={this.state.showModal}
                     closeTimeoutMS={500}
-                    onRequestClose={this.hanldeCloseModal.bind(this)}>
+                    onRequestClose={this.hanldeCloseModal.bind(this)}
+                    >
                         <div className='match-profile'>
                             <button className='X-btn' onClick={this.hanldeCloseModal.bind(this)} >X</button>
-                            <img className='match-profile-img' src={currMatch && currMatch.profile_pic} alt="match snapshot"/>
+                            <img className='quiz-profile-img' src={currMatch && currMatch.profile_pic} alt="match snapshot"/>
                             <div className="match-details">
                                 <span className='first-name'>{currMatch && currMatch.first_name} <span className='last' >{currMatch && currMatch.last_name}</span></span>
                                 <hr/>
                                 <span>{currMatch && currMatch.status}</span>
                                 <p className="match-profile-bio">{currMatch && currMatch.bio}</p>
-                                <button onClick={() => {this.messageClick(currMatch.match_id)}} className="match-msg">Message</button>
+                                <i onClick={() => {this.messageClick(currMatch.match_id)}} className=" far fa-comments fa-2x"></i>
+                                {/* <button >Message</button> */}
                                 <p>{currMatch && currMatch.match_id}</p>
                             </div>
                         </div>
@@ -157,8 +157,6 @@ class Profile extends Component {
             console.log(currQuizProfile)
             return (
                 <div className="grid-item" key={elm.user_id}>
-                    <span className='first-name'>{elm.first_name} <span className='last' >{elm.last_name}</span></span>
-                    <p className='match-age'>Age, {elm.user_age}</p>
                     <div>
                         <figure>
                             <img onClick={() => this.handleOpenModalTwo(index)} className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>
@@ -167,18 +165,27 @@ class Profile extends Component {
                     <ReactModal
                     isOpen={this.state.showModalTwo}
                     closeTimeoutMS={500}
-                    onRequestClose={this.handleCloseModalTwo.bind(this)}>
-                        <div className="quiz-profile">
+                    onRequestClose={this.handleCloseModalTwo.bind(this)}
+                    >
+                    
+                        <div className="match-profile">
                             <button className='X-btn' onClick={this.handleCloseModalTwo.bind(this)} >X</button>
                             <img className="quiz-profile-img" src={currQuizProfile && currQuizProfile.profile_pic} alt="quiz profile snapshot" />
                             <p>{currQuizProfile && currQuizProfile.match_id}</p>
-                            <button onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className='quiz-msg' >Message</button>
+                            <div className="match-details">
+                                <span className="first-name"><span className='last'>{currQuizProfile && currQuizProfile.first_name}</span>{currQuizProfile && currQuizProfile.last_name}</span>
+                                <hr/>
+                                <span>{currQuizProfile && currQuizProfile.status}</span>
+                            </div>
+                            <i onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className=" far fa-comments fa-2x"></i>  
+                            {/* <button onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className='quiz-msg' >Message</button> */}
                         </div>
                     </ReactModal>
                 </div>
             )
         })
         return (
+            <div className="parallax-container">
             <div className='parallax-wrapper'>
                 <h1 className='first-name'>{firstName} <span className='last'>{lastName}</span></h1>
                 <Link to='/usersettings' ><button className="nav-btn">Settings</button></Link>
@@ -188,18 +195,19 @@ class Profile extends Component {
                     </div>
                 <div className="info">
                     <p className="your-bio">{bio}</p>
-                    <br/>
                     <button onClick={this.handleEdit} className="btn-edit">Edit</button>
                 </div>
+                    <br/>
+                    <h3 className="know-you">Who You Want To Know</h3>
                 <div className="quiz-profiles">
-                    <h3>You Took Their Quiz</h3>
                     {allQuizProfiles}
                 </div>
                 <hr/>
-                    <h3>Took Your Quiz</h3>
+                    <h3 className="you-want" >People Who Want To Know You</h3>
                 <div className='grid' >
                     {allMatches}
                 </div>
+            </div>
             </div>
         )
     }

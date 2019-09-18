@@ -5,6 +5,11 @@ $secondary-color: #FAFAFA;
 $blue-color: #39A0ED;
 $green-color: #36F1CD;
 $yellow-color: #EAC435;
+$parallax-perspective: 8px;
+
+@function parallax-scale-factor($z-distance) {
+    @return ($parallax-perspective = $z-distance) / $parallax-perspective;
+}
 
 //change text color with function $color is our param it will test against lightness
 @function set-text-color($color){
@@ -19,3 +24,5 @@ $yellow-color: #EAC435;
 @mixin easeOut {
     transition: all 0.5s ease-out;
 }
+
+

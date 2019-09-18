@@ -4,7 +4,7 @@ import routes from "./routes";
 import { connect } from "react-redux";
 import { setUser } from "./ducks/reducer";
 import axios from "axios";
-class App extends React.Component {
+export class App extends React.Component {
   componentDidMount() {
     this.getSession();
   }
@@ -12,8 +12,7 @@ class App extends React.Component {
   getSession = () => {
     try {
       axios.get("/auth/session").then(res => {
-        if(res.data.user){
-
+        if (res.data.user) {
           const {
             profile_pic: profilePic,
             user_id: userId,
@@ -41,14 +40,18 @@ class App extends React.Component {
             topicId
           });
         }
-        });
+      });
     } catch {
       alert("404 internal server error");
     }
   };
 
   render() {
-    return <div className="App" style={{backgroundColor:"black"}}>{routes}</div>;
+    return (
+      <div className="App" style={{ backgroundColor: "black" }}>
+        {routes}
+      </div>
+    );
   }
 }
 

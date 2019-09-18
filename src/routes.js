@@ -6,6 +6,7 @@ import Profile from "./components/Profile/Profile";
 import UserSettings from "./components/UserSettings/UserSettings";
 import Message from "./components/Message/Message";
 import Quiz from "./components/Quiz/Quiz";
+import Question from "./components/Quiz/Question";
 import SelectInterests from "./components/Register/SelectInterests";
 
 export default (
@@ -15,7 +16,8 @@ export default (
     <Route path="/profile" component={Profile} />
     <Route path="/usersettings" component={UserSettings} />
     <Route path="/message/:matchId" component={Message} />
-    <Route path="/quiz" component={Quiz} />
+    <Route path="/quiz/:finishedQuiz" component={Quiz} />
+    <Route path="/question/:questionID" component={Question} />
     <Route path="/selectinterests" component={SelectInterests} />
   </Switch>
 );

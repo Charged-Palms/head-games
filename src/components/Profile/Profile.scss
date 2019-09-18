@@ -1,15 +1,99 @@
 @import '../../config';
 
+$parallax-perspective: 8px;
+// body {
+//     background-color: white;
+// }
+@keyframes animateZ {
+    from {
+        transform: translateZ(0px);
+    }
+    to {
+        transform: translateZ(4px);
+    }
+}
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    80% {
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    80% {
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes unfoldIn {
+    0% {
+      transform:scaleY(.005) scaleX(0);
+    }
+    50% {
+      transform:scaleY(.005) scaleX(1);
+    }
+    100% {
+      transform:scaleY(1) scaleX(1);
+    }
+  }
+  
+  @keyframes unfoldOut {
+    0% {
+      transform:scaleY(1) scaleX(1);
+    }
+    50% {
+      transform:scaleY(.005) scaleX(1);
+    }
+    100% {
+      transform:scaleY(.005) scaleX(0);
+    }
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat
+}
+
 .parallax-wrapper {
-    // background-image: url('https://cdn.hipwallpaper.com/i/16/41/xz68l5.jpg');
+    // background-color: #FAFAFA;
+    -webkit-animation: color-change-4x 7s linear infinite alternate both;
+  animation: color-change-4x 7s linear infinite alternate both;
+  box-shadow: inset 0px 0px 30px 10px rgba(0,0,0,0.75);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
-    z-index: -1;
+    z-index: 1;
+    background-position: top;
+    cursor: pointer !important;
+    // height: 95vh;
+}
+.quiz-profiles {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    padding: 10px;
+
 }
 .grid {
     display: inline-grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
     padding: 10px;
@@ -18,13 +102,26 @@
 .grid-item {
     //    border: 1px red solid;
        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-       max-width: 200px; 
+       max-width: 165px; 
        margin: auto;
-       text-align: center;
-       background: #FAFAFA;                        
+       text-align: justify;
+    //    background: #FAFAFA; 
+       border-radius: 20%; 
+       width: 165px;
+       height: 165px;
+                   
     :focus {
         outline: none !important;
     }
+
+
+}
+.know-you {
+    animation: moveInLeft 2s linear;
+}
+
+.you-want {
+    animation: moveInRight 2s linear;
 }
 
 * {
@@ -37,31 +134,53 @@
 .last {
     color: $primary-color;
 }
-
+//bio div
 .info {
-    background-color: $secondary-color;
+    background-color: none;
     display: block;
+    // border: 1px solid red;
+    background: none;
+    font-size: 1.1rem;
+    
 }
 
+//bio
+.your-bio {
+    align-content: center;
 
-
+}
+// .div-img {
+//     border-radius: 20%;
+//     perspective: 1000;
+//     backface-visibility: hidden;
+//     -webkit-perspective: 1000;
+//     -webkit-backface-visibility: hidden;
+//     -webkit-transform: translate3d(0,0,0);
+//     outline:none;
+//     border:none;
+//     text-decoration:none;
+// }
 .match-img {
     background-size: cover;
     overflow: hidden;
-    height: 100px;
-    width: 100px;
-    cursor: pointer;
+    height: 165px;
+    width: 165px;
+    cursor: pointer !important;
     margin: none;
+    border-radius: 20%;
     // border-radius: 100%;
     // styling border
     // padding: 1rem;
     color: white;
-    border-width: 3px;
-    border-style: solid;
+    background: none;
+    // border-width: 3px;
+    // border-style: solid;
     // border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0))1 100%;
     // border-image-slice: 90 40 80 40;
     border-image-width: 5;
     border-image-outset: 1;
+    // padding-top: 0.5rem;
+    padding: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     :focus {
@@ -85,6 +204,8 @@
     border: 2px solid $primary-color;
     height: 100px;
     width: 100px;
+    margin-top: 0.5rem;
+    cursor: pointer !important;
 }
 
 .first-name {
@@ -97,6 +218,12 @@
 }
 
 //ReactModal
+.modal-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .match-profile {
     display: flex;
     flex-direction: column;
@@ -116,30 +243,69 @@
 }
 
 .ReactModal__Overlay {
-    opacity: 1;
-    transition: opacity 400ms ease-in-out;
+    // opacity: 1;
+    // transition: opacity 400ms ease-in-out;
+    // transform: translate(0%, 40%);
+    height: 550px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 2000ms ease-in-out;
+    transform: scaleY(0.1) scaleX(0);
+    animation: unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    background: none !important;
 }
 
 .ReactModal__Body--open {
     //added so you can scroll the body when the modal is opened.
     overflow: hidden;
+    transition: opacity 400ms ease-in;
     
 }
 
 .ReactModal__Overlay--after-open {
-    opacity: 0.5;
+    opacity: 0.9;
+    height: 550px;
+    position: absolute;
+  top: 0%;
+  left: 20%;
+  transform: translate(0%, 40%);
+  transition: opacity 400ms ease-in;
+  background: transparent;
 }
 
 .ReactModal__Overlay--before-close {
-    opacity: 0;
-    
+//     opacity: 0;
+//     height: 68vh;
+//     position: absolute;
+//   transform: translate(0%, 40%);
+//   transform: scale(1);
+transform: scaleY(1) scaleX(1);
+  animation: unfoldOut 1s .1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
 
 //buton styles
 
 .X-btn {
-    margin-left: 50vw;
+    //putting button in top right corner
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-weight: 900;
+}
+
+.btn-edit {
+    background: none;
+    border: 1px solid #333;
+    border-radius: 20%;
+    padding: 0.5rem;
+    font-weight: 900;
+    color: set-text-color($primary-color);
 }
 
 
