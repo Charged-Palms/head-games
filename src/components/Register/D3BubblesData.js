@@ -34,7 +34,7 @@ module.exports = {
         "Click the button below to attach this quiz topic to your profile. This can be changed later in your profile settings!",
       desc:
         "Click the button below to attach this quiz topic to your profile. This can be changed later in your profile settings!",
-      topic_ic: 4
+      topic_id: 4
     },
     {
       cat: "5",
@@ -146,7 +146,7 @@ module.exports = {
     },
     {
       cat: "17",
-      name: "Truck Bro's",
+      name: "Truck Bros",
       icon:
         "Click the button below to attach this quiz topic to your profile. This can be changed later in your profile settings!",
       desc:
