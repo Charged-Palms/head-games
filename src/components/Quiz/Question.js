@@ -7,24 +7,144 @@ import Swal from 'sweetalert2'
 import Timer from 'react-compound-timer'
 
 class Question extends Component {
-    shuffleAnswers(arr) {
-        return arr
+    state={
+        currentQuestion: -1,
+        numCorrect: 0
+    }
+    componentDidMount() {
+        this.animateArcTimer()
+        this.counter()
+        this.setState({currentQuestion: this.props.match.params.questionID})
+    }
+
+    shuffleAnswers = (arr) => {
+        let newArr = arr.slice()
+        for (let i = newArr.length -1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1))
+            var temp = newArr[i]
+            newArr[i] = newArr[j]
+            newArr[j] = temp
+        }
+        return newArr
+    }
+
+    animateArcTimer() {        
+        var arc = d3.arc()        
+        .innerRadius(0)
+        .outerRadius(40)
+        .startAngle(0)        
+        
+        var arc2 = d3.arc()
+        .innerRadius(0)
+        .outerRadius(30)
+        .startAngle(0)
+        
+        var svg = d3.select('#timer_arc'),
+        width = 56,
+        height = 54,
+        g = svg.append('g')
+        .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
+        
+        //eslint-disable-next-line
+        var background = g.append('path')
+        .datum({endAngle: 2 * Math.PI})
+        .style('fill', 'transparent')
+        .attr('d', arc2)
+
+        var foreground = g.append('path')
+        .datum({endAngle: 2 * Math.PI})
+        .style('fill', 'white')
+        .attr('d', arc)
+        
+        function changeCircle() {
+            foreground
+            .transition()
+            // .style('fill', 'green')
+            .duration(0)
+            .attrTween('d', arcTween(2 * Math.PI), 1500)
+            .transition()
+            .ease(d3.easeLinear)
+            .duration(10000)
+            .attrTween('d', arcTween(0), 1500)
+            // .style('fill', 'red')
+        }
+        
+        function arcTween(newAngle) {
+            return function(d) {
+                var interpolate = d3.interpolate(d.endAngle, newAngle)
+                return function(t) {
+                    d.endAngle = interpolate(t)
+                    return arc(d)
+                }
+            }
+        }
+        
+        changeCircle()
+    }
+
+    handleAnswer(response, correctAns) {
+        if (response === correctAns) {
+            this.setState({numCorrect: this.state.numCorrect + 1})
+        }
+        this.counter(true)
+        if (Number(this.props.match.params.questionID) !== 3) {
+            this.props.history.push(`/question/${Number(this.props.match.params.questionID) + 1}`)
+        } else {
+            this.props.history.push('/quiz/true')
+        }
+    }
+
+    counter(stop = false) {
+        if (stop) {
+            clearTimeout(interval)
+        } else {
+            var interval = setTimeout(() => {
+                this.handleAnswer(1, 2)
+            }, 10000)
+        }
     }
     
     render() {
-        console.log(this.props)
         const {questions} = this.props
         let question = questions[this.props.match.params.questionID].question
         let answers = questions.map((ele) => {
             return ele.answer
         })
         let answerArr = this.shuffleAnswers(answers)
+        let corrAns = answerArr.indexOf(answers[this.props.match.params.questionID])
+        let answerButtons = answerArr.map((ele, index) => {
+            return <button key={index} onClick={() => this.handleAnswer(index, corrAns)}>{ele}</button>
+        })
         return (
             <div className='question-display'>
+                <Timer
+                    initialTime={1000}
+                    direction='backward'
+                    checkpoints={[
+                        {time: 0,
+                            callback: () => {console.log('hi')}
+                        }
+                    ]}
+                >
+                </Timer>
+                <div id='arc_box'>
+                    <svg id='timer_arc'></svg>
+                </div>
                 {question}
-                {answerArr}
+                {answerButtons}
             </div>
         )
+    }
+
+    componentDidUpdate() {
+        if (this.state.currentQuestion !== this.props.match.params.questionID) {
+            this.animateArcTimer()
+            this.counter()
+        }
+    }
+
+    componentWillUnmount() {
+        this.counter(true)
     }
     
 }
