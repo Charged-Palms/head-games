@@ -196,6 +196,8 @@ const Input = styled.input`
     border: 2px solid #151515;
     box-shadow: inset 0 0 5px 1px;
   }
+  position:relative;
+  left:14vw;
 `;
 const Button = styled.button`
   /* padding: 12px;
@@ -211,10 +213,11 @@ const Button = styled.button`
   width: 28px;
   /* padding: ; */
   position: absolute;
-  right: 6%;
+  left: 64vw;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 20px;
+  box-shadow: inset 0.8 0.6px 4px 1px;
 `;
 const Info = styled.div`
   color: white;
