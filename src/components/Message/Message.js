@@ -114,8 +114,24 @@ export class Message extends Component {
         key={i}
       >
         <Info>
-          <h5>{message.firstName}</h5>
-          <img className="img" src={message.profilePic} alt="user" />
+          <h5
+            className={
+              message.firstName === this.props.reduxState.firstName
+                ? "my-name"
+                : "name"
+            }
+          >
+            {message.firstName}
+          </h5>
+          <img
+            className={
+              message.firstName === this.props.reduxState.firstName
+                ? "my-img"
+                : "img"
+            }
+            src={message.profilePic}
+            alt="user"
+          />
         </Info>
         <p
           className={
@@ -129,18 +145,16 @@ export class Message extends Component {
       </div>
     ));
     return (
-      <div>
-        <h1>Messsage site</h1>
+      <div className="message-wrappa">
         <Link to="/profile">
-          <button>Profile</button>
+          <Img src={this.props.reduxState.profilePic} alt="profilespic" />
         </Link>
-        <Link to="/home">
+        {/* <Link to="/home">
           <button>Home</button>
-        </Link>
+        </Link> */}
         {messages}
         <Form>
           {/* <h2 className="welcome-message">Welcome, {this.props.reduxState.firstName}</h2> */}
-
           <Input
             type="text"
             name="message"
@@ -155,13 +169,6 @@ export class Message extends Component {
     );
   }
 }
-
-const MsgCont = styled.div`
-  border: 1px solid red;
-  display: flex;
-  justify-content: space-between;
-  /* flex-wrap: wrap; */
-`;
 const Form = styled.div`
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -170,22 +177,25 @@ const Form = styled.div`
   margin: 0 auto 40px;
   max-width: 400px;
   padding: 15px;
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: center;
+  top:90vh;
+  left:25vw;
 `;
 
-const Input  = styled.input `
-padding: 10px 15px;
-    box-sizing: border-box;
-    background-color: #fafafa;
-    border-radius: 6vw;
-    border: none;
-    :focus{
-      border: 2px solid #151515;
+const Input = styled.input`
+  padding: 10px 15px;
+  box-sizing: border-box;
+  background-color: #fafafa;
+  border-radius: 6vw;
+  border: none;
   box-shadow: inset 0 0 5px 1px;
-    }
-`
+  :focus {
+    border: 2px solid #151515;
+    box-shadow: inset 0 0 5px 1px;
+  }
+`;
 const Button = styled.button`
   padding: 10px 15px;
   box-sizing: border-box;
@@ -197,15 +207,18 @@ const Button = styled.button`
   cursor: pointer;
 `;
 const Info = styled.div`
-  /* border: 1px solid green; */
   color: white;
 `;
 
 const Img = styled.img`
-  border-radius: 50%;
-  border: 2px solid $primary-color;
   height: 100px;
   width: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: -11px 11px 21px 3px rgba(0, 0, 0, 0.75);
+  border: 2px solid #fafafa;
+  position:relative;
+  top:1vh;
 `;
 
 function mapStateToProps(reduxState) {
