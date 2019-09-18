@@ -16,7 +16,7 @@
     justify-content: center;
     -webkit-animation: color-change-4x 20s linear infinite alternate both;
     animation: color-change-4x 20s linear infinite alternate both;
-    /* box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.35); */
+    box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.5);
 }
 
 
@@ -24,9 +24,34 @@
     border: 5px solid black;
     box-sizing: border-box;
     border-radius: 50px;
+    padding: 7%;
     height: 80%;
     width: 80%;
     background: rgba(0, 0, 0, 0.7);
     font-family: 'Montserrat', sans-serif;
     color: white;
+    box-shadow: inset 0px 0px 20px 10px rgba( 255, 255, 255, 0.5);
 }
+
+#quiz-start, #quiz-stop {
+    margin-top: 10%;
+    border: 2px solid white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 3%;
+    background: black;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 20px;
+}
+
+/* #quiz-stop {
+    margin-top: 20%;
+    border: 3px solid white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+} */

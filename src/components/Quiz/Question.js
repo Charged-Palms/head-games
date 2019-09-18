@@ -136,12 +136,18 @@ class Question extends Component {
             return <button key={index} onClick={() => this.handleAnswer(index, corrAns)}>{ele}</button>
         })
         return (
-            <div className='question-display'>
-                <div id='arc_box'>
-                    <svg id='timer_arc'></svg>
+            <div className='quiz-main-content'>
+                <div className='quiz-content'>
+                    <div id='arc_box'>
+                        <svg id='timer_arc'></svg>
+                    </div>
+                    <h2 id='question-title'>
+                        {question}
+                    </h2>
+                    <div className='questions-answers'>
+                        {answerButtons}
+                    </div>
                 </div>
-                {question}
-                {answerButtons}
             </div>
         )
     }
@@ -164,6 +170,5 @@ function mapStateToProps(reduxState) {
     const {questions, numberCorrect} = reduxState
     return {questions, numberCorrect}
 }
-
 
 export default connect(mapStateToProps, {setNumCorrect})(withRouter(Question))
