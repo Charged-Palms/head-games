@@ -13,6 +13,7 @@ const initialState = {
   bio: "",
   status: "",
   topicId: null,
+  swipedUserId: null,
   questions: [],
   numberCorrect: 0
 };
