@@ -13,12 +13,20 @@ class Home extends Component {
     showModal: false,
     potentialMatches: [],
     swipedRightArr: [],
-    swipedLeftArr: []
+    swipedLeftArr: [],
+    filteredMatches: []
   };
 
   componentDidMount() {
     this.getMatches();
   }
+
+  // filterMatches = () => {
+  //   const { potentialMatches, swipedRightArr, swipedLeftArr } = this.state
+  //   let tempArr = potentialMatches.filter(function(el) {
+
+  //   })
+  // }
 
   //Populate the potenialMatches array in state
   getMatches = async () => {
@@ -86,7 +94,10 @@ class Home extends Component {
           style={cardStyleFront}
           className={`card-front ${c.user_id}`}
         >
-          <ReactModal
+          <div className="card-bottom">
+            <h2>{c.first_name}</h2>
+          </div>
+          {/* <ReactModal
             isOpen={this.state.showModal}
             closeTimeoutMS={500}
             onRequestClose={this.handleCloseModal.bind(this)}
@@ -106,7 +117,7 @@ class Home extends Component {
                 <p className="match-profile-bio">{c.bio}</p>
               </div>
             </div>
-          </ReactModal>
+          </ReactModal> */}
         </Card>
       );
     });
@@ -120,9 +131,9 @@ class Home extends Component {
 
   render() {
     // console.log("state", this.state);
-    const wrapperStyle = { backgroundColor: "#333" };
+    // const wrapperStyle = { backgroundColor: "#333" };
     return (
-      <div id="home-main-container">
+      <div className="home-main-container">
         <div className="profile-button">
           <img
             src={this.props.profilePic}
@@ -133,7 +144,7 @@ class Home extends Component {
         <CardWrapper
           // Save below for later, if we implement an EndCard
           // addEndCard={this.getEndCard}
-          style={wrapperStyle}
+          // style={wrapperStyle}
         >
           {this.renderCards()}
         </CardWrapper>
