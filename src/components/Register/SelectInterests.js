@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/reducer";
 import { withRouter } from "react-router-dom";
+import D3Bubbles from "./D3Bubbles";
 
 class SelectInterests extends Component {
   state = {
@@ -11,22 +12,22 @@ class SelectInterests extends Component {
     questionArr: []
   };
 
-  componentDidMount() {
-    try {
-      axios.get("/api/quizzes/topics").then(res => {
-        this.setState({ topicArr: [...res.data] });
-      });
-    } catch {
-      alert("Error getting Quiz Topics");
-    }
-    try {
-      axios.get("/api/quizzes/questions").then(res => {
-        this.setState({ questionArr: [...res.data] });
-      });
-    } catch {
-      alert("Error getting Quiz Questions");
-    }
-  }
+  // componentDidMount() {
+  //   try {
+  //     axios.get("/api/quizzes/topics").then(res => {
+  //       this.setState({ topicArr: [...res.data] });
+  //     });
+  //   } catch {
+  //     alert("Error getting Quiz Topics");
+  //   }
+  //   try {
+  //     axios.get("/api/quizzes/questions").then(res => {
+  //       this.setState({ questionArr: [...res.data] });
+  //     });
+  //   } catch {
+  //     alert("Error getting Quiz Questions");
+  //   }
+  // }
 
   register = () => {
     const {
@@ -63,32 +64,35 @@ class SelectInterests extends Component {
     }
   };
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+  // handleChange(e) {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   });
+  // }
 
   render() {
     return (
-      <div className="select-interests-container">
-        <form
-          onSubmit={e => e.preventDefault()}
-          className="select-interests-form"
-        >
-          <h2>Select Topic for Quiz!</h2>
-          <select name="topicId" onChange={e => this.handleChange(e)}>
-            {this.state.topicArr.map(t => (
-              <option key={t.topic_id} value={t.topic_id}>
-                {t.topic_name}
-              </option>
-            ))}
-          </select>
-          <button type="submit" onClick={this.register}>
-            Complete Registration
-          </button>
-        </form>
-      </div>
+        <div className="d3-bubble-container">
+          <D3Bubbles height={731} width={411}/>
+        </div>
+      // <div className="select-interests-container">
+      //   <h2 style={{paddingTop:"15vh"}}>Select Topic for Quiz!</h2>
+      //   <form
+      //     onSubmit={e => e.preventDefault()}
+      //     className="select-interests-form"
+      //   >
+      //     <select name="topicId" onChange={e => this.handleChange(e)}>
+      //       {this.state.topicArr.map(t => (
+      //         <option key={t.topic_id} value={t.topic_id}>
+      //           {t.topic_name}
+      //         </option>
+      //       ))}
+      //     </select>
+      //     <button type="submit" onClick={this.register}>
+      //       Complete Registration
+      //     </button>
+      //   </form>
+      // </div>
     );
   }
 }
