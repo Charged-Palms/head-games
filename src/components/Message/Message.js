@@ -213,7 +213,7 @@ const Button = styled.button`
   width: 28px;
   /* padding: ; */
   position: absolute;
-  left: 64vw;
+  left: 59vw;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 20px;
