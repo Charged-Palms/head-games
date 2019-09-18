@@ -1,6 +1,6 @@
 .my-message {
     width: 14em;
-    margin: 50px auto;
+    margin: auto;
     background: rgb(133, 46, 221);
     padding: auto;
     text-align: center;
@@ -9,8 +9,8 @@
     font-family: arial;
     position: relative;
     left: 14vw;
-    bottom: 2vh;
-    border-radius: 52em;
+    top: 3vh;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     height: auto;
@@ -24,7 +24,7 @@
 
 .message {
     width: 14em;
-    margin: 50px auto;
+    margin: auto;
     padding: auto;
     text-align: center;
     font-weight: 900;
@@ -32,8 +32,8 @@
     font-family: arial;
     position: relative;
     right: 14vw;
-    bottom: 2vh;
-    border-radius: 52em;
+    top: 3vh;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     height: auto;
@@ -81,14 +81,14 @@
 }
 
 .name {
-    color: white;
+    color: black;
     position: relative;
     left: 2vw;
     top: 1.3vh
 }
 
 .my-name {
-    color: white;
+    color: black;
     position: relative;
     right: 2vw;
     top: 1.3vw;

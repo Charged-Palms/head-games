@@ -206,15 +206,15 @@ const Button = styled.button`
   color: #fafafa;
   transition: 0.5s;
   cursor: pointer; */
+  border: none;
   background: #3498db;
-  width: 18px;
-  padding: 4px 0;
-
+  width: 28px;
+  /* padding: ; */
   position: absolute;
-  left: 50%;
+  right: 6%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-  border-radius: 3px;
+  border-radius: 20px;
 `;
 const Info = styled.div`
   color: white;
