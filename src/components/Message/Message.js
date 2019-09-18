@@ -169,6 +169,7 @@ export class Message extends Component {
     );
   }
 }
+
 const Form = styled.div`
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -180,8 +181,8 @@ const Form = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  top:90vh;
-  left:25vw;
+  top: 90vh;
+  left: 25vw;
 `;
 
 const Input = styled.input`
@@ -197,14 +198,23 @@ const Input = styled.input`
   }
 `;
 const Button = styled.button`
-  padding: 10px 15px;
+  /* padding: 12px;
   box-sizing: border-box;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
   background-color: rgba(25, 25, 25);
   color: #fafafa;
   transition: 0.5s;
-  cursor: pointer;
+  cursor: pointer; */
+  background: #3498db;
+  width: 18px;
+  padding: 4px 0;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 3px;
 `;
 const Info = styled.div`
   color: white;
@@ -217,8 +227,8 @@ const Img = styled.img`
   border-radius: 50%;
   box-shadow: -11px 11px 21px 3px rgba(0, 0, 0, 0.75);
   border: 2px solid #fafafa;
-  position:relative;
-  top:1vh;
+  position: relative;
+  top: 1vh;
 `;
 
 function mapStateToProps(reduxState) {
