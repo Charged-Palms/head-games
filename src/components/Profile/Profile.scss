@@ -200,12 +200,14 @@ $parallax-perspective: 8px;
 }
 
 .profile-img {
+    height: 140px;
+    width: 140px;
+    // clip-path: polygon(3% 0, 7% 1%, 11% 0%, 16% 2%, 20% 0, 23% 2%, 28% 2%, 32% 1%, 35% 1%, 39% 3%, 41% 1%, 45% 0%, 47% 2%, 50% 2%, 53% 0, 58% 2%, 60% 2%, 63% 1%, 65% 0%, 67% 2%, 69% 2%, 73% 1%, 76% 1%, 79% 0, 82% 1%, 85% 0, 87% 1%, 89% 0, 92% 1%, 96% 0, 98% 3%, 99% 3%, 99% 6%, 100% 11%, 98% 15%, 100% 21%, 99% 28%, 100% 32%, 99% 35%, 99% 40%, 100% 43%, 99% 48%, 100% 53%, 100% 57%, 99% 60%, 100% 64%, 100% 68%, 99% 72%, 100% 75%, 100% 79%, 99% 83%, 100% 86%, 100% 90%, 99% 94%, 99% 98%, 95% 99%, 92% 99%, 89% 100%, 86% 99%, 83% 100%, 77% 99%, 72% 100%, 66% 98%, 62% 100%, 59% 99%, 54% 99%, 49% 100%, 46% 98%, 43% 100%, 40% 98%, 38% 100%, 35% 99%, 31% 100%, 28% 99%, 25% 99%, 22% 100%, 19% 99%, 16% 100%, 13% 99%, 10% 99%, 7% 100%, 4% 99%, 2% 97%, 1% 97%, 0% 94%, 1% 89%, 0% 84%, 1% 81%, 0 76%, 0 71%, 1% 66%, 0% 64%, 0% 61%, 0% 59%, 1% 54%, 0% 49%, 1% 45%, 0% 40%, 1% 37%, 0% 34%, 1% 29%, 0% 23%, 2% 20%, 1% 17%, 1% 13%, 0 10%, 1% 6%, 1% 3%);
+    z-index: 20;
     border-radius: 50%;
-    border: 2px solid $primary-color;
-    height: 100px;
-    width: 100px;
+    // border: 2px solid $primary-color;
     margin-top: 0.5rem;
-    cursor: pointer !important;
+    // cursor: pointer !important;
 }
 
 .first-name {
@@ -228,6 +230,8 @@ $parallax-perspective: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    width: 100%;
 }
 .match-profile-img {
     height: 200px;
@@ -248,7 +252,7 @@ $parallax-perspective: 8px;
     // transform: translate(0%, 40%);
     height: 550px;
     width: 100%;
-    opacity: 0;
+    opacity: 0.5;
     transition: opacity 2000ms ease-in-out;
     transform: scaleY(0.1) scaleX(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
@@ -262,18 +266,19 @@ $parallax-perspective: 8px;
     //added so you can scroll the body when the modal is opened.
     overflow: hidden;
     transition: opacity 400ms ease-in;
-    
+    z-index: -1;
 }
 
 .ReactModal__Overlay--after-open {
-    opacity: 0.9;
+    opacity: 0.5;
     height: 550px;
     position: absolute;
   top: 0%;
   left: 20%;
   transform: translate(0%, 40%);
   transition: opacity 400ms ease-in;
-  background: transparent;
+//   background: transparent;
+  z-index: 101;
 }
 
 .ReactModal__Overlay--before-close {
@@ -286,6 +291,9 @@ transform: scaleY(1) scaleX(1);
   animation: unfoldOut 1s .1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
+.ReactModal__Content {
+    
+}
 
 //buton styles
 
@@ -299,6 +307,18 @@ transform: scaleY(1) scaleX(1);
     font-weight: 900;
 }
 
+.nav-btn {
+    background: none;
+    border: none;
+    font-weight: 700;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    font-weight: 700;
+}
+
 .btn-edit {
     background: none;
     border: 1px solid #333;
@@ -307,5 +327,19 @@ transform: scaleY(1) scaleX(1);
     font-weight: 900;
     color: set-text-color($primary-color);
 }
+
+//Icon on profile images
+.heart-icon {
+    color: #FBFBFB;
+    z-index: 100;
+    position: relative;
+    left: 65px;
+    bottom: 50px;
+    background: rgba(65, 63, 63, 0.75);
+    border-radius: 50%;
+    padding: 5px;
+    opacity: 0.5;
+}
+
 
 

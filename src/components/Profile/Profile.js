@@ -160,6 +160,8 @@ export class Profile extends Component {
                     <div>
                         <figure>
                             <img onClick={() => this.handleOpenModalTwo(index)} className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>
+                            <i class="fas fa-heart-circle fa-2x heart-icon"></i>
+
                         </figure>
                     </div>
                     <ReactModal
@@ -188,7 +190,7 @@ export class Profile extends Component {
             <div className="parallax-container">
             <div className='parallax-wrapper'>
                 <h1 className='first-name'>{firstName} <span className='last'>{lastName}</span></h1>
-                <Link to='/usersettings' ><button className="nav-btn">Settings</button></Link>
+                <Link to='/usersettings' ><button className="nav-btn">Settings / </button></Link>
                 <button onClick={this.logout} className="logout-btn">Logout</button>
                     <div >
                         <img className="profile-img" src={profilePic} alt="your snapshot"/>
