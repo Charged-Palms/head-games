@@ -40,6 +40,30 @@ $parallax-perspective: 8px;
     }
 }
 
+@keyframes unfoldIn {
+    0% {
+      transform:scaleY(.005) scaleX(0);
+    }
+    50% {
+      transform:scaleY(.005) scaleX(1);
+    }
+    100% {
+      transform:scaleY(1) scaleX(1);
+    }
+  }
+  
+  @keyframes unfoldOut {
+    0% {
+      transform:scaleY(1) scaleX(1);
+    }
+    50% {
+      transform:scaleY(.005) scaleX(1);
+    }
+    100% {
+      transform:scaleY(.005) scaleX(0);
+    }
+  }
+
 * {
     margin: 0;
     padding: 0;
@@ -54,8 +78,9 @@ $parallax-perspective: 8px;
   box-shadow: inset 0px 0px 30px 10px rgba(0,0,0,0.75);
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: -1;
+    z-index: 1;
     background-position: top;
+    cursor: pointer !important;
     // height: 95vh;
 }
 .quiz-profiles {
@@ -115,7 +140,7 @@ $parallax-perspective: 8px;
     display: block;
     // border: 1px solid red;
     background: none;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     
 }
 
@@ -140,7 +165,7 @@ $parallax-perspective: 8px;
     overflow: hidden;
     height: 165px;
     width: 165px;
-    cursor: pointer;
+    cursor: pointer !important;
     margin: none;
     border-radius: 20%;
     // border-radius: 100%;
@@ -180,6 +205,7 @@ $parallax-perspective: 8px;
     height: 100px;
     width: 100px;
     margin-top: 0.5rem;
+    cursor: pointer !important;
 }
 
 .first-name {
@@ -217,36 +243,47 @@ $parallax-perspective: 8px;
 }
 
 .ReactModal__Overlay {
-    opacity: 1;
-    transition: opacity 400ms ease-in-out;
-    transform: translate(0%, 40%);
-    
+    // opacity: 1;
+    // transition: opacity 400ms ease-in-out;
+    // transform: translate(0%, 40%);
+    height: 550px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 2000ms ease-in-out;
+    transform: scaleY(0.1) scaleX(0);
+    animation: unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    background: none !important;
 }
 
 .ReactModal__Body--open {
     //added so you can scroll the body when the modal is opened.
     overflow: hidden;
+    transition: opacity 400ms ease-in;
     
 }
 
 .ReactModal__Overlay--after-open {
     opacity: 0.9;
-    height: 68vh;
+    height: 550px;
     position: absolute;
-//   top: 0%;
-//   left: 20%;
+  top: 0%;
+  left: 20%;
   transform: translate(0%, 40%);
-  
+  transition: opacity 400ms ease-in;
+  background: transparent;
 }
 
 .ReactModal__Overlay--before-close {
-    opacity: 0;
-    height: 68vh;
-    position: absolute;
-//   top: 0%;
-//   left: 20%;
-  transform: translate(0%, 40%);
-  
+//     opacity: 0;
+//     height: 68vh;
+//     position: absolute;
+//   transform: translate(0%, 40%);
+//   transform: scale(1);
+transform: scaleY(1) scaleX(1);
+  animation: unfoldOut 1s .1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
 
@@ -264,9 +301,11 @@ $parallax-perspective: 8px;
 
 .btn-edit {
     background: none;
-    border: none;
+    border: 1px solid #333;
+    border-radius: 20%;
+    padding: 0.5rem;
     font-weight: 900;
-    color: $primary-color;
+    color: set-text-color($primary-color);
 }
 
 

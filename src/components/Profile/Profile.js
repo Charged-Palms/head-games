@@ -137,7 +137,7 @@ export class Profile extends Component {
                     >
                         <div className='match-profile'>
                             <button className='X-btn' onClick={this.hanldeCloseModal.bind(this)} >X</button>
-                            <img className='match-profile-img' src={currMatch && currMatch.profile_pic} alt="match snapshot"/>
+                            <img className='quiz-profile-img' src={currMatch && currMatch.profile_pic} alt="match snapshot"/>
                             <div className="match-details">
                                 <span className='first-name'>{currMatch && currMatch.first_name} <span className='last' >{currMatch && currMatch.last_name}</span></span>
                                 <hr/>
@@ -168,7 +168,7 @@ export class Profile extends Component {
                     onRequestClose={this.handleCloseModalTwo.bind(this)}
                     >
                     
-                        <div className="quiz-profile">
+                        <div className="match-profile">
                             <button className='X-btn' onClick={this.handleCloseModalTwo.bind(this)} >X</button>
                             <img className="quiz-profile-img" src={currQuizProfile && currQuizProfile.profile_pic} alt="quiz profile snapshot" />
                             <p>{currQuizProfile && currQuizProfile.match_id}</p>
