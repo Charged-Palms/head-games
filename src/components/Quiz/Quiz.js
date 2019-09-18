@@ -2,9 +2,8 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {setQuestions} from '../../ducks/reducer'
+import {setQuestions, setNumCorrect} from '../../ducks/reducer'
 import './Quiz.css'
-import Question from './Question'
 
 class Quiz extends Component {
     state = {
@@ -19,6 +18,7 @@ class Quiz extends Component {
     }
 
     handleStartQuiz() {
+        this.props.setNumCorrect(0)
         this.props.history.push('/question/0')
     }
 
@@ -27,6 +27,7 @@ class Quiz extends Component {
     }
 
     render() {
+        let numCorr = this.props.numberCorrect
         return(
             <div className='quiz-main-content'>
                 <div>
@@ -34,6 +35,11 @@ class Quiz extends Component {
                         <div>
                             <div>
                             Finish Quiz
+                            </div>
+                            <div>
+                                <div>
+                                    Number Correct: {numCorr}
+                                </div>
                             </div>
                             <button onClick={() => this.handleFinishQuiz()}>Continue</button>
                         </div>
@@ -50,7 +56,12 @@ class Quiz extends Component {
     }
 }
 
-export default connect(null, {setQuestions})(withRouter(Quiz))
+function mapStateToProps(reduxState) {
+    const {numberCorrect} = reduxState
+    return {numberCorrect}
+}
+
+export default connect(mapStateToProps, {setQuestions, setNumCorrect})(withRouter(Quiz))
 
 
 

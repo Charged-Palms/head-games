@@ -13,12 +13,14 @@ const initialState = {
   bio: "",
   status: "",
   topicId: null,
-  questions: []
+  questions: [],
+  numberCorrect: 0
 };
 
 //-----------------------------ACTION CONSTANTS------------------------------
 
 const SET_USER = "SET_USER";
+const SET_NUM_CORRECT = 'SET_NUM_CORRECT'
 const LOGOUT_USER = "LOGOUT_USER";
 const UPDATE_BIO = "UPDATE_BIO";
 const SET_QUESTIONS = 'SET_QUESTIONS';
@@ -52,6 +54,13 @@ export function setQuestions(questions) {
   }
 }
 
+export function setNumCorrect(numberCorrect) {
+  return {
+    type: SET_NUM_CORRECT,
+    payload: numberCorrect
+  }
+}
+
 //-----------------------------REDUCER---------------------------------------
 
 export default (state = initialState, action) => {
@@ -65,6 +74,9 @@ export default (state = initialState, action) => {
       return { ...state, ...payload };
     case SET_QUESTIONS:
       return {...state, questions: payload}
+    case SET_NUM_CORRECT:
+      console.log(state.numberCorrect)
+      return {...state, numberCorrect: payload}
     default:
       return state;
   }

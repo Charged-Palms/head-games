@@ -1,16 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import {setNumCorrect} from '../../ducks/reducer'
 import * as d3 from 'd3'
 import './Question.css'
 import Swal from 'sweetalert2'
-import Timer from 'react-compound-timer'
+var interval;
 
 class Question extends Component {
     state={
-        currentQuestion: -1,
-        numCorrect: 0
+        currentQuestion: -1
     }
+
     componentDidMount() {
         this.animateArcTimer()
         this.counter()
@@ -85,12 +86,30 @@ class Question extends Component {
     handleAnswer(response, correctAns) {
         if (response === correctAns) {
             this.counter(true)
-            this.setState({numCorrect: this.state.numCorrect + 1})
+            this.props.setNumCorrect(this.props.numberCorrect + 1)
+            Swal.fire({
+                type: 'success',
+                width: '10rem',
+                toast: true,
+                position: 'top-start',
+                timer: 1000,
+                showConfirmButton: false
+            })
+        } else {
+            Swal.fire({
+                type: 'error',
+                width: '10rem',
+                toast: true,
+                position: 'top-start',
+                timer: 1000,
+                showConfirmButton: false
+            })
         }
         this.counter(true)
         if (Number(this.props.match.params.questionID) !== 3) {
             this.props.history.push(`/question/${Number(this.props.match.params.questionID) + 1}`)
         } else {
+            this.counter(true)
             this.props.history.push('/quiz/true')
         }
     }
@@ -99,7 +118,7 @@ class Question extends Component {
         if (stop) {
             clearTimeout(interval)
         } else {
-            var interval = setTimeout(() => {
+            interval = setTimeout(() => {
                 this.handleAnswer(1, 2)
             }, 10000)
         }
@@ -118,16 +137,6 @@ class Question extends Component {
         })
         return (
             <div className='question-display'>
-                <Timer
-                    initialTime={1000}
-                    direction='backward'
-                    checkpoints={[
-                        {time: 0,
-                            callback: () => {console.log('hi')}
-                        }
-                    ]}
-                >
-                </Timer>
                 <div id='arc_box'>
                     <svg id='timer_arc'></svg>
                 </div>
@@ -152,9 +161,9 @@ class Question extends Component {
 }
         
 function mapStateToProps(reduxState) {
-    const {questions} = reduxState
-    return {questions}
+    const {questions, numberCorrect} = reduxState
+    return {questions, numberCorrect}
 }
 
 
-export default connect(mapStateToProps)(withRouter(Question))
+export default connect(mapStateToProps, {setNumCorrect})(withRouter(Question))
