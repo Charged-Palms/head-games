@@ -21,9 +21,9 @@ module.exports = {
 
   getQuestionsByTopic: async (req, res) => {
     const db = req.app.get('db')
-    const {topic_id} = req.session.user
+    const {matchee_id} = req.params
     try {
-      const questionArr = await db.get_quiz_questions_by_topic([topic_id])
+      const questionArr = await db.get_quiz_questions_by_user([matchee_id])
       res.status(200).send(questionArr)
     } catch {
       res.sendStatus(500)

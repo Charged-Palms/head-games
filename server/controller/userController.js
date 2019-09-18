@@ -85,18 +85,19 @@ module.exports = {
         console.log( err,"you ain't do dat rite");
       }
     },
+    
+  addMatch: async (req, res) => {
+    const db = req.app.get('db')
+    const {user_id} = req.params
+    try {
+      await db.add_match([user_id, req.session.user.user_id])
+      res.sendStatus(200)
+    } catch (err) {
+      console.log(err, 'unable to add match')
+      res.sendStatus(500)
+    }
+  }
   // ,
-  // addMatch: async (req, res) => {
-  //   const db = req.app.get('db')
-  //   const {user_id} = req.params
-  //   try {
-  //     await db.add_match([req.session.user.user_id, user_id])
-  //     res.sendStatus(200)
-  //   } catch (err) {
-  //     console.log(err, 'unable to add match')
-  //     res.sendStatus(500)
-  //   }
-  // },
   // 
   // findMatcheeTopic: async (req, res) => {
   //   const db = req.app.get('db')

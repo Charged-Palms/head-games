@@ -1,15 +1,35 @@
-.question-display {
-    margin-top: 15%;
-    border: 5px solid black;
+#arc_box {
+    height: 15%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#timer_arc {
+    border: 3px solid gray;
     box-sizing: border-box;
-    border-radius: 40px;
-    padding: 2%;
-    height: 80%;
-    width: 90%;
-    background: rgba(0, 0, 0, 0.7);
-    font-family: 'Montserrat', sans-serif;
-    color: white;
+    border-radius: 50%;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.2);
+    /* background: white; */
+    height: 60px;
+    width: 60px;
+}
+
+.questions-answers {
+    height: 70%;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 20px black;
+    justify-content: space-around;
+}
+
+.questions-answers button {
+    border: 3px solid white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 2%;
+    background: black;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 20px;
 }

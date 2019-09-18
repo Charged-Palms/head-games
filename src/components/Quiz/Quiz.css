@@ -13,89 +13,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     -webkit-animation: color-change-4x 20s linear infinite alternate both;
     animation: color-change-4x 20s linear infinite alternate both;
-    /* box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.35); */
+    box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.5);
 }
 
-#arc_box {
-    margin-top: 2%;
-    margin-bottom: 5%;
-    box-sizing: border-box;
-    padding-right: 2%;
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#timer_arc {
-    border: 3px solid gray;
-    box-sizing: border-box;
-    border-radius: 50%;
-    padding: 0;
-    background: rgba(0, 0, 0, 0.2);
-    /* background: white; */
-    height: 60px;
-    width: 60px;
-}
 
 .quiz-content {
-    margin-top: 25%;
     border: 5px solid black;
     box-sizing: border-box;
-    border-radius: 40px;
-    padding: 2%;
-    height: 60%;
-    width: 90%;
+    border-radius: 50px;
+    padding: 7%;
+    height: 80%;
+    width: 80%;
     background: rgba(0, 0, 0, 0.7);
     font-family: 'Montserrat', sans-serif;
     color: white;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 0px 20px black;
+    box-shadow: inset 0px 0px 20px 10px rgba( 255, 255, 255, 0.5);
 }
 
-.quiz-content h1 {
-    animation: text-color-change 2s infinite;
-}
-
-@keyframes text-color-change {
-    0% {color: red;}
-    25% {color: blue;}
-    75% {color: yellow;}
-    100% {color: red;}
-}
-
-.quiz-content button {
-    margin-top: 20%;
-    border: 3px solid black;
-    border-radius: 10px;
-    padding: 2%;
-    background: white;
-    box-shadow: 0px 0px 5px white;
-}
-
-.quiz-answers {
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.quiz-answers button {
-    margin: 0;
-    font-size: 125%;
-}
-
-.winner {
-    background: red;
-    /* -webkit-animation: color-change-4x 20s linear infinite alternate both;
-    animation: color-change-4x 20s linear infinite alternate both; */
-}
-
-.loser {
+#quiz-start, #quiz-stop {
+    margin-top: 10%;
+    border: 2px solid white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 3%;
     background: black;
-    /* -webkit-animation: color-change-4x 1s linear infinite alternate both;
-    animation: color-change-4x 1s linear infinite alternate both; */
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 20px;
 }
+
+/* #quiz-stop {
+    margin-top: 20%;
+    border: 3px solid white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+} */
