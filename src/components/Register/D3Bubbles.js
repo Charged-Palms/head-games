@@ -10,6 +10,10 @@ import { withRouter } from "react-router-dom";
 
 
 class D3Bubbles extends Component {
+  state = {
+    topicId: null
+  }
+
   componentDidMount() {
     this.bubbles();
   }
@@ -247,13 +251,18 @@ class D3Bubbles extends Component {
     infoBox
       .append("button")
       .attr("name", d => d.name)
-      .attr("class", "infoBox-button");
+      .attr("class", "infoBox-button")
+      .on("click", async d => {
+        await this.setState({topicId: d.index + 1})
+        this.register()
+        // this.props.history.push("/home")
+      })
     //Add button text
     d3.selectAll(".infoBox-button").text("Select Topic!");
 
     node.on("click", currentNode => {
       d3.event.stopPropagation();
-      console.log("currentNode", currentNode);
+      // console.log("currentNode", currentNode);
       let currentTarget = d3.event.currentTarget; // the <g> el
       if (currentNode === focusedNode) {
         // no focusedNode or same focused node is clicked
@@ -289,7 +298,7 @@ class D3Bubbles extends Component {
         .duration(2000)
         .ease(d3.easePolyOut)
         .tween("moveIn", () => {
-          console.log("tweenMoveIn", currentNode);
+          // console.log("tweenMoveIn", currentNode);
           let ix = d3.interpolateNumber(currentNode.x, centerX);
           let iy = d3.interpolateNumber(currentNode.y, centerY);
           let ir = d3.interpolateNumber(currentNode.r, centerY * 0.5);
@@ -389,6 +398,7 @@ class D3Bubbles extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <div className="d3-bubble-thing">
         <svg

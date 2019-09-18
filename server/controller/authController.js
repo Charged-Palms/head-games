@@ -37,7 +37,8 @@ module.exports = {
         topic_id,
         profile_pic
       ]);
-      req.session.user = newUser;
+      req.session.user = newUser[0];
+      console.log(req.session.user)
       delete newUser[0].password;
       res.status(200).send({
         message: "Logged in",
