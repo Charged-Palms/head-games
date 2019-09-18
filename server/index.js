@@ -48,16 +48,16 @@ app.delete("/auth/logout", authCtrl.logout);
 app.get("/api/matches", userCtrl.userMatches);
 app.get("/api/users/cards", userCtrl.getCardInfo);
 
-// app.get('/api/users/:matchee_id')
 app.get("/api/users/matches", userCtrl.userMatches);
 app.put("/api/users/bio", userCtrl.updateBio);
-//app.put('/api/users/matches/:user_id', userCtrl.addMatch)
+app.put('/api/users/matches/:user_id', userCtrl.addMatch)
 app.get('/api/users/match/:id', userCtrl.matchDetails)
 app.get('/api/users/quizprofile', userCtrl.quizProfiles)
 
 app.get("/api/quizzes/topics", quizCtrl.getTopics);
 app.get("/api/quizzes/questions", quizCtrl.getQuestions);
-app.get("/api/quizzes/questions/topics", quizCtrl.getQuestionsByTopic);
+app.get("/api/quizzes/questions/:matchee_id", quizCtrl.getQuestionsByTopic);
+app.get('/api/quizzes/topics/:matchee_id', quizCtrl.getTopicName)
 
 app.get("/api/messages/:match_id", userCtrl.messages);
 app.post("/api/messages/:match_id", userCtrl.sendMessage);
