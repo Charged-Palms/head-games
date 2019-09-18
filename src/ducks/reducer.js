@@ -75,7 +75,6 @@ export default (state = initialState, action) => {
     case SET_QUESTIONS:
       return {...state, questions: payload}
     case SET_NUM_CORRECT:
-      console.log(state.numberCorrect)
       return {...state, numberCorrect: payload}
     default:
       return state;

@@ -30,7 +30,7 @@ class Quiz extends Component {
         let numCorr = this.props.numberCorrect
         return(
             <div className='quiz-main-content'>
-                <div>
+                <div className='quiz-content'>
                     {this.state.finishedQuiz ?
                         <div>
                             <div>
