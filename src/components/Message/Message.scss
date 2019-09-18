@@ -1,32 +1,115 @@
 .my-message {
-    width: 8em;
+    width: 14em;
     margin: 50px auto;
-    background: red;
-    padding: 12px;
+    background: rgb(133, 46, 221);
+    padding: 8px;
     text-align: center;
     font-weight: 900;
-    color: #fff;
+    color: black;
     font-family: arial;
     position: relative;
-    left:12vw;
-    border-radius: 60em;
+    left: 14vw;
+    bottom: 2vh;
+    border-radius: 52em;
     display: flex;
     justify-content: center;
+    height: auto;
+    align-items: center;
+    background: rgb(148, 164, 255); /* Fallback for older browsers without RGBA-support */
+    background: rgba(148, 173, 255, 0.781);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .message {
-    width: 8em;
+    width: 14em;
     margin: 50px auto;
-    background: #00bfb6;
-    padding: 12px;
+    background: white;
+    padding: 8px;
     text-align: center;
     font-weight: 900;
-    color: #fff;
+    color: black;
     font-family: arial;
     position: relative;
-    left:12vw;
-    border-radius: 60em;
+    right: 14vw;
+    bottom: 2vh;
+    border-radius: 52em;
     display: flex;
     justify-content: center;
-    //   flex-shrink: 1;
+    height: auto;
+    align-items: center;
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(204, 204, 204, 0.5);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.user {
+    // border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    // border:1px solid red;
+    
+}
+
+.non-user {
+    // border: 1px solid green;
+    display: flex;
+    justify-content: space-between;
+    // border:1px solid yellow;
+}
+
+.img {
+    border-radius: 49.9%;
+    border: 3px solid transparent;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    top: 1vh;
+    left: 4vw;
+}
+
+.my-img {
+    border-radius: 49.9%;
+    border: 3px solid transparent;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    top: 1vh;
+    right: 4vw;
+}
+
+.name {
+    color: red;
+    position: relative;
+    left: 2vw;
+    top: 1.3vh
+}
+
+.my-name {
+    color: blue;
+    position: relative;
+    right: 2vw;
+    top: 1.3vw;
+}
+
+.message-wrappa {
+    height: 100vh;
+    -webkit-animation: color-change-4x 7s linear infinite alternate both;
+    animation: color-change-4x 7s linear infinite alternate both;
+    box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
+    // background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    background-position: top;
+}
+
+.message-wrappa>img {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: -11px 11px 21px 3px rgba(0, 0, 0, 0.75);
+    border: 2px solid #fafafa
 }
