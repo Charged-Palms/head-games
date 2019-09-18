@@ -1,72 +1,56 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {setQuestions} from '../../ducks/reducer'
 import './Quiz.css'
 import Question from './Question'
 
 class Quiz extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            quiz: [],
-            questions: [],
-            answers: [],
-            numCorrect: 0,
-            requiredAmount: 3,
-            quizLength: 4,
-            currentQuestion: 0,
-            showQuestions: false
-        }
-
-        this.incrementQuestion = this.incrementQuestion.bind(this)
-        this.incrementNumCorrect = this.incrementNumCorrect.bind(this)
+    state = {
+        finishedQuiz: false
     }
 
     componentDidMount() {
-        console.log('hi')
-        axios.get(`/api/quizzes/questions/topics`).then(res => {
-            let questArray = res.data.map((ele) => {
-                return ele.question
-            })
-            let answerArray = res.data.map((ele) => {
-                return ele.answer
-            })
-            this.setState({quiz: res.data, questions: questArray, answers: answerArray, showQuestions: true})
+        this.setState({finishedQuiz: (this.props.match.params.finishedQuiz === 'true')})
+        axios.get('/api/quizzes/questions/topics').then(res => {
+            this.props.setQuestions(res.data)
         })
     }
 
-    incrementNumCorrect() {
-        this.setState({numCorrect: this.state.numCorrect + 1})
+    handleStartQuiz() {
+        this.props.history.push('/question/0')
     }
 
-    incrementQuestion() {
-        this.setState({currentQuestion: this.state.currentQuestion + 1})
+    handleFinishQuiz() {
+        this.props.history.push('/home')
     }
 
     render() {
-        let {questions, answers, currentQuestion, quizLength} = this.state
         return(
             <div className='quiz-main-content'>
-                {this.state.showQuestions ?
-                <Question
-                    questions = {questions}
-                    answers = {answers}
-                    currentQuestion = {currentQuestion}
-                    quizLength = {quizLength}
-                    numCorrect = {this.incrementNumCorrect}
-                    nextQuestion = {this.incrementQuestion}
-                />
-                : <div>
-                    Loading...
+                <div>
+                    {this.state.finishedQuiz ?
+                        <div>
+                            <div>
+                            Finish Quiz
+                            </div>
+                            <button onClick={() => this.handleFinishQuiz()}>Continue</button>
+                        </div>
+                        : <div>
+                            <h1>
+                                Start Quiz
+                            </h1>
+                            <button onClick={() => this.handleStartQuiz()}>{'>>> Start <<<'}</button>
+                        </div>
+                    }
                 </div>
-                }
             </div>
         )
     }
 }
 
-export default Quiz
+export default connect(null, {setQuestions})(withRouter(Quiz))
 
 
 

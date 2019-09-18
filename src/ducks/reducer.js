@@ -12,7 +12,8 @@ const initialState = {
   zipcode: null,
   bio: "",
   status: "",
-  topicId: null
+  topicId: null,
+  questions: []
 };
 
 //-----------------------------ACTION CONSTANTS------------------------------
@@ -20,6 +21,7 @@ const initialState = {
 const SET_USER = "SET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
 const UPDATE_BIO = "UPDATE_BIO";
+const SET_QUESTIONS = 'SET_QUESTIONS';
 
 //-----------------------------ACTION BUILDERS-------------------------------
 
@@ -43,6 +45,13 @@ export function updateBio(bio) {
   };
 }
 
+export function setQuestions(questions) {
+  return {
+    type: SET_QUESTIONS,
+    payload: questions
+  }
+}
+
 //-----------------------------REDUCER---------------------------------------
 
 export default (state = initialState, action) => {
@@ -54,6 +63,8 @@ export default (state = initialState, action) => {
       return { ...state, ...payload };
     case UPDATE_BIO:
       return { ...state, ...payload };
+    case SET_QUESTIONS:
+      return {...state, questions: payload}
     default:
       return state;
   }
