@@ -26,6 +26,10 @@ export class Message extends Component {
     // this.getMessages();
   };
 
+  
+  scrollToBottom =() => {
+    this.el.scrollIntoView({ behavior: 'smooth'})
+} 
   getMessages = () => {
     const { matchId: match_id } = this.props.match.params;
     // console.log('thf')
@@ -35,6 +39,7 @@ export class Message extends Component {
         messages: res.data
       });
     });
+    // this.scrollToBottom()
   };
 
   blast = () => {
@@ -47,6 +52,7 @@ export class Message extends Component {
         room: this.state.room
       }
     );
+    // this.scrollToBottom()
   };
   handleChange = e => {
     this.setState({
@@ -89,6 +95,7 @@ export class Message extends Component {
     this.setState({
       message: ""
     });
+    this.scrollToBottom()
   };
 
   // submit = () => {
@@ -142,6 +149,7 @@ export class Message extends Component {
         >
           {message.message}
         </p>
+        <div  ref={el => {this.el = el}} ></div> 
       </div>
     ));
     return (
@@ -190,9 +198,12 @@ const Form = styled.div`
   box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
 `;
 
-const Input = styled.input`
+const Input = styled.textarea`
 height:auto;
-  padding: 10px 15px;
+width:70vw;
+  padding: 5px 8px;
+  overflow:scroll;
+  text-align:center;
   box-sizing: border-box;
   /* background-color: #fafafa; */
   border-radius: 6vw;
@@ -203,7 +214,12 @@ height:auto;
     box-shadow: inset 0 0 5px 1px;
   }
   position: relative;
-  left: 14vw;
+  left: 2vw;
+  bottom:1vh;
+  ::placeholder{
+    position:relative;
+    top:1.2vh;
+  }
 `;
 const Button = styled.span`
   /* padding: 12px;
@@ -220,8 +236,8 @@ const Button = styled.span`
   /* width: 28px; */
   /* padding: ; */
   position: relative;
-  left: 14.3vw;
-  top:2vw;
+  left:3.3vw;
+  top:1.4vw;
   font-size:14px;
   /* top: 50%; */
   /* transform: translateX(-50%) translateY(-50%); */
