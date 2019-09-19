@@ -69,16 +69,6 @@ export class Message extends Component {
   // };
 
   updateMessages = data => {
-    // console.log(data);
-    // console.log(this.props.match.params.matchId);
-    const { message } = this.state;
-    const { matchId: match_id } = this.props.match.params;
-    // const {matchId: match_id} = this.props
-    // axios.get(`/api/message/:${match_id}`).then(res => {
-    //     this.setState({
-    //         messages:res.data
-    //     })
-    // })
     this.setState({
       messages: [
         ...this.state.messages,
