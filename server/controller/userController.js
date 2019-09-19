@@ -77,7 +77,7 @@ module.exports = {
       const { match_id } = req.params;
       const { user_id } = req.session.user;
       const { message } = req.body;
-      console.log('match_id', match_id, 'user_id', user_id, 'message', message)
+      // console.log('match_id', match_id, 'user_id', user_id, 'message', message)
       try {
         const messages = await db.post_message([match_id, user_id, message]);
         res.status(200).send(messages);
@@ -97,17 +97,4 @@ module.exports = {
       res.sendStatus(500)
     }
   }
-  // ,
-  // 
-  // findMatcheeTopic: async (req, res) => {
-  //   const db = req.app.get('db')
-  //   const {matchee_id} = req.params
-  //   try {
-  //     let [{topic_id}] = db.get_topic_by_user([matchee_id])
-  //     res.status(200).send(topic_id)
-  //   } catch (err) {
-  //     console.log(err, 'unable to find topic')
-  //     res.sendStatus(500) 
-  //   }
-  // }
 };

@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { updateBio, logoutUser } from '../../ducks/reducer'
-import { Link } from 'react-router-dom'
 import ReactModal from 'react-modal'
 
 export class Profile extends Component {
@@ -58,7 +57,6 @@ export class Profile extends Component {
             inputValue: bio,
             // text: 'Update your BIO Here',
             inputAttributes: {'aria-label': 'Type your message here'},
-            inputDefaultValue: 'hi',
             showCancelButton: true,
 
         }).then(res => {
@@ -74,7 +72,7 @@ export class Profile extends Component {
     }
     logout = async () => {
         let res = await axios.delete('/auth/logout');
-        console.log(res);
+        // console.log(res);
         this.props.logoutUser();
         this.props.history.push('/');
     }
@@ -196,7 +194,7 @@ export class Profile extends Component {
         return (
             <div className="parallax-container">
             <div className='parallax-wrapper'>
-                <i onClick={this.logout} class="fad fa-sign-out-alt fa-2x logout-btn"></i>
+                <i onClick={this.logout} className="fad fa-sign-out-alt fa-2x logout-btn"></i>
                 <h1 className='first-name'>{firstName} <span className='last'>{lastName}</span></h1>
                 <i onClick={this.clickHome} className="far fa-home-heart fa-2x home-button"></i>
                 {/* <Link to='/usersettings' ><button className="nav-btn">Settings / </button></Link> */}
