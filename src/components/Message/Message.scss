@@ -67,7 +67,7 @@
     width: 40px;
     position: relative;
     top: 1vh;
-    left: 4vw;
+    left: 2vw;
 }
 
 .my-img {
@@ -77,7 +77,7 @@
     width: 40px;
     position: relative;
     top: 1vh;
-    right: 4vw;
+    right: 2vw;
 }
 
 .name {
@@ -95,11 +95,13 @@
 }
 
 .message-wrappa {
-    height: 100vh;
-    -webkit-animation: color-change-4x 7s linear infinite alternate both;
-    animation: color-change-4x 7s linear infinite alternate both;
+    height: 94vh;
+    background:#FAFAFA;
+    // -webkit-animation: color-change-4x 7s linear infinite alternate both;
+    // animation: color-change-4x 7s linear infinite alternate both;
     box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
     // background-repeat: no-repeat;
+    overflow: scroll;
     background-size: cover;
     z-index: -1;
     background-position: top;
