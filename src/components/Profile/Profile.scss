@@ -67,22 +67,24 @@ $parallax-perspective: 8px;
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    // box-sizing: border-box;
     
     font-family: Montserrat
 }
+.parallax-container {
+    
 
+}
 .parallax-wrapper {
-    // background-color: #FAFAFA;
-    -webkit-animation: color-change-4x 7s linear infinite alternate both;
-  animation: color-change-4x 7s linear infinite alternate both;
+    background-color: #FAFAFA;
   box-shadow: inset 0px 0px 30px 10px rgba(0,0,0,0.75);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
     z-index: 1;
     // height: 95vh;
-    background: rgba(250, 250, 250, 0.3);
+    // background: rgba(250, 250, 250, 0.3);
+    padding: 40px 20px;
 }
 .quiz-profiles {
     display: inline-grid;
@@ -90,7 +92,7 @@ $parallax-perspective: 8px;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
     padding: 10px;
-
+    margin-bottom: 30px;
 }
 .grid {
     display: inline-grid;
@@ -103,14 +105,14 @@ $parallax-perspective: 8px;
 .grid-item {
     //    border: 1px red solid;
        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-       max-width: 165px; 
        margin: auto;
        text-align: justify;
     //    background: #FAFAFA; 
-       border-radius: 20%; 
+       border-radius: 5px; 
        width: 165px;
        height: 165px;
-                   
+       //can select x or y
+        overflow: hidden;       
     :focus {
         outline: none !important;
     }
@@ -119,10 +121,14 @@ $parallax-perspective: 8px;
 }
 .know-you {
     animation: moveInLeft 2s linear;
+    margin-bottom: 20px;
+    text-decoration: underline;
 }
 
 .you-want {
     animation: moveInRight 2s linear;
+    margin-bottom: 30px;
+    text-decoration: underline;
 }
 
 * {
@@ -148,7 +154,7 @@ $parallax-perspective: 8px;
 //bio
 .your-bio {
     align-content: center;
-
+    margin-bottom: 30px;
 }
 // .div-img {
 //     border-radius: 20%;
@@ -162,13 +168,12 @@ $parallax-perspective: 8px;
 //     text-decoration:none;
 // }
 .match-img {
-    background-size: cover;
     overflow: hidden;
-    height: 165px;
-    width: 165px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     cursor: pointer !important;
     margin: none;
-    border-radius: 20%;
     // border-radius: 100%;
     // styling border
     // padding: 1rem;
@@ -184,6 +189,7 @@ $parallax-perspective: 8px;
     padding: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    animation: fadeIn 2s;
     :focus {
         outline: none !important;
     }
@@ -205,16 +211,20 @@ $parallax-perspective: 8px;
     width: 140px;
     // clip-path: polygon(3% 0, 7% 1%, 11% 0%, 16% 2%, 20% 0, 23% 2%, 28% 2%, 32% 1%, 35% 1%, 39% 3%, 41% 1%, 45% 0%, 47% 2%, 50% 2%, 53% 0, 58% 2%, 60% 2%, 63% 1%, 65% 0%, 67% 2%, 69% 2%, 73% 1%, 76% 1%, 79% 0, 82% 1%, 85% 0, 87% 1%, 89% 0, 92% 1%, 96% 0, 98% 3%, 99% 3%, 99% 6%, 100% 11%, 98% 15%, 100% 21%, 99% 28%, 100% 32%, 99% 35%, 99% 40%, 100% 43%, 99% 48%, 100% 53%, 100% 57%, 99% 60%, 100% 64%, 100% 68%, 99% 72%, 100% 75%, 100% 79%, 99% 83%, 100% 86%, 100% 90%, 99% 94%, 99% 98%, 95% 99%, 92% 99%, 89% 100%, 86% 99%, 83% 100%, 77% 99%, 72% 100%, 66% 98%, 62% 100%, 59% 99%, 54% 99%, 49% 100%, 46% 98%, 43% 100%, 40% 98%, 38% 100%, 35% 99%, 31% 100%, 28% 99%, 25% 99%, 22% 100%, 19% 99%, 16% 100%, 13% 99%, 10% 99%, 7% 100%, 4% 99%, 2% 97%, 1% 97%, 0% 94%, 1% 89%, 0% 84%, 1% 81%, 0 76%, 0 71%, 1% 66%, 0% 64%, 0% 61%, 0% 59%, 1% 54%, 0% 49%, 1% 45%, 0% 40%, 1% 37%, 0% 34%, 1% 29%, 0% 23%, 2% 20%, 1% 17%, 1% 13%, 0 10%, 1% 6%, 1% 3%);
     z-index: 20;
-    border-radius: 5px 40px 40px 40px;
+    border-radius: 50%;
     // border: 2px solid $primary-color;
     margin-top: 0.5rem;
-    box-shadow: 5px 5px 15px 5px #000000;
-    border-left: 0px groove rgba(28,110,164,0.18);
+    box-shadow: 4px 2px 4px 3px #706f6f;
+    // border-left: 0px groove rgba(28,110,164,0.18);
     // cursor: pointer !important;
+    margin-bottom: 30px;
+    border: 3px solid $primary-color;
 }
 
 .first-name {
     color: set-text-color($secondary-color);
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 .red-bg {
@@ -333,15 +343,20 @@ transform: scaleY(1) scaleX(1);
     background: none;
     border: none;
     font-weight: 700;
+    position: absolute;
+    right: 88%;
+    top: 3%;
 }
 
 .btn-edit {
-    background: none;
-    border: 1px solid #333;
-    border-radius: 20%;
+    // background: none;
+    // border: 1px solid #333;
+    // border-radius: 20%;
     padding: 0.5rem;
     font-weight: 900;
     color: set-text-color($primary-color);
+    width: 130px;
+    margin-bottom: 20px;
 }
 
 //Icon on profile images
@@ -349,7 +364,7 @@ transform: scaleY(1) scaleX(1);
     color: #FBFBFB;
     z-index: 100;
     position: relative;
-    left: 65px;
+    left: 5px;
     bottom: 50px;
     background: rgba(65, 63, 63, 0.75);
     border-radius: 50%;
@@ -361,14 +376,23 @@ transform: scaleY(1) scaleX(1);
     position: absolute;
     top: 1%;
     left: 88%; 
-    border-radius: 80% 20% 80% 20%;
-    background-color: #999a;
-    opacity: 0.4;
+
     color: rgba(53, 52, 52, 0.835);
+    margin-top: 8px;
 }
 
 .msg-icon {
     margin-top: 5px;
+    
+}
+
+.line {
+   margin-bottom: 30px; 
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 
 

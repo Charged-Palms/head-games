@@ -147,9 +147,10 @@ export class Profile extends Component {
                                 <hr/>
                                 <span className="match-status">{currMatch && currMatch.status}</span>
                                 <p className="match-profile-bio">{currMatch && currMatch.bio}</p>
+                                <br/>
                                 <i onClick={() => {this.messageClick(currMatch.match_id)}} className=" far fa-comments fa-2x msg-icon"></i>
                                 {/* <button >Message</button> */}
-                                <p>{currMatch && currMatch.match_id}</p>
+                                {/* <p>{currMatch && currMatch.match_id}</p> */}
                             </div>
                         </div>
                     </ReactModal>
@@ -177,13 +178,14 @@ export class Profile extends Component {
                         <div className="match-profile">
                             <button className='X-btn' onClick={this.handleCloseModalTwo.bind(this)} >X</button>
                             <img className="quiz-profile-img" src={currQuizProfile && currQuizProfile.profile_pic} alt="quiz profile snapshot" />
-                            <p>{currQuizProfile && currQuizProfile.match_id}</p>
+                            {/* <p>{currQuizProfile && currQuizProfile.match_id}</p> */}
                             <div className="match-details">
                                 <span className="first-name"><span className='last'>{currQuizProfile && currQuizProfile.first_name} </span>{currQuizProfile && currQuizProfile.last_name}</span>
                                 <hr/>
                                 <span className="match-status" >{currQuizProfile && currQuizProfile.status}</span>
                                 <p className="match-profile-bio">{currQuizProfile && currQuizProfile.bio}</p>
                             </div>
+                            <br/>
                             <i onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className=" far fa-comments fa-2x msg-icon"></i>  
                             {/* <button onClick={() => this.quizMessageClick(currQuizProfile.match_id)} className='quiz-msg' >Message</button> */}
                         </div>
@@ -194,10 +196,10 @@ export class Profile extends Component {
         return (
             <div className="parallax-container">
             <div className='parallax-wrapper'>
+                <i onClick={this.logout} class="fad fa-sign-out-alt fa-2x logout-btn"></i>
                 <h1 className='first-name'>{firstName} <span className='last'>{lastName}</span></h1>
                 <i onClick={this.clickHome} className="far fa-home-heart fa-2x home-button"></i>
-                <Link to='/usersettings' ><button className="nav-btn">Settings / </button></Link>
-                <button onClick={this.logout} className="logout-btn">Logout</button>
+                {/* <Link to='/usersettings' ><button className="nav-btn">Settings / </button></Link> */}
                     <div >
                         <img className="profile-img" src={profilePic} alt="your snapshot"/>
                     </div>
@@ -206,12 +208,12 @@ export class Profile extends Component {
                     <button onClick={this.handleEdit} className="btn-edit">Edit</button>
                 </div>
                     <br/>
-                    <h3 className="know-you">Who You Want To Know</h3>
+                    <h3 className="know-you">Your Crushes</h3>
                 <div className="quiz-profiles">
                     {allQuizProfiles}
                 </div>
-                <hr/>
-                    <h3 className="you-want" >People Who Want To Know You</h3>
+                <hr className="line" />
+                    <h3 className="you-want" >People Crushing On You</h3>
                 <div className='grid' >
                     {allMatches}
                 </div>
