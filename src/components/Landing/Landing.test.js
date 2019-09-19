@@ -2,8 +2,10 @@ import React from "react";
 import { shallow } from "enzyme";
 import Landing from "./Landing";
 import Login from "../Login/Login";
-import Register from "../Register/Register";
+import { Register } from "../Register/Register";
 import { CSSTransition } from "react-transition-group";
+
+//Des' Tests
 describe("Login should be rendered", () => {
   it("Renders the Login Component", () => {
     const land = shallow(<Landing />);
@@ -15,7 +17,7 @@ describe("Register should be rendered", () => {
   it("Renders the Register Component", () => {
     const land = shallow(<Landing />);
 
-    expect(land.find(Register).length).toEqual(1);
+    expect(land.find(Register).length).toEqual(0);
   });
 });
 describe("Should see login", () => {
@@ -49,6 +51,7 @@ describe("Should have img", () => {
   });
 });
 
+//Aaron's Tests
 describe("Should see profile picture Input", () => {
   it("Profile picture input should have type text", () => {
     const land = shallow(<Register />);
@@ -56,31 +59,31 @@ describe("Should see profile picture Input", () => {
     expect(input.props()).toHaveProperty("type", "text");
   });
 });
-describe("Should see profile picture Input", () => {
-  it("Profile picture input should have type text", () => {
+describe("Should see First Name Input", () => {
+  it("Input should have placeholder First Name", () => {
     const land = shallow(<Register />);
-    const input = land.find("input#profilePic");
-    expect(input.props()).toHaveProperty("type", "text");
+    const input = land.find("input#firstName");
+    expect(input.props()).toHaveProperty("placeholder", "First Name");
   });
 });
-describe("Should see profile picture Input", () => {
-  it("Profile picture input should have type text", () => {
+describe("Should see Last Name Input", () => {
+  it("Input should have className list-item", () => {
     const land = shallow(<Register />);
-    const input = land.find("input#profilePic");
-    expect(input.props()).toHaveProperty("type", "text");
+    const input = land.find("input#lastName");
+    expect(input.props()).toHaveProperty("className", "list-item");
   });
 });
-describe("Should see profile picture Input", () => {
-  it("Profile picture input should have type text", () => {
+describe("Should see Email Input", () => {
+  it("Input should have type email", () => {
     const land = shallow(<Register />);
-    const input = land.find("input#profilePic");
-    expect(input.props()).toHaveProperty("type", "text");
+    const input = land.find("input#email");
+    expect(input.props()).toHaveProperty("type", "email");
   });
 });
-describe("Should see profile picture Input", () => {
-  it("Profile picture input should have type text", () => {
+describe("Should see Password Input", () => {
+  it("Input should have type password", () => {
     const land = shallow(<Register />);
-    const input = land.find("input#profilePic");
-    expect(input.props()).toHaveProperty("type", "text");
+    const input = land.find("input#password");
+    expect(input.props()).toHaveProperty("type", "password");
   });
 });
