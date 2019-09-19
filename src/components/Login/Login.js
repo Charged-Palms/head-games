@@ -84,7 +84,7 @@ export class Login extends Component {
               className="list-item"
             />
             <input
-              type="text"
+              type="password"
               placeholder="password"
               name="password"
               onChange={e => this.handleChange(e)}

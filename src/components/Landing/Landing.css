@@ -218,6 +218,7 @@
 }
 
 .list2 > input[type="text"],
+.list2 > input[type="password"],
 .list > input[type="text"],
 .list > input[type="email"],
 .list > input[type="password"],
@@ -229,6 +230,7 @@
   border: none;
 }
 .list2 > input[type="text"]:focus,
+.list2 > input[type="password"]:focus,
 .list > input[type="text"]:focus,
 .list > input[type="email"]:focus,
 .list > input[type="password"]:focus,

@@ -15,7 +15,8 @@ const initialState = {
   topicId: null,
   swipedUserId: null,
   questions: [],
-  numberCorrect: 0
+  numberCorrect: 0,
+  filteredMatches: []
 };
 
 //-----------------------------ACTION CONSTANTS------------------------------
