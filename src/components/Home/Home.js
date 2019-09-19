@@ -42,9 +42,9 @@ class Home extends Component {
   };
 
   //Potenials that are swiped either way can be console logged for debugging
-  onSwipe(data) {
-    console.log(data);
-  }
+  // onSwipe(data) {
+  //   console.log(data);
+  // }
 
   //Potenials that are swiped left on are stored in the swipedLeftArr Array
   onSwipeLeft(data) {
@@ -86,7 +86,7 @@ class Home extends Component {
       return (
         <Card
           key={c.user_id}
-          onSwipe={this.onSwipe.bind(this)}
+          // onSwipe={this.onSwipe.bind(this)}
           onSwipeLeft={this.onSwipeLeft.bind(this)}
           onSwipeRight={this.onSwipeRight.bind(this)}
           onDoubleTap={this.onDoubleTap.bind(this)}

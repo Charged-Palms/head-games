@@ -29,14 +29,14 @@ class Register extends Component {
     return (
       <div className="menu">
         <form onSubmit={e => e.preventDefault()} className="list">
-          <input
+          {/* <input
             type="file"
             name="profilePic"
             className="list-item"
             id="profilePicId"
             accept="image/*"
             style={{width:"70%"}}
-          />
+          /> */}
           <input
             type="text"
             placeholder="Profile Picture"
