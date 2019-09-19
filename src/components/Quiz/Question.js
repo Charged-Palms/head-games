@@ -32,18 +32,18 @@ class Question extends Component {
 
     animatePageLoad() {
         var box = d3.select('.quiz-content')
-        box.style('margin-left', '100%')
+        box.style('margin-right', '100%')
         .transition()
         .duration(1000)
-        .style('margin-left', '0%')
+        .style('margin-right', '0%')
     }
 
     animatePageUnLoad() {
         var box = d3.select('.quiz-content')
-        box.style('margin-right', '0%')
+        box.style('margin-left', '0%')
         .transition()
         .duration(1000)
-        .style('margin-right', '500%')
+        .style('margin-left', '500%')
     }
 
     animateArcTimer() {        
