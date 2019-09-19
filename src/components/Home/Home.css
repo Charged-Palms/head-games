@@ -15,8 +15,9 @@
 }
 
 .home-main-container {
-    -webkit-animation: color-change-4x 7s linear infinite alternate both;
-    animation: color-change-4x 7s linear infinite alternate both;
+    /* -webkit-animation: color-change-4x 7s linear infinite alternate both; */
+    /* animation: color-change-4x 7s linear infinite alternate both; */
+    background: #fafafa;
     box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
     height: 100vh;
     width: 100vw;

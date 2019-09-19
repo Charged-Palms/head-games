@@ -43,6 +43,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="profilePic"
+            id="profilePic"
           />
           <input
             type="text"
@@ -50,6 +51,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="firstName"
+            id="firstName"
           />
           <input
             type="text"
@@ -57,6 +59,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="lastName"
+            id="lastName"
           />
           <input
             type="email"
@@ -64,6 +67,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="email"
+            id="email"
           />
           <input
             type="password"
@@ -71,6 +75,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="password"
+            id="password"
           />
           <button className="list-item" onClick={this.handleContinue}>
             Continue
