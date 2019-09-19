@@ -25,7 +25,7 @@
 .message {
     width: 14em;
     margin: auto;
-    padding: auto;
+    padding: 6px 1px;
     text-align: center;
     font-weight: 900;
     color: black;
@@ -68,6 +68,7 @@
     position: relative;
     top: 1vh;
     left: 2vw;
+    margin-left: 8px;
 }
 
 .my-img {
@@ -78,6 +79,7 @@
     position: relative;
     top: 1vh;
     right: 2vw;
+    margin-right: 8px;
 }
 
 .name {

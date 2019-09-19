@@ -71,7 +71,7 @@ export class Profile extends Component {
         })
     }
     logout = async () => {
-        let res = await axios.delete('/auth/logout');
+        await axios.delete('/auth/logout');
         // console.log(res);
         this.props.logoutUser();
         this.props.history.push('/');
