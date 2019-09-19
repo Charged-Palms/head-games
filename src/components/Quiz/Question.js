@@ -13,6 +13,7 @@ class Question extends Component {
     }
 
     componentDidMount() {
+        this.animatePageLoad()
         this.animateArcTimer()
         this.counter()
         this.setState({currentQuestion: this.props.match.params.questionID})
@@ -27,6 +28,22 @@ class Question extends Component {
             newArr[j] = temp
         }
         return newArr
+    }
+
+    animatePageLoad() {
+        var box = d3.select('.quiz-content')
+        box.style('margin-right', '100%')
+        .transition()
+        .duration(1000)
+        .style('margin-right', '0%')
+    }
+
+    animatePageUnLoad() {
+        var box = d3.select('.quiz-content')
+        box.style('margin-left', '0%')
+        .transition()
+        .duration(1000)
+        .style('margin-left', '500%')
     }
 
     animateArcTimer() {        
@@ -110,7 +127,8 @@ class Question extends Component {
             this.props.history.push(`/question/${Number(this.props.match.params.questionID) + 1}`)
         } else {
             this.counter(true)
-            this.props.history.push('/quiz/true')
+            this.animatePageUnLoad()
+            setTimeout(() => this.props.history.push('/quiz/true'), 1000)
         }
     }
 
