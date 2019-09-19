@@ -3,7 +3,7 @@ import AboutYou from "./AboutYou";
 import { setUser } from "../../ducks/reducer";
 import { connect } from "react-redux";
 
-class Register extends Component {
+export class Register extends Component {
   state = {
     profilePic: "",
     firstName: "",
