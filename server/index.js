@@ -8,12 +8,10 @@ const authCtrl = require("./controller/authController");
 const userCtrl = require("./controller/userController");
 const quizCtrl = require("./controller/quizzesController");
 const socketIO = require('socket.io')
-const http = require('http').Server(app)
 const server = app.listen(SERVER_PORT, () =>
   console.log(`GO SOCKETS ON ${SERVER_PORT}`)
 );
 const io = socketIO(server)
-const axios = require('axios')
 const twilio = require('twilio')
 //accountSid for twilio
 const accountSid = __TWILIO_ACCOUNT_SID
@@ -73,59 +71,25 @@ app.get('/send-text', (req,res) => {
   }).then((message) => console.log(message.body))
 })
 
-// const getApiAndEmit = async socket => {
-//   // const db = app.get("db");
-//   // console.log(db.user_matches(req.session.user.user_id).then(res => {console.log(res)}))
-//   const res = await axios.get(`http://localhost:5555/api/messages/14`); // Getting the data from DarkSky
-//   // console.log(res)
-//   io.sockets.emit("FromAPI", res.data); // Emitting a new message. It will be consumed by the client
-// };
-
-// io.on("connection", socket => {
-//   console.log("New client connected");
-
-//   socket.on("FromAPI", socket => {
-//     // console.log('FromAPI', socket)
-//     getApiAndEmit(socket);
-//   });
-
-//   socket.on("disconnect", () => {
-//     console.log("user disconnected");
-//   });
-// });
-
-// massive(CONNECTION_STRING).then(db => {
-//   app.set("db", db);
-//   app.listen(SERVER_PORT, () =>
-//     console.log(`'DingleBerry Chargin ${SERVER_PORT} Palms`)
-//   );
-// });
-
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
 });
 
 io.on("connection", socket => {
-  // console.log("socket connected");
   
   socket.on("join chat", data => {
-    // console.log("in the room");
-    // console.log('dafdafds', data)
     socket.join(data.room);
   });
 
   socket.on('emit to room socket', data => {
-    // console.log(`emit to room ${data.room}`)
     socket.emit('room response', data)
   })
 
   socket.on('blast to room socket', data => {
-    // console.log(`blast to room ${data.room}`)
     io.to(data.room).emit('room response', data)
   })
 
     socket.on("disconnect", () => {
-    // console.log("user disconnected");
   });
   
 

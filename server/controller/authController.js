@@ -38,7 +38,7 @@ module.exports = {
         profile_pic
       ]);
       req.session.user = newUser[0];
-      console.log(req.session.user)
+      // console.log(req.session.user)
       delete newUser[0].password;
       res.status(200).send({
         message: "Logged in",
@@ -53,7 +53,7 @@ module.exports = {
   login: async (req, res) => {
     const db = req.app.get("db");
     const { email, password } = req.body;
-    console.log(req.body)
+    // console.log(req.body)
     try {
       const user = await db.find_email([email]);
       if (user.length === 0) {

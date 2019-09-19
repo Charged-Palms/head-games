@@ -159,9 +159,9 @@ class Question extends Component {
                     <div id='arc_box'>
                         <svg id='timer_arc'></svg>
                     </div>
-                    <h2 id='question-title'>
+                    <h3 id='question-title'>
                         {question}
-                    </h2>
+                    </h3>
                     <div className='questions-answers'>
                         {answerButtons}
                     </div>

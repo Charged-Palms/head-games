@@ -344,8 +344,8 @@ transform: scaleY(1) scaleX(1);
     border: none;
     font-weight: 700;
     position: absolute;
-    right: 88%;
-    top: 3%;
+    left: 88%;
+    top: 2%;
 }
 
 .btn-edit {
@@ -375,7 +375,7 @@ transform: scaleY(1) scaleX(1);
 .home-button {
     position: absolute;
     top: 1%;
-    left: 88%; 
+    right: 88%; 
 
     color: rgba(53, 52, 52, 0.835);
     margin-top: 8px;
