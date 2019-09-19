@@ -106,26 +106,26 @@ massive(CONNECTION_STRING).then(db => {
 });
 
 io.on("connection", socket => {
-  console.log("socket connected");
+  // console.log("socket connected");
   
   socket.on("join chat", data => {
-    console.log("in the room");
-    console.log('dafdafds', data)
+    // console.log("in the room");
+    // console.log('dafdafds', data)
     socket.join(data.room);
   });
 
   socket.on('emit to room socket', data => {
-    console.log(`emit to room ${data.room}`)
+    // console.log(`emit to room ${data.room}`)
     socket.emit('room response', data)
   })
 
   socket.on('blast to room socket', data => {
-    console.log(`blast to room ${data.room}`)
+    // console.log(`blast to room ${data.room}`)
     io.to(data.room).emit('room response', data)
   })
 
     socket.on("disconnect", () => {
-    console.log("user disconnected");
+    // console.log("user disconnected");
   });
   
 
