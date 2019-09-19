@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setQuestions, setNumCorrect, setUser} from '../../ducks/reducer'
 import './Quiz.css'
+import * as d3 from 'd3'
 
 class Quiz extends Component {
     state = {
@@ -16,6 +17,7 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
+        this.onLoadAnimation()
         this.setState({finishedQuiz: (this.props.match.params.finishedQuiz === 'true')})
         axios.get(`/api/quizzes/questions/${this.props.swipedUserId}`).then(res => {
             this.props.setQuestions(res.data)
@@ -25,9 +27,27 @@ class Quiz extends Component {
         })
     }
 
+    onLoadAnimation() {
+        let box = d3.select('.quiz-content')
+
+        box.style('margin-right', '100%')
+        .transition()
+        .duration(1000)
+        .style('margin-right', '0%')
+    }
+
+    animatePageUnLoad() {
+        let box = d3.select('.quiz-content')
+        box.style('margin-left', '0%')
+        .transition()
+        .duration(1000)
+        .style('margin-left', '500%')
+    }
+
     handleStartQuiz() {
         this.props.setNumCorrect(0)
-        this.props.history.push('/question/0')
+        this.animatePageUnLoad()
+        setTimeout(() => this.props.history.push('/question/0'), 1000)
     }
 
     sendText = () => {
