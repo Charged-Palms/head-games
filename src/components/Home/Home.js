@@ -3,30 +3,22 @@ import axios from "axios";
 import { Card, CardWrapper } from "react-swipeable-cards";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/reducer";
-import ReactModal from "react-modal";
 import "./Home.css";
-
-ReactModal.setAppElement("#root");
 
 class Home extends Component {
   state = {
-    showModal: false,
     potentialMatches: [],
     swipedRightArr: [],
     swipedLeftArr: [],
     filteredMatches: []
   };
 
-  componentDidMount() {
-    this.getMatches();
+  async componentDidMount() {
+    await this.getMatches();
+    if (this.props.filteredMatches.length === 0) {
+      this.props.setUser({ filteredMatches: [...this.state.potentialMatches] });
+    }
   }
-
-  // filterMatches = () => {
-  //   const { potentialMatches, swipedRightArr, swipedLeftArr } = this.state
-  //   let tempArr = potentialMatches.filter(function(el) {
-
-  //   })
-  // }
 
   //Populate the potenialMatches array in state
   getMatches = async () => {
@@ -41,38 +33,47 @@ class Home extends Component {
     }
   };
 
+  filterMatches = async () => {
+    const { swipedLeftArr, swipedRightArr } = this.state;
+    let tempArr = await this.props.filteredMatches.filter(el => {
+      return (
+        swipedLeftArr.indexOf(el) === -1 && swipedRightArr.indexOf(el) === -1
+      );
+    });
+    this.setState({ filteredMatches: [...tempArr] });
+    this.props.setUser({ filteredMatches: [...tempArr] });
+  };
+
   //Potenials that are swiped either way can be console logged for debugging
-  onSwipe(data) {
-    console.log(data);
-  }
+  // onSwipe(data) {
+  //   console.log(data);
+  // }
 
   //Potenials that are swiped left on are stored in the swipedLeftArr Array
   onSwipeLeft(data) {
     this.setState({
       swipedLeftArr: [...this.state.swipedLeftArr, data],
-      showModal: false
     });
+    this.filterMatches();
   }
 
   //Potenials that are swiped right on are stored in the swipedRightArr Array
   async onSwipeRight(data) {
     this.setState({
       swipedRightArr: [...this.state.swipedRightArr, data],
-      showModal: false
     });
     await this.props.setUser({ swipedUserId: data.user_id });
     this.props.history.push("/quiz/false");
+    this.filterMatches();
   }
 
   //Implement pop up profile here, onDoubleTap is unique to each card, data variable contains all info from user's db row
-  onDoubleTap(data) {
-    // this.setState(prevState => ({ showModal: !prevState.showModal }));
-    this.setState({ showModal: !this.state.showModal });
-  }
+  // onDoubleTap(data) {
+  // }
 
   //Mapped over this.state.potentialMatches, each element is turned into a card. Function is called in the render method.
   renderCards() {
-    const { potentialMatches: cards } = this.state;
+    const { filteredMatches: cards } = this.props;
     return cards.map(c => {
       const cardStyleFront = {
         width: "75%",
@@ -86,10 +87,10 @@ class Home extends Component {
       return (
         <Card
           key={c.user_id}
-          onSwipe={this.onSwipe.bind(this)}
+          // onSwipe={this.onSwipe.bind(this)}
           onSwipeLeft={this.onSwipeLeft.bind(this)}
           onSwipeRight={this.onSwipeRight.bind(this)}
-          onDoubleTap={this.onDoubleTap.bind(this)}
+          // onDoubleTap={this.onDoubleTap.bind(this)}
           data={c}
           style={cardStyleFront}
           className={`card-front ${c.user_id}`}
@@ -97,41 +98,12 @@ class Home extends Component {
           <div className="card-bottom">
             <h2>{c.first_name}</h2>
           </div>
-          {/* <ReactModal
-            isOpen={this.state.showModal}
-            closeTimeoutMS={500}
-            onRequestClose={this.handleCloseModal.bind(this)}
-          >
-            <div className="match-profile" style={{ zIndex: 100 }}>
-              <button
-                className="X-btn"
-                onClick={this.handleCloseModal.bind(this)}
-              >
-                X
-              </button>
-              <div className="match-details">
-                <span className="first-name">{c.first_name}</span>{" "}
-                <span className="last">{c.last_name}</span>
-                <hr />
-                <span>{c.status}</span>
-                <p className="match-profile-bio">{c.bio}</p>
-              </div>
-            </div>
-          </ReactModal> */}
         </Card>
       );
     });
   }
 
-  handleCloseModal() {
-    this.setState({
-      showModal: false
-    });
-  }
-
   render() {
-    // console.log("state", this.state);
-    // const wrapperStyle = { backgroundColor: "#333" };
     return (
       <div className="home-main-container">
         <div className="profile-button">
@@ -141,11 +113,7 @@ class Home extends Component {
             onClick={() => this.props.history.push("/profile")}
           />
         </div>
-        <CardWrapper
-          // Save below for later, if we implement an EndCard
-          // addEndCard={this.getEndCard}
-          // style={wrapperStyle}
-        >
+        <CardWrapper>
           {this.renderCards()}
         </CardWrapper>
       </div>
@@ -154,8 +122,8 @@ class Home extends Component {
 }
 
 function mapStateToProps(reduxState) {
-  const { profilePic } = reduxState;
-  return { profilePic };
+  const { profilePic, filteredMatches } = reduxState;
+  return { profilePic, filteredMatches };
 }
 
 export default connect(

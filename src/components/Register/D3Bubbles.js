@@ -8,11 +8,10 @@ import { connect } from "react-redux";
 import { setUser } from "../../ducks/reducer";
 import { withRouter } from "react-router-dom";
 
-
 class D3Bubbles extends Component {
   state = {
     topicId: null
-  }
+  };
 
   componentDidMount() {
     this.bubbles();
@@ -137,11 +136,50 @@ class D3Bubbles extends Component {
           })
       );
 
+
+    //Color gradients for circles
+    var grads = svg
+      .append("defs")
+      .selectAll("radialGradient")
+      .data(nodes)
+      .enter()
+      .append("radialGradient")
+      .attr("gradientUnits", "objectBoundingBox")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .attr("r", "100%")
+      .attr("id", function(d, i) {
+        return "grad" + i;
+      });
+
+    grads
+      .append("stop")
+      .attr("offset", "0%")
+      .style("stop-color", "white");
+
+    grads
+      .append("stop")
+      .attr("offset", "100%")
+      .style("stop-color", function(d) {
+        return scaleColor(d.cat);
+      });
+
+    svg
+      .append("text")
+      .attr("x", width / 2)
+      .attr("y", 75)
+      .attr("class", "d3-bubbles-title")
+      .style("text-anchor", "middle")
+      .text("Select Topic for Your Quiz!");
+
     node
       .append("circle")
       .attr("id", d => d.id)
       .attr("r", 0)
-      .style("fill", d => scaleColor(d.cat))
+      // .style("fill", d => scaleColor(d.cat))
+      .attr("fill", function(d, i) {
+        return "url(#grad" + i + ")";
+      })
       // .style("border", `200px solid ${d => scaleColor(d.cat)}`)
       .transition()
       .duration(2000)
@@ -253,10 +291,10 @@ class D3Bubbles extends Component {
       .attr("name", d => d.name)
       .attr("class", "infoBox-button")
       .on("click", async d => {
-        await this.setState({topicId: d.index + 1})
-        this.register()
+        await this.setState({ topicId: d.index + 1 });
+        this.register();
         // this.props.history.push("/home")
-      })
+      });
     //Add button text
     d3.selectAll(".infoBox-button").text("Select Topic!");
 
@@ -398,7 +436,7 @@ class D3Bubbles extends Component {
   };
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div className="d3-bubble-thing">
         <svg
@@ -417,35 +455,35 @@ class D3Bubbles extends Component {
 }
 
 function mapStateToProps(reduxState) {
-    const {
-      userId,
-      profilePic,
-      email,
-      firstName,
-      lastName,
-      password,
-      gender,
-      age,
-      zipcode,
-      bio,
-      status
-    } = reduxState;
-    return {
-      userId,
-      profilePic,
-      email,
-      firstName,
-      lastName,
-      password,
-      gender,
-      age,
-      zipcode,
-      bio,
-      status
-    };
-  }
-  
-  export default connect(
-    mapStateToProps,
-    { setUser }
-  )(withRouter(D3Bubbles));
+  const {
+    userId,
+    profilePic,
+    email,
+    firstName,
+    lastName,
+    password,
+    gender,
+    age,
+    zipcode,
+    bio,
+    status
+  } = reduxState;
+  return {
+    userId,
+    profilePic,
+    email,
+    firstName,
+    lastName,
+    password,
+    gender,
+    age,
+    zipcode,
+    bio,
+    status
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { setUser }
+)(withRouter(D3Bubbles));

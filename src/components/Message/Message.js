@@ -145,14 +145,16 @@ export class Message extends Component {
       </div>
     ));
     return (
-      <div className="message-wrappa">
-        <Link to="/profile">
-          <Img src={this.props.reduxState.profilePic} alt="profilespic" />
-        </Link>
-        {/* <Link to="/home">
-          <button>Home</button>
-        </Link> */}
-        {messages}
+      <div>
+        <div className="message-wrappa">
+          {/* <Link to="/home">
+      <button>Home</button>
+    </Link> */}
+    <Link to="/profile">
+      <Img src={this.props.reduxState.profilePic} alt="profilespic" />
+    </Link>
+          {messages}
+        </div>
         <Form>
           {/* <h2 className="welcome-message">Welcome, {this.props.reduxState.firstName}</h2> */}
           <Input
@@ -163,12 +165,13 @@ export class Message extends Component {
             onChange={this.handleChange}
           />
 
-          <Button onClick={this.blast}>&#11014;</Button>
+          <Button onClick={this.blast}>Send</Button>
         </Form>
       </div>
     );
   }
 }
+
 const Form = styled.div`
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -180,14 +183,18 @@ const Form = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  top:90vh;
-  left:25vw;
+  top: 92vh;
+  /* left: 25vw; */
+  background: #fafafa;
+  width:100vw;
+  box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
 `;
 
 const Input = styled.input`
+height:auto;
   padding: 10px 15px;
   box-sizing: border-box;
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
   border-radius: 6vw;
   border: none;
   box-shadow: inset 0 0 5px 1px;
@@ -195,30 +202,47 @@ const Input = styled.input`
     border: 2px solid #151515;
     box-shadow: inset 0 0 5px 1px;
   }
+  position: relative;
+  left: 14vw;
 `;
-const Button = styled.button`
-  padding: 10px 15px;
+const Button = styled.span`
+  /* padding: 12px;
   box-sizing: border-box;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
   background-color: rgba(25, 25, 25);
   color: #fafafa;
   transition: 0.5s;
-  cursor: pointer;
+  cursor: pointer; */
+  border: none;
+  color:rgb(25, 170, 159);
+  /* background: #3498db; */
+  /* width: 28px; */
+  /* padding: ; */
+  position: relative;
+  left: 14.3vw;
+  top:2vw;
+  font-size:14px;
+  /* top: 50%; */
+  /* transform: translateX(-50%) translateY(-50%); */
+  /* border-radius: 20px; */
+  /* box-shadow: inset 0.8 0.6px 4px 1px; */
 `;
 const Info = styled.div`
   color: white;
 `;
 
 const Img = styled.img`
-  height: 100px;
-  width: 100px;
-  overflow: hidden;
+  height: 140px;
+  width: 140px;
+  z-index: 20;
   border-radius: 50%;
-  box-shadow: -11px 11px 21px 3px rgba(0, 0, 0, 0.75);
-  border: 2px solid #fafafa;
-  position:relative;
-  top:1vh;
+  border: 0.7px groove grey;
+  margin-top: 1.4rem;
+  box-shadow: 4px 2px 4px 3px #706f6f;
+  border-left: 0px groove rgba(28, 110, 164, 0.18);
+  margin-bottom: 30px;
+  /* border: 3px solid grey; */
 `;
 
 function mapStateToProps(reduxState) {

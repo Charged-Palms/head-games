@@ -1,21 +1,22 @@
 .my-message {
     width: 14em;
-    margin: 50px auto;
+    margin: auto;
     background: rgb(133, 46, 221);
-    padding: 8px;
+    padding: auto;
     text-align: center;
     font-weight: 900;
     color: black;
     font-family: arial;
     position: relative;
     left: 14vw;
-    bottom: 2vh;
-    border-radius: 52em;
+    top: 3vh;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     height: auto;
     align-items: center;
-    background: rgb(148, 164, 255); /* Fallback for older browsers without RGBA-support */
+    background: rgb(148, 164, 255);
+    /* Fallback for older browsers without RGBA-support */
     background: rgba(148, 173, 255, 0.781);
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -23,22 +24,22 @@
 
 .message {
     width: 14em;
-    margin: 50px auto;
-    background: white;
-    padding: 8px;
+    margin: auto;
+    padding: auto;
     text-align: center;
     font-weight: 900;
     color: black;
     font-family: arial;
     position: relative;
     right: 14vw;
-    bottom: 2vh;
-    border-radius: 52em;
+    top: 3vh;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     height: auto;
     align-items: center;
-    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgb(204, 204, 204);
+    /* Fallback for older browsers without RGBA-support */
     background: rgba(204, 204, 204, 0.5);
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -50,14 +51,13 @@
     justify-content: space-between;
     flex-direction: row-reverse;
     // border:1px solid red;
-    
 }
 
 .non-user {
     // border: 1px solid green;
     display: flex;
     justify-content: space-between;
-    // border:1px solid yellow;
+    // border:1px solid yellow
 }
 
 .img {
@@ -67,7 +67,7 @@
     width: 40px;
     position: relative;
     top: 1vh;
-    left: 4vw;
+    left: 2vw;
 }
 
 .my-img {
@@ -77,29 +77,31 @@
     width: 40px;
     position: relative;
     top: 1vh;
-    right: 4vw;
+    right: 2vw;
 }
 
 .name {
-    color: red;
+    color: black;
     position: relative;
     left: 2vw;
     top: 1.3vh
 }
 
 .my-name {
-    color: blue;
+    color: black;
     position: relative;
     right: 2vw;
     top: 1.3vw;
 }
 
 .message-wrappa {
-    height: 100vh;
-    -webkit-animation: color-change-4x 7s linear infinite alternate both;
-    animation: color-change-4x 7s linear infinite alternate both;
+    height: 94vh;
+    background:#FAFAFA;
+    // -webkit-animation: color-change-4x 7s linear infinite alternate both;
+    // animation: color-change-4x 7s linear infinite alternate both;
     box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
     // background-repeat: no-repeat;
+    overflow: scroll;
     background-size: cover;
     z-index: -1;
     background-position: top;

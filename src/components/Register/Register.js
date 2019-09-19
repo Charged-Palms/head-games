@@ -3,7 +3,7 @@ import AboutYou from "./AboutYou";
 import { setUser } from "../../ducks/reducer";
 import { connect } from "react-redux";
 
-class Register extends Component {
+export class Register extends Component {
   state = {
     profilePic: "",
     firstName: "",
@@ -29,20 +29,21 @@ class Register extends Component {
     return (
       <div className="menu">
         <form onSubmit={e => e.preventDefault()} className="list">
-          <input
+          {/* <input
             type="file"
             name="profilePic"
             className="list-item"
             id="profilePicId"
             accept="image/*"
             style={{width:"70%"}}
-          />
+          /> */}
           <input
             type="text"
             placeholder="Profile Picture"
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="profilePic"
+            id="profilePic"
           />
           <input
             type="text"
@@ -50,6 +51,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="firstName"
+            id="firstName"
           />
           <input
             type="text"
@@ -57,6 +59,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="lastName"
+            id="lastName"
           />
           <input
             type="email"
@@ -64,6 +67,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="email"
+            id="email"
           />
           <input
             type="password"
@@ -71,6 +75,7 @@ class Register extends Component {
             onChange={e => this.handleChange(e)}
             className="list-item"
             name="password"
+            id="password"
           />
           <button className="list-item" onClick={this.handleContinue}>
             Continue
