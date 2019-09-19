@@ -16,7 +16,7 @@ export class Message extends Component {
       userTyping: false,
       room: "hiya"
     };
-    this.socket = io.connect(process.env.REACT_APP_PORT);
+    this.socket = io.connect({secure: true});
     this.socket.on("global response", data => this.updateMessages(data));
     this.socket.on("room response", data => this.updateMessages(data));
   }
