@@ -132,7 +132,7 @@ $parallax-perspective: 8px;
 }
 
 * {
-    user-select: none;
+    // user-select: none;
     &:focus {
         outline: none !important;
     }
@@ -187,7 +187,7 @@ $parallax-perspective: 8px;
     border-image-outset: 1;
     // padding-top: 0.5rem;
     padding: none;
-    user-select: none;
+    // user-select: none;
     -webkit-tap-highlight-color: transparent;
     animation: fadeIn 2s;
     :focus {
