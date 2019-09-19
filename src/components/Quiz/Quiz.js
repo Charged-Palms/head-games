@@ -11,7 +11,7 @@ class Quiz extends Component {
         finishedQuiz: false,
         text: {
             recipient: '4356100129',
-            textmessage: 'that moment when I forgot that continue would send this message...'    
+            textmessage: ':)'    
         },
         topicName: ''
     }
