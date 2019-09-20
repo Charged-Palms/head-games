@@ -71,7 +71,7 @@ export class Profile extends Component {
         })
     }
     logout = async () => {
-        await axios.delete('/auth/logout');
+        axios.post('/auth/logout');
         // console.log(res);
         this.props.logoutUser();
         this.props.history.push('/');
@@ -125,7 +125,7 @@ export class Profile extends Component {
             let currMatch = matches[this.state.matchProfile]
             // console.log(currMatch)
             return(
-                <div className="grid-item" key={elm.user_id}>                    
+                <div className="grid-item" key={'b' + elm.user_id}>                    
                     
                         <div className="div-img">
                             <img onClick={() => this.handleOpenModal(index)} className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>
@@ -159,7 +159,7 @@ export class Profile extends Component {
             let currQuizProfile = quizProfiles[this.state.quizProfile]
             // console.log(currQuizProfile)
             return (
-                <div className="grid-item" key={elm.user_id}>
+                <div className="grid-item" key={'a' +elm.user_id}>
                     <>
                         
                             <img onClick={() => this.handleOpenModalTwo(index)} className='match-img' src={elm.profile_pic} alt="Match Profile snapshot"/>

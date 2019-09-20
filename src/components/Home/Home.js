@@ -63,8 +63,8 @@ class Home extends Component {
       swipedRightArr: [...this.state.swipedRightArr, data],
     });
     await this.props.setUser({ swipedUserId: data.user_id });
+    await this.filterMatches();
     this.props.history.push("/quiz/false");
-    this.filterMatches();
   }
 
   //Implement pop up profile here, onDoubleTap is unique to each card, data variable contains all info from user's db row
@@ -80,7 +80,7 @@ class Home extends Component {
         height: "75%",
         marginTop: "5%",
         backgroundImage: `url(${c.profile_pic})`,
-        backgroundSize: "auto",
+        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center"
       };

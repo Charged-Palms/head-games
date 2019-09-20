@@ -11,7 +11,7 @@ module.exports = {
   },
   getCardInfo: async (req, res) => {
     const db = req.app.get("db");
-    const { user_id, gender } = req.session.user;
+    const { gender } = req.session.user;
     try {
       if (req.session.user.gender === true) {
         const matches = await db.get_potential_male_matches([gender]);
