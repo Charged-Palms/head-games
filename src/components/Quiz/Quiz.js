@@ -11,7 +11,7 @@ class Quiz extends Component {
         finishedQuiz: false,
         text: {
             recipient: '4356100129',
-            textmessage: 'hey bby'    
+            textmessage: 'hey'    
         },
         topicName: ''
     }
