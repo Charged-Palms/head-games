@@ -32,7 +32,7 @@
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",
     "sass": "^1.23.0-module.beta.1",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.5.0",
     "socket.io-client": "^2.2.0",
     "styled-components": "^4.3.2",
     "sweetalert2": "^8.17.1",
